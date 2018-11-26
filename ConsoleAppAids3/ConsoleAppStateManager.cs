@@ -1,0 +1,830 @@
+﻿/*
+    ============================================================================
+
+    Namespace:          WizardWrx.ConsoleAppAids3
+
+    Class Name:         ConsoleAppStateManager
+
+    File Name:          ConsoleAppStateManager.cs
+
+    Synopsis:           Extend class WizardWrx.DllServices2.StateManager with
+                        methods tailored to the needs of character mode,
+                        a. k. a. console mode, applications.
+
+    Remarks:            This class adds features applicable to character mode
+                        programs, extending WizardWrx.DllServices2.StateManager,
+                        by incorporating an instance as a property of itself. I
+						considered inheritance, but opted against it, since both
+						classes are singletons, and I didn't want to investigate
+						how a singleton that derives from another singleton
+						would behave. Besides, implementing it as a property
+						maintains a clear distinction between its properties and
+						those of the embedded StateManager. The final nail in
+						the inheritance coffin is that the current versions of
+						both classes now inherit from GenericSingletonBase, a
+						generic abstract base class defined in DllServices2 that
+						hides most of the plumbing required for the Singleton in
+                        their common base class.
+
+    Created:            Sunday, 18 May 2014
+
+	Author:             David A. Gray
+
+	License:            Copyright (C) 2014-2017, David A. Gray. 
+						All rights reserved.
+
+                        Redistribution and use in source and binary forms, with
+                        or without modification, are permitted provided that the
+                        following conditions are met:
+
+                        *   Redistributions of source code must retain the above
+                            copyright notice, this list of conditions and the
+                            following disclaimer.
+
+                        *   Redistributions in binary form must reproduce the
+                            above copyright notice, this list of conditions and
+                            the following disclaimer in the documentation and/or
+                            other materials provided with the distribution.
+
+                        *   Neither the name of David A. Gray, nor the names of
+                            his contributors may be used to endorse or promote
+                            products derived from this software without specific
+                            prior written permission.
+
+                        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+                        CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+                        WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+                        WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+                        PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+                        David A. Gray BE LIABLE FOR ANY DIRECT, INDIRECT,
+                        INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+                        (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+                        SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+                        PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+                        ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+                        LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+                        ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+                        IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    ----------------------------------------------------------------------------
+    Revision History
+    ----------------------------------------------------------------------------
+
+    Date       Version By  Description
+    ---------- ------- --- -----------------------------------------------------
+    2014/05/18 4.1     DAG Initial implementation.
+
+    2014/06/23 5.1     DAG Further fine tuning of the namespace.
+
+    2014/07/23 5.2     DAG Allow ErrorExit to fail gracefully if the message
+                           table is empty.
+
+    2014/12/15 5.4     DAG Swap the order of the calls to the WaitForCarbonUnit
+                           and DisplayEOJMessage methods, so that the end-of-job
+                           message is displayed before the carbon unit prompt.
+
+    2016/04/09 6.0     DAG Finish breaking free of dependence on the old strong
+                           name signed class libraries by binding to version
+                           6.0.381.32883 of WizardWrx.DllServices2.
+
+	2016/06/08 6.3     DAG Technical clarifications to internal documentation
+                           account for changes of plans and other technical
+                           reasons for some of the classes that logically belong
+                           in this library being found instead in DLLServices2.
+
+	2017/08/05 7.0     DAG Replace the WizardWrx.DllServices2.dll monolith with
+	                       the constellation of DLLs that replaced it, which
+	                       also requires upgrading the target framework version.
+
+	2018/09/18 7.0     DAG Mark GetTheSingleInstance as a New (override) method.
+
+	2018/11/26 7.0     DAG Eliminate the unreferenced system namespaces, and tag
+                           my own assembly references with explanatory notes.
+    ============================================================================
+*/
+
+
+using System;
+
+using WizardWrx.DLLConfigurationManager;                                        // This class wraps objects exposed by this library.
+
+
+namespace WizardWrx.ConsoleAppAids3
+{
+    /// <summary>
+	/// ConsoleAppStateManager is an WizardWrx.DLLServices2.StateManager
+	/// adapter, which exposes the adapted object through its read only
+	/// BaseStateManager property, and extends it with methods that provide
+	/// services applicable exclusively to character mode (console mode)
+	/// programs.
+    /// </summary>
+	/// <remarks>
+	/// Internally, ConsoleAppStateManager uses some StateManager services that
+	/// could reasonably be expected to be defined locally. In particular, the
+	/// services for ascertaining the redirection state of the three standard
+	/// console handles and the names of the files to which they are redirected
+	/// seem logically out of place. They are in that library for two reasons.
+	/// 
+	/// 1) The ExceptionLogger class, which belongs where it is because it meets
+	/// needs that are substantially identical, regardless of the Windows 
+	/// subsystem in which it runs. While I could have made a wrapper that 
+	/// inherits from the ExceptionLogger, that seemed pointless for the few
+	/// lines of code that would have gone into the derived class, when this
+	/// library has unrelated dependencies on DLLServices2.
+	/// 
+	/// 2) It confines the services that invoke unmanaged code, and must make 
+	/// significant link demands, to one library.
+	/// </remarks>
+    public class ConsoleAppStateManager : GenericSingletonBase<ConsoleAppStateManager>
+    {
+        #region Public Constants and Enumerations
+        /// <summary>
+        /// This enumeration governs when the NormalExit method suspends a task
+        /// by calling WaitForCarbonUnit.
+        /// </summary>
+        public enum NormalExitAction
+        {
+            /// <summary>
+            /// Always exit immediately, regardless of the status code.
+            /// </summary>
+            ExitImmediately ,
+
+            /// <summary>
+            /// Exit immediately if the status code is ERROR_SUCCESS (zero).
+            /// Otherwise, call WaitForCarbonUnit.
+            /// </summary>
+            HaltOnError ,
+
+            /// <summary>
+            /// Exit silently, without displaying any text on the console.
+            /// </summary>
+            Silent ,
+
+            /// <summary>
+            /// Exit after allowing a specified amount of time for an operator
+            /// to read the error message.
+            /// </summary>
+            Timed ,
+
+            /// <summary>
+            /// Always call WaitForCarbonUnit.
+            /// </summary>
+            WaitForOperator
+        }   // public enum NormalExitAction
+
+
+        /// <summary>
+        /// This constant specifies the default number of seconds to wait when
+        /// NormalExitAction is Timed. Its current value of zero causes a wait
+        /// of up to 30 seconds, which should be about right most of the time.
+        /// </summary>
+		public const uint TIMED_WAIT_DEFAULT_SECONDS = MagicNumbers.ZERO;
+
+
+        /// <summary>
+        /// This constant specifies a default description of the event that
+        /// happens when the time expires or the wait is interrupted (canceled),
+        /// when NormalExitAction is Timed.
+        /// 
+        /// Currently, the default description is "Program ending," which is
+        /// taken from a resource string in the WizardWrx.ConsoleAids class that
+        /// implements this feature.
+        /// </summary>
+        public const string TIMED_WAIT_WAITING_FOR_DEFAULT = SpecialStrings.EMPTY_STRING;
+
+        /// <summary>
+        /// This constant specifies the default method by which the timed wait
+        /// can be interrupted (canceled) when NormalExitAction is Timed.
+        /// 
+        /// Currently, the default method of interrupting the timed wait is by
+        /// pressing the ENTER (Return) key once (CarriageReturn).
+        /// </summary>
+        public const DisplayAids.InterruptCriterion TIMED_WAIT_INTERRUPT_CRITERION = DisplayAids.InterruptCriterion.CarriageReturn;
+
+
+        /// <summary>
+        /// Use this member of the ConsoleColor enumeration, along with the
+        /// TIMED_WAIT_BACKGROUND_COLOR_DEFAULT, to instruct an ExceptionLogger
+        /// object to render text displayed in toe standard output window of a
+        /// console mode application in its default screen colors.
+        /// </summary>
+        public const ConsoleColor TIMED_WAIT_TEXT_COLOR_DEFAULT = ConsoleColor.Black;
+
+
+        /// <summary>
+        /// Use this member of the ConsoleColor enumeration, along with the
+        /// TIMED_WAIT_TEXT_COLOR_DEFAULT, to instruct an ExceptionLogger object
+        /// to render text displayed in toe standard output window of a console
+        /// mode application in its default screen colors.
+        /// </summary>
+        public const ConsoleColor TIMED_WAIT_BACKGROUND_COLOR_DEFAULT = ConsoleColor.Black;
+        #endregion  // Public Constants and Enumerations
+
+
+        #region Public Instance Properties
+        /// <summary>
+        /// Expose the real state manager behind this adapter.
+        /// </summary>
+        public StateManager BaseStateManager
+        { get { return _me; } }
+        #endregion  // Public Instance Properties
+
+
+        #region Private Instance Storage
+        private StateManager _me = null;
+        private bool _fBoJMessageGenerated = false;
+        #endregion  // Private Instance Storage
+
+
+        #region Singleton Infrastructure
+		private static readonly SyncRoot s_srCriticalSection = new SyncRoot ( typeof ( ConsoleAppStateManager ).ToString ( ) );
+
+
+		/// <summary>
+		/// Get a reference to the ConsoleAppStateManager singleton, which
+		/// organizes a host of useful application state information under one
+		/// object.
+        /// </summary>
+        /// <returns>
+		/// The return value is the initialized singleton.
+		/// </returns>
+		/// <remarks>
+		/// This method must override and hide the like named method on the base
+		/// class, because it has extra work to do.
+		/// </remarks>
+        public new static ConsoleAppStateManager GetTheSingleInstance ( )
+        {
+			if ( s_genTheOnlyInstance._me == null )
+				lock ( s_srCriticalSection )
+					if ( s_genTheOnlyInstance._me == null )
+						s_genTheOnlyInstance._me = StateManager.GetTheSingleInstance ( );
+
+			return s_genTheOnlyInstance;
+        }	// public static ConsoleAppStateManager GetTheSingleInstance ( )
+        #endregion  // Singleton Infrastructure
+
+
+		#region BOJ and EOJ Message Displays
+		/// <summary>
+        /// When called for the first time, this method displays a BOJ message
+        /// on the console. Subsequent calls return immediately, without taking
+        /// any action.
+        /// </summary>
+        /// <remarks>
+        /// This method is a wafer-thin wrapper around GetBOJMessage, and it
+        /// uses a thread-safe method to write its output on the console.
+        /// </remarks>
+        public void DisplayBOJMessage ( )
+        {
+            if ( !_fBoJMessageGenerated )
+                Console.WriteLine ( GetBOJMessage ( ) );
+        }   // public void DisplayBOJMessage method
+
+
+		/// <summary>
+        /// This method takes GetEOJMessage a step further by passing its return
+        /// value to a thread-safe console writer.
+        /// </summary>
+        /// <remarks>
+        /// Access to this method is synchronized by an internally managed
+        /// object lock.
+        /// </remarks>
+        public void DisplayEOJMessage ( )
+        {
+            Console.WriteLine ( GetEOJMessage ( ) );
+        }   // public void DisplayEOJMessage method
+		#endregion	// BOJ and EOJ Message Displays
+
+
+		#region ErrorExit Methods
+		/// <summary>
+        /// Display an error message, read from a table of static strings, and
+        /// exit, returning the exit code. See Remarks.
+        /// </summary>
+        /// <param name="puintStatusCode">
+        /// This unsigned integer specifies the subscript of the message, and it
+        /// becomes the program's exit code. See Remarks.
+        /// </param>
+        /// <remarks>
+        /// You must supply the messages as an array of strings, by calling
+        /// instance method LoadErrorMessageTable.
+        ///
+        /// After the message is displayed, static method WaitForCarbonUnit
+        /// is called with a null string reference, causing it to display its
+        /// default prompt, and wait until an operator presses the RETURN key.
+        ///
+        /// When WaitForCarbonUnit returns, the DisplayEOJMessage method on the
+        /// singleton instance is called to display the end of job message,
+        /// along with the ending time and elapsed time, and control is returned
+        /// to the OS, sending along the exit code.
+        /// </remarks>
+        public void ErrorExit ( uint puintStatusCode )
+        {
+            if ( _me.AppErrorMessages != null )
+            {
+                if ( puintStatusCode < _me.AppErrorMessages.Length )
+                {
+                    Console.WriteLine (
+                        _me.AppErrorMessages [ puintStatusCode ] );
+                }   // TRUE (expected outcome) block, if ( puintStatusCode < _me.AppErrorMessages.Length )
+                else
+                {
+                    Console.WriteLine (
+                        Properties.Resources.ERRMSG_UNKNOWN_EXIT_CODE ,
+                        puintStatusCode );
+                }   // FALSE (UNexpected outcome) block, if ( puintStatusCode < _me.AppErrorMessages.Length )
+
+                Console.WriteLine (
+                    Properties.Resources.CONSOLE_APP_EXIT_CODE ,
+                    puintStatusCode ,
+                    Environment.NewLine );
+            }   // if ( _me.AppErrorMessages != null )
+
+			this.DisplayEOJMessage ( );
+
+            if ( System.Diagnostics.Debugger.IsAttached )
+                DisplayAids.WaitForCarbonUnit ( null );
+            else if ( puintStatusCode > MagicNumbers.ERROR_SUCCESS )
+                DisplayAids.TimedWait (
+					TIMED_WAIT_DEFAULT_SECONDS ,                							// uint puintWaitSeconds
+					TIMED_WAIT_WAITING_FOR_DEFAULT ,            							// string pstrCountdownWaitingFor
+					TIMED_WAIT_TEXT_COLOR_DEFAULT ,             							// ConsoleColor pclrTextColor
+                    TIMED_WAIT_BACKGROUND_COLOR_DEFAULT ,									// ConsoleColor pclrTextBackgroundColor
+                    TIMED_WAIT_INTERRUPT_CRITERION );										// InterruptCriterion penmInterruptCriterion
+
+            Environment.Exit ( ( int ) puintStatusCode );
+        }   // public void ErrorExit
+		#endregion	// ErrorExit Methods
+
+
+		#region BOJ and EOJ Pseudo-Properties
+		/// <summary>
+        /// When called for the first time, this method returns a BOJ message,
+        /// ready for display on the console. Subsequent calls return an empty
+        /// string.
+        /// </summary>
+        /// <returns>
+        /// The first call returns a message for display on the console. All
+        /// subsequent calls return an empty string, indicating that another
+        /// thread already requested a message, and has, presumably, displayed
+        /// it.
+        /// </returns>
+        /// <remarks>
+        /// Access to this method is synchronized by an internally managed
+        /// object lock.
+        /// </remarks>
+        public string GetBOJMessage ( )
+        {
+            if ( !_fBoJMessageGenerated )
+            {   // Method has never been called against this instance.
+				lock ( s_srCriticalSection )
+				{   // Thread-safe we must always be.
+					_fBoJMessageGenerated = true;
+
+					if ( _me.ShowUTCTime )
+					{   // By default, the local and UTC startup times are shown.
+						return string.Format (
+							Properties.Resources.CONSOLE_APP_BOJ ,							// Message Template
+							new object [ ]
+                                {
+                                    _me.GetAssemblyProductAndVersion ( ) ,					// Token 0
+                                    Environment.NewLine ,									// Token 1
+                                    _me.ConsoleMessageTimeFormat.FormatThisTime (
+                                        _me.AppStartupTimeLocal ) ,							// Token 2
+                                    _me.ConsoleMessageTimeFormat.FormatThisTime (
+                                        _me.AppStartupTimeUtc ) } );						// Token 3
+
+					}   // TRUE (default) block, if ( _me.ShowUTCTime )
+					else
+					{   // User doesn't want the UTC times.
+						return string.Format (
+							Properties.Resources.CONSOLE_APP_BOJ_NO_UTC ,					// Message Template
+							new object [ ] {
+                                _me.GetAssemblyProductAndVersion ( ) ,						// Token 0
+                                Environment.NewLine ,										// Token 1
+                                _me.ConsoleMessageTimeFormat.FormatThisTime (
+                                    _me.AppStartupTimeLocal ) } );							// Token 2
+					}   // FALSE (alternate) block, if ( _me.ShowUTCTime )
+				}   // lock ( lock ( s_srCriticalSection ) )
+            }   // TRUE block, if ( !_fBoJMessageGenerated )
+            else
+            {   // One BOJ message per instance, please!
+                return string.Empty;
+            }   // FALSE block, if ( !_fBoJMessageGenerated )
+        }   // public string GetBOJMessage method
+
+
+        /// <summary>
+        /// This method returns a new EOJ message each time it is called.
+        /// </summary>
+        /// <returns>
+        /// The returned string is ready to print on the console, by calling the
+        /// Console.WriteLine method.
+        /// </returns>
+        /// <remarks>
+        /// Access to this method is synchronized by an internally managed
+        /// object lock.
+        /// </remarks>
+        public string GetEOJMessage ( )
+        {
+            string strMsgWork = null;
+
+			lock ( s_srCriticalSection )
+            {
+                DateTime dtmEndOfJob = DateTime.Now;
+
+                if ( _me.ShowUTCTime )
+                {   // By default, the local and UTC startup times are shown.
+                    strMsgWork = string.Format (
+                        Properties.Resources.CONSOLE_APP_EOJ ,								// Format string
+                        new object [ ] {
+                             Environment.NewLine ,                                  		// Token 0
+                             _me.AppRootAssemblyFileBaseName ,                   			// Token 1
+                             _me.ConsoleMessageTimeFormat.FormatThisTime (
+                                dtmEndOfJob ) ,                                     		// Token 2
+                             _me.ConsoleMessageTimeFormat.FormatThisTime (
+                                dtmEndOfJob.ToUniversalTime ( ) ),                  		// Token 3
+                             _me.AppUptime } ) ;                         					// Token 4
+                }  // TRUE (default) block, if ( _me.ShowUTCTime )
+                else
+                {  // User doesn't want the UTC times.
+                    strMsgWork = string.Format (
+						Properties.Resources.CONSOLE_APP_EOJ_NO_UTC ,               		// Format string
+                        new object [ ] {
+                             Environment.NewLine ,                                  		// Token 0
+                             _me.AppRootAssemblyFileBaseName ,                       		// Token 1
+                             _me.ConsoleMessageTimeFormat.FormatThisTime (
+                                dtmEndOfJob ) ,                                     		// Token 2
+                             _me.AppUptime } );                         					// Token 3
+                }   // FALSE (alternate) block, if ( _me.ShowUTCTime )
+			}   // lock ( s_srCriticalSection )
+
+            //  ----------------------------------------------------------------
+            //  If the line is too wide to fit on one line, we'll decide where
+            //  to split it.
+            //  ----------------------------------------------------------------
+
+            if ( strMsgWork.Length > Console.WindowWidth )
+                return strMsgWork.Replace (
+					Properties.Resources.CONSOLE_APP_EOJ_SPLIT_TOKEN ,              		// Format template
+                    string.Format (
+						Properties.Resources.CONSOLE_APP_EOJ_REPLACEMENT_TOKEN ,    		// Token 0
+						Environment.NewLine ) );                                    		// Token 1
+            else
+                return strMsgWork;
+        }  // public string GetEOJMessage method
+		#endregion	// BOJ and EOJ Pseudo-Properties
+
+
+		#region NortmalExit Methods
+		/// <summary>
+        /// Exit the program normally, returning the status code stored in this
+        /// instance, and optionally call WaitForCarbonUnit to suspend execution
+        /// until the operator has a chance to read the output or capture it
+        /// into the clipboard. If WaitForCarbonUnit is called, its default
+        /// message is used.
+        /// </summary>
+        /// <remarks>
+        /// This should have been the way the original version worked. Since it
+        /// is the simplest, I forced the original implementation to surrender
+        /// its hold on the number one slot.
+        ///
+        /// This method calls overload 4, passing in a null reference for the
+        /// carbon unit prompt and an immediate exit instruction.
+        /// </remarks>
+        public void NormalExit ( )
+        {
+            NormalExit (
+                ( uint ) _me.AppReturnCode ,												// Use the exit code stored in the instance.
+                null ,																		// A null pstrOperatorPrompt means use default message.
+                NormalExitAction.ExitImmediately ) ;										// Assume we are batch, and maybe even headless.
+        }   // public void NormalExit (1 of 8)
+
+
+        /// <summary>
+        /// Exit the program normally, optionally returning a nonzero status
+        /// code. If running in debug mode, use WaitForCarbonUnit to block until
+        /// the tester has a chance to read the output or capture it into the
+        /// clipboard.
+        /// </summary>
+        /// <param name="puintStatusCode">
+        /// This unsigned integer specifies the program's exit code.
+        /// </param>
+        /// <param name="pstrOperatorPrompt">
+        /// This string specifies an alternative message for method
+        /// WaitForCarbonUnit to display. If this is an empty string or null
+        /// reference, a default message, "Please press the ENTER (Return) key
+        /// to exit the program." is shown.
+        /// </param>
+        /// <remarks>
+        /// This is the original implementation, since pre-empted by the simpler
+        /// method call that takes no arguments.
+        ///
+        /// When I implemented the #if DEBUG conditional compilation block, I
+        /// didn't take into consideration that the only time that #if DEBUG is
+        /// true is when the debug version of this library is built. I decided
+        /// to leave it in, as a reminder to myself of how it can be effectively
+        /// used with some of the new overloads.
+        /// </remarks>
+        public void NormalExit (
+            uint puintStatusCode ,
+            string pstrOperatorPrompt )
+        {
+            this.DisplayEOJMessage ( );
+
+			if ( System.Diagnostics.Debugger.IsAttached )
+			{
+				if ( puintStatusCode != MagicNumbers.ERROR_SUCCESS )
+					Console.WriteLine (
+						Properties.Resources.CONSOLE_APP_EXIT_CODE ,
+						puintStatusCode ,
+						Environment.NewLine );
+			}	// if ( System.Diagnostics.Debugger.IsAttached )
+
+            DisplayAids.WaitForCarbonUnit ( pstrOperatorPrompt );
+            Environment.Exit ( ( int ) puintStatusCode );
+        }   // public void NormalExit (2 of 8)
+
+
+        /// <summary>
+        /// Exit the program normally, optionally returning a nonzero status
+        /// code. If running in debug mode, use WaitForCarbonUnit to block until
+        /// the tester has a chance to read the output or capture it into the
+        /// clipboard. Regardless, if WaitForCarbonUnit is called, its default
+        /// message is displayed.
+        /// </summary>
+        /// <param name="puintStatusCode">
+        /// This unsigned integer specifies the program's exit code.
+        /// </param>
+        /// <remarks>
+        /// This method calls overload 4, passing in a null reference for the
+        /// carbon unit prompt and an immediate exit instruction.
+        /// </remarks>
+        public void NormalExit ( uint puintStatusCode )
+        {
+            NormalExit (
+                puintStatusCode ,															// Pass along the caller's exit code.
+                null ,																		// A null pstrOperatorPrompt means use default message.
+				NormalExitAction.ExitImmediately );											// Assume we are batch, and maybe even headless.
+        }   // public void NormalExit (3 of 8)
+
+
+        /// <summary>
+        /// Exit the program normally, optionally returning a nonzero status
+        /// code, and optionally calling WaitForCarbonUnit to suspend execution
+        /// until the operator has a chance to read the output or capture it
+        /// into the clipboard.
+        /// </summary>
+        /// <param name="puintStatusCode">
+        /// This unsigned integer specifies the program's exit code.
+        /// </param>
+        /// <param name="pstrOperatorPrompt">
+        /// This string specifies an alternative message for method
+        /// WaitForCarbonUnit to display. If this is an empty string or null
+        /// reference, a default message, "Please press the ENTER (Return) key
+        /// to exit the program." is shown.
+        /// </param>
+        /// <param name="penmNormalExitAction">
+        /// This member of the NormalExitAction enumeration controls whether to
+        /// use WaitForCarbonUnit to suspend execution until an operator has a
+        /// chance to read the output. See the NormalExitAction enumeration for
+        /// details.
+        /// </param>
+        /// <remarks>
+        /// This method differs sufficiently from overload 2 that it stands on
+        /// its own. Theoretically, every other overload could call this one.
+        /// </remarks>
+        public void NormalExit (
+            uint puintStatusCode ,
+            string pstrOperatorPrompt ,
+            NormalExitAction penmNormalExitAction )
+        {
+            NormalExit (
+                puintStatusCode ,
+                pstrOperatorPrompt ,
+                penmNormalExitAction ,
+                TIMED_WAIT_DEFAULT_SECONDS ,
+                TIMED_WAIT_WAITING_FOR_DEFAULT ,
+                TIMED_WAIT_TEXT_COLOR_DEFAULT ,
+                TIMED_WAIT_BACKGROUND_COLOR_DEFAULT ,
+                TIMED_WAIT_INTERRUPT_CRITERION );
+        }   // public void NormalExit (4 of 8)
+
+
+        /// <summary>
+        /// Exit the program normally, optionally returning a nonzero status
+        /// code, and optionally calling WaitForCarbonUnit to suspend execution
+        /// until the operator has a chance to read the output or capture it
+        /// into the clipboard.
+        /// </summary>
+        /// <param name="pstrOperatorPrompt">
+        /// This string specifies an alternative message for method
+        /// WaitForCarbonUnit to display. If this is an empty string or null
+        /// reference, a default message, "Please press the ENTER (Return) key
+        /// to exit the program." is shown.
+        /// </param>
+        /// <param name="penmNormalExitAction">
+        /// This member of the NormalExitAction enumeration controls whether to
+        /// use WaitForCarbonUnit to suspend execution until an operator has a
+        /// chance to read the output. See the NormalExitAction enumeration for
+        /// details.
+        /// </param>
+        /// <remarks>
+        /// This method calls the fourth overload, the most coprehensive
+        /// implementation, passing in the return code stored in the instance,
+        /// which I explicitly cast to the unsigned integer type of its first
+        /// argument.
+        /// </remarks>
+        public void NormalExit (
+            string pstrOperatorPrompt ,
+            NormalExitAction penmNormalExitAction )
+        {
+			NormalExit ( ( uint ) _me.AppReturnCode ,       								// Use the exit code stored in the instance.
+				pstrOperatorPrompt ,                        								// Pass along the caller's message for WaitForCarbonUnit.
+				penmNormalExitAction );                     								// Pass along the caller's instructions.
+        }   // public void NormalExit (5 of 8)
+
+
+        /// <summary>
+        /// Exit the program normally, optionally returning a nonzero status
+        /// code, and optionally calling WaitForCarbonUnit to suspend execution
+        /// until the operator has a chance to read the output or capture it
+        /// into the clipboard. If WaitForCarbonUnit is called, its default
+        /// message is used.
+        /// </summary>
+        /// <param name="puintStatusCode">
+        /// This unsigned integer specifies the program's exit code.
+        /// </param>
+        /// <param name="penmNormalExitAction">
+        /// This member of the NormalExitAction enumeration controls whether to
+        /// use WaitForCarbonUnit to suspend execution until an operator has a
+        /// chance to read the output. See the NormalExitAction enumeration for
+        /// details.
+        /// </param>
+        /// <remarks>
+        /// This method calls the fourth overload, the most coprehensive
+        /// implementation, passing in a null reference for the carbon unit
+        /// prompt message, forcing it to use its default message.
+        /// </remarks>
+        public void NormalExit (
+            uint puintStatusCode ,
+            NormalExitAction penmNormalExitAction )
+        {
+            NormalExit (
+				puintStatusCode ,               											// Pass along the caller's exit code.
+				null ,																		// A null pstrOperatorPrompt means use default message.
+				penmNormalExitAction );														// Pass along the caller's instructions.
+        }   // public void NormalExit (6 of 8)
+
+
+        /// <summary>
+        /// Exit the program normally, returning the status code stored in this
+        /// instance, and optionally call WaitForCarbonUnit to suspend execution
+        /// until the operator has a chance to read the output or capture it
+        /// into the clipboard. If WaitForCarbonUnit is called, its default
+        /// message is used.
+        /// </summary>
+        /// <param name="penmNormalExitAction">
+        /// This member of the NormalExitAction enumeration controls whether to
+        /// use WaitForCarbonUnit to suspend execution until an operator has a
+        /// chance to read the output. See the NormalExitAction enumeration for
+        /// details.
+        /// </param>
+        /// <remarks>
+        /// This method calls the fourth overload, the most coprehensive
+        /// implementation, passing in the return code stored in the instance,
+        /// which I explicitly cast to the unsigned integer type of its first
+        /// argument, and a null reference for the carbon unit prompt message,
+        /// forcing it to use its default message.
+        /// </remarks>
+        public void NormalExit ( NormalExitAction penmNormalExitAction )
+        {
+            NormalExit (
+				( uint ) _me.AppReturnCode ,    											// Use the exit code stored in the instance.
+				null ,                          											// A null pstrOperatorPrompt means use default message.
+				penmNormalExitAction );         											// Pass along the caller's instructions.
+        }   // public void NormalExit (7 of 8)
+
+
+        /// <summary>
+        /// Exit the program normally, optionally returning a nonzero status
+        /// code, and optionally calling WaitForCarbonUnit to suspend execution
+        /// until the operator has a chance to read the output or capture it
+        /// into the clipboard.
+        /// </summary>
+        /// <param name="puintStatusCode">
+        /// This unsigned integer specifies the program's exit code.
+        /// </param>
+        /// <param name="pstrOperatorPrompt">
+        /// This string specifies an alternative message for method
+        /// WaitForCarbonUnit to display. If this is an empty string or null
+        /// reference, a default message, "Please press the ENTER (Return) key
+        /// to exit the program." is shown.
+        /// </param>
+        /// <param name="penmNormalExitAction">
+        /// This member of the NormalExitAction enumeration controls whether to
+        /// use WaitForCarbonUnit to suspend execution until an operator has a
+        /// chance to read the output. See the NormalExitAction enumeration for
+        /// details.
+        /// </param>
+        /// <param name="puintSecondsToWait">
+        /// Specify the number of seconds to wait, which must be a whole number
+        /// greater than or equal to zero. Setting this value to zero causes the
+        /// method to wait for 30 seconds.
+        /// </param>
+        /// <param name="pstrCountdownWaitingFor">
+        /// Specify the text to display along with the remaining time. If this
+        /// argument is null (Nothing in Visual Basic) or the empy string, the
+        /// method uses a default message.
+        /// 
+        /// Currently, the default description is "Program ending," which is
+        /// taken from a resource string in the WizardWrx.ConsoleAids class that
+        /// implements this feature.
+        /// </param>
+        /// <param name="pclrTextColor">
+        /// Specify a member of the ConsoleColor enumeration to control the text
+        /// color used to display the countdown message.
+        /// 
+        /// To use the default (current) screen colors, specify the same
+        /// ConsoleColor value for pclrTextColor and pclrTextBackgroundColor.
+        /// </param>
+        /// <param name="pclrTextBackgroundColor">
+        /// Specify a member of the ConsoleColor enumeration to control the
+        /// background color used to display the countdown message.
+        /// 
+        /// To use the default (current) screen colors, specify the same
+        /// ConsoleColor value for pclrTextColor and pclrTextBackgroundColor.
+        /// </param>
+        /// <param name="penmInterruptCriterion">
+        /// Specify a member of the DisplayAids.InterruptCriterion enumeration
+        /// to indicate whether you want the timed wait to be interruptible, and
+        /// under what conditions.
+        /// </param>
+        /// <remarks>
+        /// This method differs sufficiently from overload 2 that it stands on
+        /// its own. Theoretically, every other overload could call this one.
+        /// </remarks>
+        public void NormalExit (
+            uint puintStatusCode ,
+            string pstrOperatorPrompt ,
+            NormalExitAction penmNormalExitAction ,
+            uint puintSecondsToWait ,
+            string pstrCountdownWaitingFor ,
+            ConsoleColor pclrTextColor ,
+            ConsoleColor pclrTextBackgroundColor ,
+            DisplayAids.InterruptCriterion penmInterruptCriterion )
+        {
+            if ( penmNormalExitAction != NormalExitAction.Silent )
+            {
+                this.DisplayEOJMessage ( );
+            }   // if ( penmNormalExitAction != NormalExitAction.Silent )
+
+            switch ( penmNormalExitAction )
+            {
+                case NormalExitAction.ExitImmediately:
+                case NormalExitAction.Silent:
+                    Environment.Exit ( ( int ) puintStatusCode );
+                    break;
+
+                case NormalExitAction.Timed:
+                    Console.WriteLine ( pstrOperatorPrompt );
+                    DisplayAids.TimedWait (
+						puintSecondsToWait ,                                				// puintWaitSeconds
+						pstrCountdownWaitingFor ,                           				// pstrCountdownWaitingFor
+						ConsoleColor.Black ,                                				// pclrTextColor
+						ConsoleColor.Black ,                                				// pclrTextBackgroundColor
+                        penmInterruptCriterion );    // penmInterruptCriterion
+                    Environment.Exit ( ( int ) puintStatusCode );
+                    break;
+
+                case NormalExitAction.HaltOnError:
+                    if ( puintStatusCode == MagicNumbers.ERROR_SUCCESS )
+                    {   // No news is good news. Keep going.
+                        Environment.Exit ( MagicNumbers.ERROR_SUCCESS );
+                    }   // TRUE block, if ( puintStatusCode == MagicNumbers.ERROR_SUCCESS )
+                    else
+                    {   // There was an error. Halt the script.
+                        DisplayAids.WaitForCarbonUnit ( pstrOperatorPrompt );
+                        Environment.Exit ( ( int ) puintStatusCode );
+                    }   // FALSE block, if ( puintStatusCode == MagicNumbers.ERROR_SUCCESS )
+                    break;
+
+                case NormalExitAction.WaitForOperator:
+                    DisplayAids.WaitForCarbonUnit ( pstrOperatorPrompt );
+                    Environment.Exit ( ( int ) puintStatusCode );
+                    break;
+
+                default:
+                    Console.WriteLine (
+						Properties.Resources.NORMAL_EXIT_INTERNAL_ERROR ,           		// Message template
+						penmNormalExitAction ,                                      		// Token 0
+						NormalExitAction.WaitForOperator ,                          		// Token 1
+                        Environment.NewLine );                                      		// Token 2
+                    DisplayAids.WaitForCarbonUnit ( pstrOperatorPrompt );
+                    Environment.Exit ( ( int ) puintStatusCode );
+                    break;
+            }   // switch ( penmNormalExitAction )
+        }   // public void NormalExit (8 of 8)
+		#endregion	// NortmalExit Methods
+	}   // class ConsoleAppStateManager
+}   // partial namespace WizardWrx.ConsoleAppAids3

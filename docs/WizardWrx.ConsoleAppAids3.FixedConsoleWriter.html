@@ -1,0 +1,1229 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class FixedConsoleWriter
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class FixedConsoleWriter
+   ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter">
+  
+  
+  <h1 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter" class="text-break">Class FixedConsoleWriter
+  </h1>
+  <div class="markdown level0 summary"><p>Instances of this class permit a line of a console window to be used
+repeatedly for successive lines of text, replacing the contents of the
+previous print statement, so that the lines above it don't scroll off
+the screen.  Once instantiated, instances of this class behave almost
+exactly like Console.WriteLine, and you can drop them into your code
+in its place, because its overloads have identical signatures.</p>
+<p>Please see the Remarks.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">FixedConsoleWriter</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WizardWrx.ConsoleAppAids3.html">WizardWrx.ConsoleAppAids3</a></h6>
+  <h6><strong>Assembly</strong>: WizardWrx.ConsoleAppAids3.dll</h6>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class FixedConsoleWriter</code></pre>
+  </div>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>The magic of this class depends on keeping track of the starting and
+current cursor positions. When a new instance is constructed, the cursor
+position is stored into a pair of private integers, so that it can be
+used whenever one of its Write methods is about to send text to the
+console to determine how far right and/or down the last such operation
+moved the cursor.</p>
+<p>Although Console.SetCursorPosition can be used to do so, and is used
+internally, the point of this class is to relieve you of the burden of
+keeping track of the cursor.</p>
+<p>Let it manage the cursor, so you don't have to.</p>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter__ctor_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.#ctor*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter__ctor" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.#ctor">FixedConsoleWriter()</h4>
+  <div class="markdown level1 summary"><p>Construct a default instance that uses the current console colors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FixedConsoleWriter()</code></pre>
+  </div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter__ctor_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.#ctor*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter__ctor_System_ConsoleColor_System_ConsoleColor_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.#ctor(System.ConsoleColor,System.ConsoleColor)">FixedConsoleWriter(ConsoleColor, ConsoleColor)</h4>
+  <div class="markdown level1 summary"><p>Construct an instance that has color properties that are independent
+of the current console foreground and background colors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FixedConsoleWriter(ConsoleColor pclrTextForeColor, ConsoleColor pclrTextBackColor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ConsoleColor</span></td>
+        <td><span class="parametername">pclrTextForeColor</span></td>
+        <td><p>Specify the ConsoleColor property to use as the text (foreground)
+color in generated messages.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ConsoleColor</span></td>
+        <td><span class="parametername">pclrTextBackColor</span></td>
+        <td><p>Specify the ConsoleColor property to use as the background color in
+generated messages.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter__ctor_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.#ctor*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter__ctor_System_ConsoleColor_System_ConsoleColor_System_Int32_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.#ctor(System.ConsoleColor,System.ConsoleColor,System.Int32)">FixedConsoleWriter(ConsoleColor, ConsoleColor, Int32)</h4>
+  <div class="markdown level1 summary"><p>Construct an instance that has color properties that are independent
+of the current console foreground and background colors and its left
+margin set a specified number of columns in from the left margin.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FixedConsoleWriter(ConsoleColor pclrTextForeColor, ConsoleColor pclrTextBackColor, int pintOffset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ConsoleColor</span></td>
+        <td><span class="parametername">pclrTextForeColor</span></td>
+        <td><p>Specify the ConsoleColor property to use as the text (foreground)
+color in generated messages.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ConsoleColor</span></td>
+        <td><span class="parametername">pclrTextBackColor</span></td>
+        <td><p>Specify the ConsoleColor property to use as the background color in
+generated messages.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">pintOffset</span></td>
+        <td><p>Specify the position relative to the left edge where writing should
+start. Columns are counted from zero.</p>
+<p>Initializing private properties _intInitialCol and _intLastWriteCol from
+Console.CursorTop is always deferred until the first time that a Write
+method is called, because the correct cursor row is unknown until then.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter__ctor_System_ConsoleColor_System_ConsoleColor_System_Int32__examples">Examples</h5>
+  <p>To start writing at column 9, leaving 8 blanks to the left, pass 8
+as the value of pintOffset.</p>
+
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter__ctor_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.#ctor*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter__ctor_System_Int32_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.#ctor(System.Int32)">FixedConsoleWriter(Int32)</h4>
+  <div class="markdown level1 summary"><p>Construct an instance that uses the current console colors, and
+writes text starting at a specified position relative to the left
+edge of the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FixedConsoleWriter(int pintOffset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">pintOffset</span></td>
+        <td><p>Specify the position relative to the left edge where writing should
+start. Columns are counted from zero.</p>
+<p>Initializing private properties _intInitialCol and _intLastWriteCol from
+Console.CursorTop is always deferred until the first time that a Write
+method is called, because the correct cursor row is unknown until then.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter__ctor_System_Int32__examples">Examples</h5>
+  <p>To start writing at column 9, leaving 8 blanks to the left, pass 8
+as the value of pintOffset.</p>
+
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrFileName_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdErrFileName*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrFileName" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdErrFileName">GetStdErrFileName()</h4>
+  <div class="markdown level1 summary"><p>Gets the absolute (fully qualified) name of the file to which the
+Standard Output console handle is redirected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetStdErrFileName()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>If the Standard Error console handle is redirected, this method
+returns is absolute (fully qualified) name. Otherwise, it returns
+the empty string.</p>
+<p>Please see the Remarks section for important information.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrFileName_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If you just need to know whether the handle is redirected, use the
+much cheaper static GetStdErrState method.</p>
+<p>Due to the behavior of the underlying Win32 API that retrieves the
+name of the file, the returned string begins with &quot;\?\d:&amp;quot;,
+where &quot;d&quot; is the letter assigned to the drive on which it resides,
+and is always fully qualified.</p>
+</div>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrFileName_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrState">GetStdErrState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpState">GetStdInpState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutState">GetStdOutState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpFileName">GetStdInpFileName()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutFileName">GetStdOutFileName()</a></div>
+  </div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrState_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdErrState*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrState" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdErrState">GetStdErrState()</h4>
+  <div class="markdown level1 summary"><p>Gets the redirection state of the Standard Error handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static StandardHandleInfo.StandardHandleState GetStdErrState()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">WizardWrx.ConsoleStreams.StandardHandleInfo.StandardHandleState</span></td>
+        <td><p>The return value is the member of the
+StandardHandleInfo.StandardHandleState enumeration that corresponds
+to the state of the handle (either attached or redirected).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrState_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Due to the relatively high cost of obtaining this information, it is
+retrieved to satisfy the first request, and cached in a private
+static member, which is returned to satisfy subsequent requests.</p>
+</div>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrState_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpState">GetStdInpState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutState">GetStdOutState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrFileName">GetStdErrFileName()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpFileName">GetStdInpFileName()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutFileName">GetStdOutFileName()</a></div>
+  </div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpFileName_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdInpFileName*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpFileName" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdInpFileName">GetStdInpFileName()</h4>
+  <div class="markdown level1 summary"><p>Gets the absolute (fully qualified) name of the file to which the
+Standard Input console handle is redirected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetStdInpFileName()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>If the Standard Input console handle is redirected, this method
+returns is absolute (fully qualified) name. Otherwise, it returns
+the empty string.</p>
+<p>Please see the Remarks section for important information.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpFileName_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If you just need to know whether the handle is redirected, use the
+static GetStdInpState method, which is much cheaper.</p>
+<p>Due to the behavior of the underlying Win32 API that retrieves the
+name of the file, the returned string begins with &quot;\?\d:&amp;quot;,
+where &quot;d&quot; is the letter assigned to the drive on which it resides,
+and is always fully qualified.</p>
+<p>Due to the relatively high cost of obtaining this information, it
+retrieved to satisfy the first request, and cached in a private
+static member, which is returned to satisfy subsequent requests.</p>
+</div>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpFileName_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrState">GetStdErrState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpState">GetStdInpState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutState">GetStdOutState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrFileName">GetStdErrFileName()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutFileName">GetStdOutFileName()</a></div>
+  </div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpState_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdInpState*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpState" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdInpState">GetStdInpState()</h4>
+  <div class="markdown level1 summary"><p>Gets the redirection state of the Standard Input handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static StandardHandleInfo.StandardHandleState GetStdInpState()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">WizardWrx.ConsoleStreams.StandardHandleInfo.StandardHandleState</span></td>
+        <td><p>The return value is the member of the
+StandardHandleInfo.StandardHandleState enumeration that corresponds
+to the state of the handle (either attached or redirected).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpState_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Due to the relatively high cost of obtaining this information, it is
+retrieved to satisfy the first request, and cached in a private
+static member, which is returned to satisfy subsequent requests.</p>
+</div>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpState_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrState">GetStdErrState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutState">GetStdOutState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrFileName">GetStdErrFileName()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpFileName">GetStdInpFileName()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutFileName">GetStdOutFileName()</a></div>
+  </div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutFileName_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdOutFileName*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutFileName" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdOutFileName">GetStdOutFileName()</h4>
+  <div class="markdown level1 summary"><p>Gets the absolute (fully qualified) name of the file to which the
+Standard Output console handle is redirected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetStdOutFileName()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>If the Standard Output console handle is redirected, this method
+returns is absolute (fully qualified) name. Otherwise, it returns
+the empty string.</p>
+<p>Please see the Remarks section for important information.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutFileName_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If you just need to know whether the handle is redirected, use the
+static GetStdOutState method, which is much cheaper.</p>
+<p>Due to the behavior of the underlying Win32 API that retrieves the
+name of the file, the returned string begins with &quot;\?\d:&amp;quot;,
+where &quot;d&quot; is the letter assigned to the drive on which it resides,
+and is always fully qualified.</p>
+<p>Due to the relatively high cost of obtaining this information, it
+retrieved to satisfy the first request, and cached in a private
+static member, which is returned to satisfy subsequent requests.</p>
+</div>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutFileName_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrState">GetStdErrState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpState">GetStdInpState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutState">GetStdOutState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrFileName">GetStdErrFileName()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpFileName">GetStdInpFileName()</a></div>
+  </div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutState_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdOutState*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutState" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdOutState">GetStdOutState()</h4>
+  <div class="markdown level1 summary"><p>Gets the redirection state of the Standard Output handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static StandardHandleInfo.StandardHandleState GetStdOutState()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">WizardWrx.ConsoleStreams.StandardHandleInfo.StandardHandleState</span></td>
+        <td><p>The return value is the member of the
+StandardHandleInfo.StandardHandleState enumeration that corresponds
+to the state of the handle (either attached or redirected).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutState_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Due to the relatively high cost of obtaining this information, it is
+retrieved to satisfy the first request, and cached in a private
+static member, which is returned to satisfy subsequent requests.</p>
+</div>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutState_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrState">GetStdErrState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpState">GetStdInpState()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdErrFileName">GetStdErrFileName()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdInpFileName">GetStdInpFileName()</a></div>
+      <div><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html#WizardWrx_ConsoleAppAids3_FixedConsoleWriter_GetStdOutFileName">GetStdOutFileName()</a></div>
+  </div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_ReturnCarriage_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.ReturnCarriage*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_ReturnCarriage" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.ReturnCarriage">ReturnCarriage()</h4>
+  <div class="markdown level1 summary"><p>Calling this method resets the console writing cursor to the point
+at which it rested when the instance came into being.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReturnCarriage()</code></pre>
+  </div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_ReturnCarriage_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.ReturnCarriage*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_ReturnCarriage_WizardWrx_ConsoleAppAids3_FixedConsoleWriter_CRBehavior_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.ReturnCarriage(WizardWrx.ConsoleAppAids3.FixedConsoleWriter.CRBehavior)">ReturnCarriage(FixedConsoleWriter.CRBehavior)</h4>
+  <div class="markdown level1 summary"><p>Calling this method resets the console writing cursor to the point
+specified by the CRBehavior enumeration member that is passed into
+it. Please see the Remarks.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReturnCarriage(FixedConsoleWriter.CRBehavior penmCRBehavior)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.CRBehavior.html">FixedConsoleWriter.CRBehavior</a></td>
+        <td><span class="parametername">penmCRBehavior</span></td>
+        <td><p>Use this enumeration to control whether the console writing cursor
+is reset to the column where it was when the instance came into
+being or to the beginning of that line. Regardless, it is reset to
+the row where it was when the instance came into being.</p>
+<p>If the integral value of penmCRBehavior doesn't map to a member of
+the CRBehavior enumeration, the method behaves as it would if its
+actual value was ReturnToStartingColumn. This prevents overwriting
+text that you intended to keep.</p>
+<p>Please see the Remarks.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_ReturnCarriage_WizardWrx_ConsoleAppAids3_FixedConsoleWriter_CRBehavior__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If the initial cursor position was at the left edge of the console
+window, it doesn't matter which CRBehavior member is specified, and
+you may as well call the default method that takes no arguments.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_ScrollUp_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.ScrollUp*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_ScrollUp" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.ScrollUp">ScrollUp()</h4>
+  <div class="markdown level1 summary"><p>You could just as well call Console.Error.WriteLine() directly, but
+please read the remarks.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ScrollUp()</code></pre>
+  </div>
+  <h5 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_ScrollUp_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The last Write method call leaves the cursor at the end of the text.
+Unless you want your next call to Console.Error.WriteLine() to start
+writing there, you must call either this method, which, in turn,
+calls Console.Error.WriteLine(), or call it directly.</p>
+<p>If, instead, you want to overwrite the last message, call the
+ReturnCarriage method.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_Boolean_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.Boolean)">Write(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Write the string representation of a bool (Boolean) variable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(bool value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Specify the Boolean value to display.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_Char_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.Char)">Write(Char)</h4>
+  <div class="markdown level1 summary"><p>Write the string representation of a char (a Unicode character).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(char value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Specify the Unicode character to display.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_Char___" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.Char[])">Write(Char[])</h4>
+  <div class="markdown level1 summary"><p>Write the string representation of a character array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(char[] buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Specify the array of Unicode characters to display.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_Char___System_Int32_System_Int32_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.Char[],System.Int32,System.Int32)">Write(Char[], Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Write a formatted message that includes a range of characters taken
+from an array of Unicode characters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(char[] buffer, int index, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Extract characters from this array of Unicode characters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Subscript of character to substitute for token {0} in format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Number of characters from buffer to substitute into string, which
+must contain at least count - 1 substitution tokens.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_Decimal_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.Decimal)">Write(Decimal)</h4>
+  <div class="markdown level1 summary"><p>Write the string representation of a decimal variable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(decimal value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Decimal</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Specify the decimal value to display.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_Double_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.Double)">Write(Double)</h4>
+  <div class="markdown level1 summary"><p>Write the string representation of a double precision variable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(double value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Specify the double precision value to display.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_Int32_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.Int32)">Write(Int32)</h4>
+  <div class="markdown level1 summary"><p>Write the string representation of an integer variable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(int value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Specify the integer value to display.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_Int64_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.Int64)">Write(Int64)</h4>
+  <div class="markdown level1 summary"><p>Write the string representation of a long integer variable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(long value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Specify the long integer value to display.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_Object_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.Object)">Write(Object)</h4>
+  <div class="markdown level1 summary"><p>Write the string representation of a generic Object variable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(object value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Specify the object value to display.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_Single_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.Single)">Write(Single)</h4>
+  <div class="markdown level1 summary"><p>Write the string representation of a floating point variable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(float value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Specify the floating point value to display.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_String_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.String)">Write(String)</h4>
+  <div class="markdown level1 summary"><p>Write a string variable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Specify the string value to display.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_String_System_Object_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.String,System.Object)">Write(String, Object)</h4>
+  <div class="markdown level1 summary"><p>Write a formatted message that includes the string representation of
+an generic object variable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(string format, object arg0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>Use this string as the message template, which may include at most
+one substitution token.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">arg0</span></td>
+        <td><p>Replace the substitution token with the string representation of this
+generic object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_String_System_Object_System_Object_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.String,System.Object,System.Object)">Write(String, Object, Object)</h4>
+  <div class="markdown level1 summary"><p>Write a formatted message that includes up to two substitution
+tokens.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(string format, object arg0, object arg1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>Use this string as the message template, which may contain up to two
+substitution tokens, {0} and {1}.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">arg0</span></td>
+        <td><p>The default string representation of this generic Object variable is
+substituted into format for token {0}.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>The default string representation of this generic Object variable is
+substituted into format for token {1}.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_String_System_Object_System_Object_System_Object_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.String,System.Object,System.Object,System.Object)">Write(String, Object, Object, Object)</h4>
+  <div class="markdown level1 summary"><p>Write a formatted message that includes up to three substitution
+tokens.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(string format, object arg0, object arg1, object arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>Use this string as the message template, which may contain up to 3
+substitution tokens, {0}, {1}, and {2}.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">arg0</span></td>
+        <td><p>The default string representation of this generic Object variable is
+substituted into format for token {0}.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>The default string representation of this generic Object variable is
+substituted into format for token {1}.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>The default string representation of this generic Object variable is
+substituted into format for token {2}.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_String_System_Object___" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.String,System.Object[])">Write(String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Write a formatted message that includes the string representation of
+an generic object variable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(string format, params object[] arg)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>Use this string as the message template, which may contains
+substitution tokens for each object in an array of generic Object
+variables.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">arg</span></td>
+        <td><p>Substitute elements from this array of generic Object variables into
+the format string, replacing tokens with the element whose subscript
+is the number within its brackets.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_UInt32_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.UInt32)">Write(UInt32)</h4>
+  <div class="markdown level1 summary"><p>Write the string representation of a uint (unsigned integer)
+variable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(uint value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Specify the uint (unsigned integer) value to display.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_FixedConsoleWriter_Write_System_UInt64_" data-uid="WizardWrx.ConsoleAppAids3.FixedConsoleWriter.Write(System.UInt64)">Write(UInt64)</h4>
+  <div class="markdown level1 summary"><p>Write the string representation of a unsigned long integer
+variable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(ulong value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Specify the unsigned long integer value to display.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

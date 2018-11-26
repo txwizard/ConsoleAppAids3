@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+//  ============================================================================
+//  File Name:          TestStand.csproj
+//
+//  Synopsis:           This C# project file belongs to Visual Studio project
+//                      TestStand, which is part of solution ConsoleAppAids3.
+//
+//  Remarks:            I don't usually include revision histories in my C#
+//                      project files. This is an exception, because the version
+//                      update is to account for a change that affects only this
+//                      csproj file. Hence, I won't routinely update this
+//                      history.
+//
+//  ============================================================================
+//  Revision History
+//  ============================================================================
+//
+//  Date       By  Synopsis
+//  ========== === =============================================================
+//  2018/11/25 DAG Raise ToolsVersion from 12.0 to 15.0, to match Microsoft
+//                 Visual Studio 2017.
+//  ============================================================================
+  -->
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{220D2FC6-EE2A-4CDC-9638-CC18903ABDCD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TestStand</RootNamespace>
+    <AssemblyName>TestStand</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ALT_EXCPT_LOG_PATH SUBSYSTEM_CUI ALT_EXCPT_LOG_COLOURS HIDE_STACKTRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ALT_EXCPT_LOG_PATH SUBSYSTEM_CUI ALT_EXCPT_LOG_COLOURS HIDE_STACKTRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>WW_Icon1.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ALT_EXCPT_LOG_PATH SUBSYSTEM_CUI ALT_EXCPT_LOG_COLOURS HIDE_STACKTRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ALT_EXCPT_LOG_PATH SUBSYSTEM_CUI ALT_EXCPT_LOG_COLOURS HIDE_STACKTRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="WizardWrx.AssemblyUtils">
+      <HintPath>..\..\WizardWrx_NET_API\AssemblyUtils\bin\Release\Wizardwrx.AssemblyUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.BitMath">
+      <HintPath>..\..\BitMath\BitMath\bin\Release\Wizardwrx.BitMath.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.Common">
+      <HintPath>..\..\WizardWrx_NET_API\Common\bin\Release\Wizardwrx.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.ConsoleStreams">
+      <HintPath>..\..\WizardWrx_NET_API\ConsoleStreams\bin\Release\Wizardwrx.ConsoleStreams.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.Core">
+      <HintPath>..\..\WizardWrx_NET_API\Core\bin\Release\Wizardwrx.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.DLLConfigurationManager">
+      <HintPath>..\..\WizardWrx_NET_API\DLLConfigurationManager\bin\Release\Wizardwrx.DLLConfigurationManager.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="TimedWaitTestCase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WW_Icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleAppAids3\ConsoleAppAids3.csproj">
+      <Project>{5a6766d8-2a8e-4f03-9c82-c42c5537f73e}</Project>
+      <Name>ConsoleAppAids3</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>wwBldNbrMgr.exe -r "-p$(ProjectDir) " "-t$(TargetPath)"
+if exist "$(SolutionDir)WizardWrx_$(SolutionName)_Binaries_$(ConfigurationName).7z" sdelete -r "$(SolutionDir)WizardWrx_$(SolutionName)_Binaries_$(ConfigurationName).7z"
+7z a -bb3 -stl "$(SolutionDir)WizardWrx_$(SolutionName)_Binaries_$(ConfigurationName).7z" "$(SolutionDir)$(ProjectName)\bin\$(ConfigurationName)\*"
+7z l "$(SolutionDir)WizardWrx_$(SolutionName)_Binaries_$(ConfigurationName).7z"
+if $(ConfigurationName) == Release (
+    echo Regenerate API documentation.
+    docfx.exe $(SolutionDir)docfx_project\docfx.json --metadata
+    echo Mark DLLs in project output directory as Read Only.
+    attrib $(TargetDir)*.dll +r
+    attrib $(TargetDir)*.pdb +r
+    attrib $(TargetDir)*.xml +r
+    echo Install DLLs into local production bin directory.
+    call XCopyD $(TargetDir)*.dll C:\bin /f /k /r /v /y
+    call XCopyD $(TargetDir)*.pdb C:\bin /f /k /r /v /y
+    call XCopyD $(TargetDir)*.xml C:\bin /f /k /r /v /y
+    echo Mark DLLs in project output directory as Read/Write.
+    attrib $(TargetDir)*.dll -r
+    attrib $(TargetDir)*.pdb -r
+    attrib $(TargetDir)*.xml -r
+    echo $(ConfigurationName) Post-Build done
+) else (
+    echo $(ConfigurationName) Post-Build done
+)</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>wwBldNbrMgr.exe "$(ProjectDir) "</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

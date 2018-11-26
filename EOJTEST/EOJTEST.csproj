@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+//  ============================================================================
+//  File Name:          EOJTEST.csproj
+//
+//  Synopsis:           This C# project file belongs to Visual Studio project
+//                      EOJTEST, which is part of solution ConsoleAppAids3.
+//
+//  Remarks:            I don't usually include revision histories in my C#
+//                      project files. This is an exception, because the version
+//                      update is to account for a change that affects only this
+//                      csproj file. Hence, I won't routinely update this
+//                      history.
+//
+//  ============================================================================
+//  Revision History
+//  ============================================================================
+//
+//  Date       By  Synopsis
+//  ========== === =============================================================
+//  2014/05/20 DAG Promote version number from 3.0 to 4.1. The only change is a
+//                 new aseembly reference, WizardWrx.DLLServices. This change is
+//                 confined to EOJTEST.csproj, which keeps the reference list.
+//  2014/05/20 DAG Promote version number from 4.1 to 5.0, so that the whole set
+//                 of new libraries is at the same version, which is higher than
+//                 that of any of their predcecessors.
+//  2015/06/04 DAG Document the relocation of this assembly from the
+//                 ApplicationHelpers project to ConsoleAppAids2, since I had it
+//                 open to make a more significant change, raising ToolsVersion
+//                 from 4.0 to 12.0, to match Microsoft Visual Studio 2013.
+//  2018/11/25 DAG Raise ToolsVersion from 12.0 to 15.0, to match Microsoft
+//                 Visual Studio 2017.
+//  ============================================================================
+  -->
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{130A75E5-50FC-4212-8B25-C573FFD45518}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EOJTEST</RootNamespace>
+    <AssemblyName>EOJTEST</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>WW_Icon1.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="WizardWrx.AssemblyUtils">
+      <HintPath>..\..\WizardWrx_NET_API\AssemblyUtils\bin\Release\Wizardwrx.AssemblyUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.Common">
+      <HintPath>..\..\WizardWrx_NET_API\Common\bin\Release\Wizardwrx.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.Core">
+      <HintPath>..\..\WizardWrx_NET_API\Core\bin\Release\Wizardwrx.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.DLLConfigurationManager">
+      <HintPath>..\..\WizardWrx_NET_API\DLLConfigurationManager\bin\Release\Wizardwrx.DLLConfigurationManager.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WW_Icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleAppAids3\ConsoleAppAids3.csproj">
+      <Project>{5a6766d8-2a8e-4f03-9c82-c42c5537f73e}</Project>
+      <Name>ConsoleAppAids3</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>wwBldNbrMgr.exe "$(ProjectDir) "</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>wwBldNbrMgr.exe -r "-p$(ProjectDir) " "-t$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

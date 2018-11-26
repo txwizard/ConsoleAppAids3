@@ -1,0 +1,930 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ConsoleAppStateManager
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ConsoleAppStateManager
+   ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager">
+  
+  
+  <h1 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager" class="text-break">Class ConsoleAppStateManager
+  </h1>
+  <div class="markdown level0 summary"><p>ConsoleAppStateManager is an WizardWrx.DLLServices2.StateManager
+adapter, which exposes the adapted object through its read only
+BaseStateManager property, and extends it with methods that provide
+services applicable exclusively to character mode (console mode)
+programs.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">WizardWrx.GenericSingletonBase</span>&lt;<a class="xref" href="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html">ConsoleAppStateManager</a>&gt;</div>
+    <div class="level2"><span class="xref">ConsoleAppStateManager</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">WizardWrx.GenericSingletonBase&lt;WizardWrx.ConsoleAppAids3.ConsoleAppStateManager&gt;.s_genTheOnlyInstance</span>
+    </div>
+    <div>
+      <span class="xref">WizardWrx.GenericSingletonBase&lt;WizardWrx.ConsoleAppAids3.ConsoleAppStateManager&gt;.TheOnlyInstance</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WizardWrx.ConsoleAppAids3.html">WizardWrx.ConsoleAppAids3</a></h6>
+  <h6><strong>Assembly</strong>: WizardWrx.ConsoleAppAids3.dll</h6>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ConsoleAppStateManager : GenericSingletonBase&lt;ConsoleAppStateManager&gt;</code></pre>
+  </div>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Internally, ConsoleAppStateManager uses some StateManager services that
+could reasonably be expected to be defined locally. In particular, the
+services for ascertaining the redirection state of the three standard
+console handles and the names of the files to which they are redirected
+seem logically out of place. They are in that library for two reasons.</p>
+<ol>
+<li><p>The ExceptionLogger class, which belongs where it is because it meets
+needs that are substantially identical, regardless of the Windows
+subsystem in which it runs. While I could have made a wrapper that
+inherits from the ExceptionLogger, that seemed pointless for the few
+lines of code that would have gone into the derived class, when this
+library has unrelated dependencies on DLLServices2.</p>
+</li>
+<li><p>It confines the services that invoke unmanaged code, and must make
+significant link demands, to one library.</p>
+</li>
+</ol>
+</div>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_BACKGROUND_COLOR_DEFAULT" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_BACKGROUND_COLOR_DEFAULT">TIMED_WAIT_BACKGROUND_COLOR_DEFAULT</h4>
+  <div class="markdown level1 summary"><p>Use this member of the ConsoleColor enumeration, along with the
+TIMED_WAIT_TEXT_COLOR_DEFAULT, to instruct an ExceptionLogger object
+to render text displayed in toe standard output window of a console
+mode application in its default screen colors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const ConsoleColor TIMED_WAIT_BACKGROUND_COLOR_DEFAULT = ConsoleColor.Black</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ConsoleColor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_DEFAULT_SECONDS" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_DEFAULT_SECONDS">TIMED_WAIT_DEFAULT_SECONDS</h4>
+  <div class="markdown level1 summary"><p>This constant specifies the default number of seconds to wait when
+NormalExitAction is Timed. Its current value of zero causes a wait
+of up to 30 seconds, which should be about right most of the time.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const uint TIMED_WAIT_DEFAULT_SECONDS = 0U</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_INTERRUPT_CRITERION" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_INTERRUPT_CRITERION">TIMED_WAIT_INTERRUPT_CRITERION</h4>
+  <div class="markdown level1 summary"><p>This constant specifies the default method by which the timed wait
+can be interrupted (canceled) when NormalExitAction is Timed.</p>
+<p>Currently, the default method of interrupting the timed wait is by
+pressing the ENTER (Return) key once (CarriageReturn).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const DisplayAids.InterruptCriterion TIMED_WAIT_INTERRUPT_CRITERION = DisplayAids.InterruptCriterion.CarriageReturn</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion.html">DisplayAids.InterruptCriterion</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_TEXT_COLOR_DEFAULT" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_TEXT_COLOR_DEFAULT">TIMED_WAIT_TEXT_COLOR_DEFAULT</h4>
+  <div class="markdown level1 summary"><p>Use this member of the ConsoleColor enumeration, along with the
+TIMED_WAIT_BACKGROUND_COLOR_DEFAULT, to instruct an ExceptionLogger
+object to render text displayed in toe standard output window of a
+console mode application in its default screen colors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const ConsoleColor TIMED_WAIT_TEXT_COLOR_DEFAULT = ConsoleColor.Black</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ConsoleColor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_WAITING_FOR_DEFAULT" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_WAITING_FOR_DEFAULT">TIMED_WAIT_WAITING_FOR_DEFAULT</h4>
+  <div class="markdown level1 summary"><p>This constant specifies a default description of the event that
+happens when the time expires or the wait is interrupted (canceled),
+when NormalExitAction is Timed.</p>
+<p>Currently, the default description is &quot;Program ending,&quot; which is
+taken from a resource string in the WizardWrx.ConsoleAids class that
+implements this feature.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string TIMED_WAIT_WAITING_FOR_DEFAULT = &quot;&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_BaseStateManager_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.BaseStateManager*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_BaseStateManager" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.BaseStateManager">BaseStateManager</h4>
+  <div class="markdown level1 summary"><p>Expose the real state manager behind this adapter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StateManager BaseStateManager { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">WizardWrx.DLLConfigurationManager.StateManager</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_DisplayBOJMessage_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.DisplayBOJMessage*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_DisplayBOJMessage" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.DisplayBOJMessage">DisplayBOJMessage()</h4>
+  <div class="markdown level1 summary"><p>When called for the first time, this method displays a BOJ message
+on the console. Subsequent calls return immediately, without taking
+any action.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DisplayBOJMessage()</code></pre>
+  </div>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_DisplayBOJMessage_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method is a wafer-thin wrapper around GetBOJMessage, and it
+uses a thread-safe method to write its output on the console.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_DisplayEOJMessage_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.DisplayEOJMessage*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_DisplayEOJMessage" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.DisplayEOJMessage">DisplayEOJMessage()</h4>
+  <div class="markdown level1 summary"><p>This method takes GetEOJMessage a step further by passing its return
+value to a thread-safe console writer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DisplayEOJMessage()</code></pre>
+  </div>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_DisplayEOJMessage_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Access to this method is synchronized by an internally managed
+object lock.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_ErrorExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ErrorExit*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_ErrorExit_System_UInt32_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ErrorExit(System.UInt32)">ErrorExit(UInt32)</h4>
+  <div class="markdown level1 summary"><p>Display an error message, read from a table of static strings, and
+exit, returning the exit code. See Remarks.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ErrorExit(uint puintStatusCode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">puintStatusCode</span></td>
+        <td><p>This unsigned integer specifies the subscript of the message, and it
+becomes the program's exit code. See Remarks.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_ErrorExit_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>You must supply the messages as an array of strings, by calling
+instance method LoadErrorMessageTable.</p>
+<p>After the message is displayed, static method WaitForCarbonUnit
+is called with a null string reference, causing it to display its
+default prompt, and wait until an operator presses the RETURN key.</p>
+<p>When WaitForCarbonUnit returns, the DisplayEOJMessage method on the
+singleton instance is called to display the end of job message,
+along with the ending time and elapsed time, and control is returned
+to the OS, sending along the exit code.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetBOJMessage_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetBOJMessage*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetBOJMessage" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetBOJMessage">GetBOJMessage()</h4>
+  <div class="markdown level1 summary"><p>When called for the first time, this method returns a BOJ message,
+ready for display on the console. Subsequent calls return an empty
+string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetBOJMessage()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The first call returns a message for display on the console. All
+subsequent calls return an empty string, indicating that another
+thread already requested a message, and has, presumably, displayed
+it.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetBOJMessage_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Access to this method is synchronized by an internally managed
+object lock.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetEOJMessage_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetEOJMessage*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetEOJMessage" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetEOJMessage">GetEOJMessage()</h4>
+  <div class="markdown level1 summary"><p>This method returns a new EOJ message each time it is called.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetEOJMessage()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The returned string is ready to print on the console, by calling the
+Console.WriteLine method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetEOJMessage_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Access to this method is synchronized by an internally managed
+object lock.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetTheSingleInstance_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetTheSingleInstance*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetTheSingleInstance" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetTheSingleInstance">GetTheSingleInstance()</h4>
+  <div class="markdown level1 summary"><p>Get a reference to the ConsoleAppStateManager singleton, which
+organizes a host of useful application state information under one
+object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ConsoleAppStateManager GetTheSingleInstance()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html">ConsoleAppStateManager</a></td>
+        <td><p>The return value is the initialized singleton.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetTheSingleInstance_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method must override and hide the like named method on the base
+class, because it has extra work to do.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit">NormalExit()</h4>
+  <div class="markdown level1 summary"><p>Exit the program normally, returning the status code stored in this
+instance, and optionally call WaitForCarbonUnit to suspend execution
+until the operator has a chance to read the output or capture it
+into the clipboard. If WaitForCarbonUnit is called, its default
+message is used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NormalExit()</code></pre>
+  </div>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This should have been the way the original version worked. Since it
+is the simplest, I forced the original implementation to surrender
+its hold on the number one slot.</p>
+<p>This method calls overload 4, passing in a null reference for the
+carbon unit prompt and an immediate exit instruction.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)">NormalExit(String, ConsoleAppStateManager.NormalExitAction)</h4>
+  <div class="markdown level1 summary"><p>Exit the program normally, optionally returning a nonzero status
+code, and optionally calling WaitForCarbonUnit to suspend execution
+until the operator has a chance to read the output or capture it
+into the clipboard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NormalExit(string pstrOperatorPrompt, ConsoleAppStateManager.NormalExitAction penmNormalExitAction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pstrOperatorPrompt</span></td>
+        <td><p>This string specifies an alternative message for method
+WaitForCarbonUnit to display. If this is an empty string or null
+reference, a default message, &quot;Please press the ENTER (Return) key
+to exit the program.&quot; is shown.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction.html">ConsoleAppStateManager.NormalExitAction</a></td>
+        <td><span class="parametername">penmNormalExitAction</span></td>
+        <td><p>This member of the NormalExitAction enumeration controls whether to
+use WaitForCarbonUnit to suspend execution until an operator has a
+chance to read the output. See the NormalExitAction enumeration for
+details.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method calls the fourth overload, the most coprehensive
+implementation, passing in the return code stored in the instance,
+which I explicitly cast to the unsigned integer type of its first
+argument.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32)">NormalExit(UInt32)</h4>
+  <div class="markdown level1 summary"><p>Exit the program normally, optionally returning a nonzero status
+code. If running in debug mode, use WaitForCarbonUnit to block until
+the tester has a chance to read the output or capture it into the
+clipboard. Regardless, if WaitForCarbonUnit is called, its default
+message is displayed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NormalExit(uint puintStatusCode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">puintStatusCode</span></td>
+        <td><p>This unsigned integer specifies the program's exit code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method calls overload 4, passing in a null reference for the
+carbon unit prompt and an immediate exit instruction.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String)">NormalExit(UInt32, String)</h4>
+  <div class="markdown level1 summary"><p>Exit the program normally, optionally returning a nonzero status
+code. If running in debug mode, use WaitForCarbonUnit to block until
+the tester has a chance to read the output or capture it into the
+clipboard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NormalExit(uint puintStatusCode, string pstrOperatorPrompt)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">puintStatusCode</span></td>
+        <td><p>This unsigned integer specifies the program's exit code.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pstrOperatorPrompt</span></td>
+        <td><p>This string specifies an alternative message for method
+WaitForCarbonUnit to display. If this is an empty string or null
+reference, a default message, &quot;Please press the ENTER (Return) key
+to exit the program.&quot; is shown.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This is the original implementation, since pre-empted by the simpler
+method call that takes no arguments.</p>
+<p>When I implemented the #if DEBUG conditional compilation block, I
+didn't take into consideration that the only time that #if DEBUG is
+true is when the debug version of this library is built. I decided
+to leave it in, as a reminder to myself of how it can be effectively
+used with some of the new overloads.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)">NormalExit(UInt32, String, ConsoleAppStateManager.NormalExitAction)</h4>
+  <div class="markdown level1 summary"><p>Exit the program normally, optionally returning a nonzero status
+code, and optionally calling WaitForCarbonUnit to suspend execution
+until the operator has a chance to read the output or capture it
+into the clipboard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NormalExit(uint puintStatusCode, string pstrOperatorPrompt, ConsoleAppStateManager.NormalExitAction penmNormalExitAction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">puintStatusCode</span></td>
+        <td><p>This unsigned integer specifies the program's exit code.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pstrOperatorPrompt</span></td>
+        <td><p>This string specifies an alternative message for method
+WaitForCarbonUnit to display. If this is an empty string or null
+reference, a default message, &quot;Please press the ENTER (Return) key
+to exit the program.&quot; is shown.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction.html">ConsoleAppStateManager.NormalExitAction</a></td>
+        <td><span class="parametername">penmNormalExitAction</span></td>
+        <td><p>This member of the NormalExitAction enumeration controls whether to
+use WaitForCarbonUnit to suspend execution until an operator has a
+chance to read the output. See the NormalExitAction enumeration for
+details.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method differs sufficiently from overload 2 that it stands on
+its own. Theoretically, every other overload could call this one.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_System_UInt32_System_String_System_ConsoleColor_System_ConsoleColor_WizardWrx_ConsoleAppAids3_DisplayAids_InterruptCriterion_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction,System.UInt32,System.String,System.ConsoleColor,System.ConsoleColor,WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion)">NormalExit(UInt32, String, ConsoleAppStateManager.NormalExitAction, UInt32, String, ConsoleColor, ConsoleColor, DisplayAids.InterruptCriterion)</h4>
+  <div class="markdown level1 summary"><p>Exit the program normally, optionally returning a nonzero status
+code, and optionally calling WaitForCarbonUnit to suspend execution
+until the operator has a chance to read the output or capture it
+into the clipboard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NormalExit(uint puintStatusCode, string pstrOperatorPrompt, ConsoleAppStateManager.NormalExitAction penmNormalExitAction, uint puintSecondsToWait, string pstrCountdownWaitingFor, ConsoleColor pclrTextColor, ConsoleColor pclrTextBackgroundColor, DisplayAids.InterruptCriterion penmInterruptCriterion)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">puintStatusCode</span></td>
+        <td><p>This unsigned integer specifies the program's exit code.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pstrOperatorPrompt</span></td>
+        <td><p>This string specifies an alternative message for method
+WaitForCarbonUnit to display. If this is an empty string or null
+reference, a default message, &quot;Please press the ENTER (Return) key
+to exit the program.&quot; is shown.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction.html">ConsoleAppStateManager.NormalExitAction</a></td>
+        <td><span class="parametername">penmNormalExitAction</span></td>
+        <td><p>This member of the NormalExitAction enumeration controls whether to
+use WaitForCarbonUnit to suspend execution until an operator has a
+chance to read the output. See the NormalExitAction enumeration for
+details.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">puintSecondsToWait</span></td>
+        <td><p>Specify the number of seconds to wait, which must be a whole number
+greater than or equal to zero. Setting this value to zero causes the
+method to wait for 30 seconds.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pstrCountdownWaitingFor</span></td>
+        <td><p>Specify the text to display along with the remaining time. If this
+argument is null (Nothing in Visual Basic) or the empy string, the
+method uses a default message.</p>
+<p>Currently, the default description is &quot;Program ending,&quot; which is
+taken from a resource string in the WizardWrx.ConsoleAids class that
+implements this feature.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ConsoleColor</span></td>
+        <td><span class="parametername">pclrTextColor</span></td>
+        <td><p>Specify a member of the ConsoleColor enumeration to control the text
+color used to display the countdown message.</p>
+<p>To use the default (current) screen colors, specify the same
+ConsoleColor value for pclrTextColor and pclrTextBackgroundColor.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ConsoleColor</span></td>
+        <td><span class="parametername">pclrTextBackgroundColor</span></td>
+        <td><p>Specify a member of the ConsoleColor enumeration to control the
+background color used to display the countdown message.</p>
+<p>To use the default (current) screen colors, specify the same
+ConsoleColor value for pclrTextColor and pclrTextBackgroundColor.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion.html">DisplayAids.InterruptCriterion</a></td>
+        <td><span class="parametername">penmInterruptCriterion</span></td>
+        <td><p>Specify a member of the DisplayAids.InterruptCriterion enumeration
+to indicate whether you want the timed wait to be interruptible, and
+under what conditions.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_System_UInt32_System_String_System_ConsoleColor_System_ConsoleColor_WizardWrx_ConsoleAppAids3_DisplayAids_InterruptCriterion__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method differs sufficiently from overload 2 that it stands on
+its own. Theoretically, every other overload could call this one.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)">NormalExit(UInt32, ConsoleAppStateManager.NormalExitAction)</h4>
+  <div class="markdown level1 summary"><p>Exit the program normally, optionally returning a nonzero status
+code, and optionally calling WaitForCarbonUnit to suspend execution
+until the operator has a chance to read the output or capture it
+into the clipboard. If WaitForCarbonUnit is called, its default
+message is used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NormalExit(uint puintStatusCode, ConsoleAppStateManager.NormalExitAction penmNormalExitAction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">puintStatusCode</span></td>
+        <td><p>This unsigned integer specifies the program's exit code.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction.html">ConsoleAppStateManager.NormalExitAction</a></td>
+        <td><span class="parametername">penmNormalExitAction</span></td>
+        <td><p>This member of the NormalExitAction enumeration controls whether to
+use WaitForCarbonUnit to suspend execution until an operator has a
+chance to read the output. See the NormalExitAction enumeration for
+details.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method calls the fourth overload, the most coprehensive
+implementation, passing in a null reference for the carbon unit
+prompt message, forcing it to use its default message.</p>
+</div>
+  
+  
+  <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
+  <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)">NormalExit(ConsoleAppStateManager.NormalExitAction)</h4>
+  <div class="markdown level1 summary"><p>Exit the program normally, returning the status code stored in this
+instance, and optionally call WaitForCarbonUnit to suspend execution
+until the operator has a chance to read the output or capture it
+into the clipboard. If WaitForCarbonUnit is called, its default
+message is used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NormalExit(ConsoleAppStateManager.NormalExitAction penmNormalExitAction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction.html">ConsoleAppStateManager.NormalExitAction</a></td>
+        <td><span class="parametername">penmNormalExitAction</span></td>
+        <td><p>This member of the NormalExitAction enumeration controls whether to
+use WaitForCarbonUnit to suspend execution until an operator has a
+chance to read the output. See the NormalExitAction enumeration for
+details.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method calls the fourth overload, the most coprehensive
+implementation, passing in the return code stored in the instance,
+which I explicitly cast to the unsigned integer type of its first
+argument, and a null reference for the carbon unit prompt message,
+forcing it to use its default message.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
