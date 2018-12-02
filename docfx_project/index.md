@@ -5,8 +5,9 @@ add a reference to `WizardWrx.ConsoleAppAids3.dll` to your project, and add a
 using directive `WizardWrx.ConsoleAppAids3` to any source file in which you want
 ready access to its classes.
 
-Use the links in the table of contents along the left side of this page to view
-the documentation.
+Click the __Api Documentation__ link above to display the table of contensts for
+the detailed documentation of all classes and their constants, properties, and
+methods.
 
 *	__ConsoleAppStateManager__ is an `WizardWrx.DLLServices2.StateManager`
 adapter, which exposes the adapted object through its read only

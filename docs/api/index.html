@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>PLACEHOLDER </title>
+    <title>WizardWrx.ConsoleAppAids3 Microsoft .NET Class Llibrary </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="PLACEHOLDER ">
+    <meta name="title" content="WizardWrx.ConsoleAppAids3 Microsoft .NET Class Llibrary ">
     <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -67,9 +67,36 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="placeholder">PLACEHOLDER</h1>
+<h1 id="wizardwrxconsoleappaids3-microsoft-net-class-llibrary">WizardWrx.ConsoleAppAids3 Microsoft .NET Class Llibrary</h1>
 
-<p>TODO: Add .NET projects to the <em>src</em> folder and run <code>docfx</code> to generate <strong>REAL</strong> <em>API Documentation</em>!</p>
+<p>The following sections summarize the classes in the library. To use any of them,
+add a reference to <code>WizardWrx.ConsoleAppAids3.dll</code> to your project, and add a
+using directive <code>WizardWrx.ConsoleAppAids3</code> to any source file in which you want
+ready access to its classes.</p>
+<p>Use the links in the table of contents along the left side of this page to view
+the documentation.</p>
+<ul>
+<li><p><strong>ConsoleAppStateManager</strong> is an <code>WizardWrx.DLLServices2.StateManager</code>
+adapter, which exposes the adapted object through its read only
+<code>BaseStateManager</code> property, and extends it with methods that provide
+services applicable exclusively to character mode (console mode) programs, such
+as looking after the logo and shutdown messages, and keeping track of elapsed
+running time for inclusion in the final message. <code>WizardWrx.DLLServices2.StateManager</code>,
+itself, exposes many useful properties, such as a robust exception logging class,
+and an enumeration that reports the Windows subsystem in which it is running
+(Character mode or GUI).</p>
+</li>
+<li><p><strong>DisplayAids</strong> is a sealed (implicitly static) class that precisely
+controls the way your application handles pauses.</p>
+</li>
+<li><p><strong>FixedConsoleWriter</strong> permits a line of a console window to be used
+repeatedly for successive lines of text, replacing the contents of the previous
+print statement, so that the lines above it don't scroll off the screen. Once
+instantiated, instances of this class behave almost exactly like
+<code>Console.WriteLine</code>, and you can drop them into your code in its place, because
+its overloads have identical signatures.</p>
+</li>
+</ul>
 </article>
           </div>
           
@@ -77,6 +104,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/docfx_project/api/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
