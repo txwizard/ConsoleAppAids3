@@ -8,7 +8,7 @@ available at [https://github.com/txwizard/WizardWrx_NET_API](https://github.com/
 under a three-clause BSD license, by adding specialized capabilities that
 meet the specialized requirements of console programs.
 
-This library is fully documented at [https://txwizard.github.io/WizardWrx_ConsoleAppAids3](https://txwizard.github.io/WizardWrx_ConsoleAppAids3),
+This library is fully documented at [https://txwizard.github.io/ConsoleAppAids3](https://txwizard.github.io/ConsoleAppAids3),
 and the __WizardWrx .NET API__ is fully documented online at [https://txwizard.github.io/WizardWrx_NET_API](https://txwizard.github.io/WizardWrx_NET_API).
 
 Everything in this library belongs to the `WizardWrx.ConsoleAppAids3` namespace,
