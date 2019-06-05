@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+    	<id>$id$</id>
+	    <version>$version$</version>
+    	<title>$title$</title>
+	    <authors>$author$</authors>
+    	<owners>$author$</owners>
+	    <license type="expression">BSD-3-Clause</license>
+    	<projectUrl>https://github.com/txwizard/ConsoleAppAids3</projectUrl>
+	    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    	<description>$description$</description>
+	    <releaseNotes>This is the initial release of a the WizardWrx.ConsoleAppAids3 library as a NuGet package.</releaseNotes>
+    	<copyright>$copyright$</copyright>
+    	<tags>Constrained console scrolling, specialized console application management</tags>
+	</metadata>
+	<files>
+   		<file src="readme.md" target="" />
+   		<file src="readme.txt" target="" />
+   		<file src="bin\$configuration$\$id$.pdb" target="lib" />
+   		<file src="bin\$configuration$\$id$.xml" target="lib" />
+	</files>
+</package>

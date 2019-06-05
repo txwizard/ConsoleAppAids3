@@ -150,6 +150,10 @@
                            is used, everything in it, other than its resource
                            strings, which go unused in this class, is in the
                            parent namespace.
+
+	2019/01/30 7.1     DAG Test the corrected ScrollUp method by invoking one of
+                           the FixedConsoleWriter methods from two places, with
+                           at least intervening console write.
     ============================================================================
 */
 
@@ -246,6 +250,7 @@ namespace TestStand
         const string SW_OT_TIMED_WAIT = @"timedwait";
         const string SW_OT_TIMED_STOP = @"timedstop";
         const string SW_OT_TIMED_ERRS = @"timederrs";
+        const string SW_OT_FCW_REUSE = @"fcwreuse";
 
         const string ARG_COUNT = @"count";
         const string ARG_INTERVAL = @"interval";
@@ -604,6 +609,17 @@ namespace TestStand
                         s_intCase );
                 }
             }   // if ( strSingleTest == SpecialStrings.EMPTY_STRING || strSingleTest == SW_OT_TIMED_WAIT )
+
+            if ( strSingleTest == SpecialStrings.EMPTY_STRING || strSingleTest == SW_OT_FCW_REUSE )
+            {
+                FixedConsoleWriterReuseTest (
+                    ref s_intCase ,
+                    cmdArgs );
+            }   // if ( strSingleTest == SpecialStrings.EMPTY_STRING || strSingleTest == SW_OT_FCW_REUSE )
+
+            //  ----------------------------------------------------------------
+            //  Render the final report, clean up, and shut down.
+            //  ----------------------------------------------------------------
 
             #if DEBUG
                 if ( enmOutputFormat == OutputFormat.None )
@@ -1474,6 +1490,92 @@ namespace TestStand
 
 
         /// <summary>
+        /// Test reuse of the fixed console writer instance following at least
+        /// one intervening regular console write that scrolls the screen buffer
+        /// by one or more lines.
+        /// </summary>
+        /// <param name="pintTestNbr">
+        /// This argument holds a reference to the location in the scope of the
+        /// caller that holds a test counter. Since int is a BCL primitive, it
+        /// must be passed by reference to achieve the desired effect, which is
+        /// to maintain a continuous run of test numbers across every method,
+        /// without needing to use a return value to update it.
+        /// </param>
+        /// <param name="pcmdArgs">
+        /// This array of strings is a reference to the command line argument
+        /// list that is passed into the main routine by the application startup
+        /// code. Since arrays are always reference types, pass by reference is
+        /// implied.
+        /// </param>
+        private static void FixedConsoleWriterReuseTest (
+            ref int pintTestNbr ,
+            CmdLneArgsBasic pcmdArgs )
+        {
+            const int CW_TEST_INTERVAL = 3;
+            const int FCW_INDENT = 12;
+            const int ITERATIONS_TO_PERFORM = MagicNumbers.EXACTLY_TEN;
+            const int FCW_ITERATIONS_TO_PERFORM = MagicNumbers.EXACTLY_ONE_HUNDRED;
+            const int FCW_NOTIFICATION_INTERVAL = MagicNumbers.EXACTLY_TEN;
+
+            if ( pintTestNbr == MagicNumbers.ZERO )
+                pintTestNbr++;
+
+            Console.WriteLine (
+                @"{0} begin" ,
+                ClassAndMethodDiagnosticInfo.GetMyMethodName ( ) );
+            FixedConsoleWriter fcw = new FixedConsoleWriter (
+                ConsoleColor.Yellow ,
+                ConsoleColor.Black ,
+                FCW_INDENT );
+
+            for ( int intI = ArrayInfo.ARRAY_FIRST_ELEMENT ;
+                      intI < ITERATIONS_TO_PERFORM ;
+                      intI++ )
+            {
+                Console.WriteLine (
+                    @"    Iteration {0} of {1} starting." ,
+                    ArrayInfo.OrdinalFromIndex ( intI ) ,
+                    ITERATIONS_TO_PERFORM );
+                Console.WriteLine ( @"        Waiting for 1 second" );
+                System.Threading.Thread.Sleep ( MagicNumbers.MILLISECONDS_PER_SECOND );
+
+                if ( MoreMath.IsEvenlyDivisibleByAnyInteger ( intI , CW_TEST_INTERVAL ) )
+                {
+                    Console.WriteLine ( @"        Invoking the fixed console writer." );
+
+                    for ( int intJ = FCW_ITERATIONS_TO_PERFORM ; intJ > MagicNumbers.ZERO ; intJ-- )
+                    {
+                        if ( MoreMath.IsEvenlyDivisibleByAnyInteger ( intJ , FCW_NOTIFICATION_INTERVAL ) )
+                        {
+                            fcw.Write (
+                                @"{0} of {1} iterations remaining." ,
+                                ArrayInfo.IndexFromOrdinal ( intJ ) ,
+                                FCW_ITERATIONS_TO_PERFORM );
+                        }   // if ( MoreMath.IsEvenlyDivisibleByAnyInteger ( intJ , FCW_NOTIFICATION_INTERVAL ) )
+
+                        //  ----------------------------------------------------
+                        //  A pause of 1/10 second is enough with a reporting
+                        //  interval of 10.
+                        //  ----------------------------------------------------
+
+                        System.Threading.Thread.Sleep ( MagicNumbers.EXACTLY_ONE_HUNDRED );
+                    }   // for ( int intJ = FCW_ITERATIONS_TO_PERFORM ; intJ > MagicNumbers.ZERO ; intJ-- )
+
+                    fcw.ScrollUp ( );   // 2018/02/06 - Cauee the console to scroll up and return the carriage before the next regular console write.
+                }   // TRUE (Invoke the FCW on this iteration.) block, if ( MoreMath.IsEvenlyDivisibleByAnyInteger ( intI , CW_TEST_INTERVAL ) )
+                else
+                {
+                    Console.WriteLine ( @"        Skipping the fixed console writer." );
+                }   // FALSE (Skipping the FCW on this iteration.) block, if ( MoreMath.IsEvenlyDivisibleByAnyInteger ( intI , CW_TEST_INTERVAL ) )
+            }   // for ( int intI = ArrayInfo.ARRAY_FIRST_ELEMENT ; intI < ITERATIONS_TO_PERFORM ; intI++ )
+
+            Console.WriteLine (
+                @"{0} Done" ,
+                ClassAndMethodDiagnosticInfo.GetMyMethodName ( ) );
+        }   // private static void FixedConsoleWriterReuseTest
+
+
+        /// <summary>
         /// Isolate maintenance of the index. This could also be done with a
         /// small singleton object, but that would be overkill, when a static
         /// variable in the class and this one-statement method get it done.
@@ -1583,7 +1685,7 @@ namespace TestStand
         /// </param>
         private static void TimedExitTest ( 
             ref int pintTestNbr , 
-            CmdLneArgsBasic cmdArgs )
+            CmdLneArgsBasic pcmdArgs )
         {
 			const string BIT_IS_OFF = @"OFF";
 			const string BIT_IS_ON = @"ON";
@@ -1601,7 +1703,7 @@ namespace TestStand
             const uint TIME_IS_UP = 0;
 
             uint uintWaitSeconds = GetUintSwitchByName (
-                cmdArgs ,
+                pcmdArgs ,
                 SW_WAITTIME ,
                 SW_WAITTIME_DEFAULT );
 
@@ -1702,7 +1804,7 @@ namespace TestStand
 		[System.Diagnostics.CodeAnalysis.SuppressMessage ( "Microsoft.Usage" , "CA2202:Do not dispose objects multiple times" )]
 		private static void TimeedWaitTest (
             ref int s_intCase ,
-            CmdLneArgsBasic cmdArgs )
+            CmdLneArgsBasic pcmdArgs )
         {
             // const string BAD_EXAMPLE_LABELS = "puintWaitSeconds\tpuintWaitSeconds\tpstrCountdownWaitingFor\tpclrTextColour\tpclrTextBackgroundColour";
             const string GOOD_EXAMPLE_LABELS = "puintWaitSeconds\tpstrCountdownWaitingFor\tpclrTextColor\tpclrTextBackgroundColor\tpenmInterruptCriterion";

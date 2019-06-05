@@ -37,6 +37,9 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <!-- 2019/06/04 23:29:56 - DAG - Added for NuGet package builder -->
+    <PackageDir>Package\$(Configuration)</PackageDir>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>.pdb$;(AllowedOutputExtensionsInPackageBuildOutputFolder)</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,18 +62,32 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="WizardWrx.Common, Version=7.0.86.34746, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WizardWrx_NET_API\Common\bin\Release\Wizardwrx.Common.dll</HintPath>
+    <Reference Include="WizardWrx.AnyCSV, Version=7.0.120.30587, Culture=neutral, PublicKeyToken=39f6551a21db420a, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.AnyCSV.7.0.120.30587\lib\net20\WizardWrx.AnyCSV.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.ConsoleStreams">
-      <HintPath>..\..\WizardWrx_NET_API\ConsoleStreams\bin\Release\Wizardwrx.ConsoleStreams.dll</HintPath>
+    <Reference Include="WizardWrx.ASCIIInfo, Version=7.1.83.29298, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.ASCIIInfo.7.1.83.29298\lib\net20\WizardWrx.ASCIIInfo.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.Core">
-      <HintPath>..\..\WizardWrx_NET_API\Core\bin\Release\Wizardwrx.Core.dll</HintPath>
+    <Reference Include="WizardWrx.AssemblyUtils, Version=7.17.116.35196, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.AssemblyUtils.7.17.116.35196\lib\net35-client\WizardWrx.AssemblyUtils.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.DLLConfigurationManager">
-      <HintPath>..\..\WizardWrx_NET_API\DLLConfigurationManager\bin\Release\Wizardwrx.DLLConfigurationManager.dll</HintPath>
+    <Reference Include="WizardWrx.BitMath, Version=4.3.125.29248, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.BitMath.4.3.125.29248\lib\net20\WizardWrx.BitMath.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.Common, Version=7.17.114.35192, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.Common.7.17.114.35192\lib\net20\WizardWrx.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.ConsoleStreams, Version=7.15.191.37663, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.ConsoleStreams.7.15.191.37663\lib\net35-client\WizardWrx.ConsoleStreams.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.Core, Version=7.19.175.22513, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.Core.7.19.175.22513\lib\net35-client\WizardWrx.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.DLLConfigurationManager, Version=7.15.211.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.DLLConfigurationManager.7.15.211\lib\net35-client\WizardWrx.DLLConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.FormatStringEngine, Version=7.15.162.826, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.FormatStringEngine.7.15.162.826\lib\net20\WizardWrx.FormatStringEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +109,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="WizardWrx.DLLConfigurationManager.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -103,6 +121,25 @@
   <PropertyGroup>
     <PostBuildEvent>wwBldNbrMgr.exe -r "-p$(ProjectDir) " "-t$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
+  <!-- 2019/06/04 23:31:14 - DAG Everything from this point to the end is new, and was added to support NuGet package generation. -->
+  <Target Name="AfterBuild">
+    <!-- Load up the information from the assembly -->
+    <GetAssemblyIdentity AssemblyFiles="$(OutputPath)$(AssemblyName).dll">
+      <Output TaskParameter="Assemblies" ItemName="OutputAssemblyInfo" />
+    </GetAssemblyIdentity>
+    <Message Text="Info: Assembly $(AssemblyName).dll version =  %(OutputAssemblyInfo.Version)" />
+  </Target>
+  <Target Name="Package" AfterTargets="AfterBuild" Condition=" '$(Configuration)' == 'Release'">
+    <!-- Ensure the Package directory exists for this project -->
+    <MakeDir Directories="$(PackageDir)" />
+    <!-- Package the project -->
+    <Exec WorkingDirectory="$(BuildDir)" Command="NuGet.exe pack $(ProjectName).csproj -Properties Configuration=$(Configuration) -OutputDir $(PackageDir) -IncludeReferencedProjects" />
+  </Target>
+  <!-- 2019/05/19 00:26:30 - DAG Switch on the push target. -->
+  <!-- Publish the project. -->
+  <Target Name="Publish" AfterTargets="Package" Condition=" '$(Configuration)' == 'Release'">
+    <Exec WorkingDirectory="$(PackageDir)" Command="NuGet.exe push $(AssemblyName).%(OutputAssemblyInfo.Version).nupkg" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

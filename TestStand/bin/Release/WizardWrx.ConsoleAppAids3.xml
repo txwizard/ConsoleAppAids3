@@ -928,6 +928,12 @@
             
             If, instead, you want to overwrite the last message, call the
             ReturnCarriage method.
+            
+            From version 7.1 onwards, in addition to scrolling the screen up,
+            this method resets the screen coordinates so that the next call to a
+            write method begins writing at the then-current location in the
+            screen buffer, preserving any intervening text that was displayed by
+            calling the Console.WriteLine method on either output stream.
             </remarks>
         </member>
         <member name="M:WizardWrx.ConsoleAppAids3.FixedConsoleWriter.GetStdErrState">

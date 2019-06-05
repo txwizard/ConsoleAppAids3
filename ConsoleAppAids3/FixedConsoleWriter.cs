@@ -27,7 +27,7 @@
 
     Author:             David A. Gray
 
-	License:            Copyright (C) 2014-2017, David A. Gray. 
+	License:            Copyright (C) 2014-2019, David A. Gray. 
 						All rights reserved.
 
                         Redistribution and use in source and binary forms, with
@@ -123,6 +123,13 @@
 
 	2018/11/26 7.0     DAG Eliminate the unreferenced WizardWrx.Core, and its
                            parent, WizardWrx, from the using directives.
+
+    2018/02/15 7.1     DAG ScrollUp method: In addition to scrolling the screen 
+                           up, this method resets the screen coordinates so that
+                           the next call to a write method begins writing at the
+                           then-current location in the screen buffer,
+                           preserving any intervening text that was displayed by
+                           calling the regular Console.WriteLine method.
     ============================================================================
 */
 
@@ -698,10 +705,21 @@ namespace WizardWrx.ConsoleAppAids3
         /// 
         /// If, instead, you want to overwrite the last message, call the
         /// ReturnCarriage method.
+        /// 
+        /// From version 7.1 onwards, in addition to scrolling the screen up,
+        /// this method resets the screen coordinates so that the next call to a
+        /// write method begins writing at the then-current location in the
+        /// screen buffer, preserving any intervening text that was displayed by
+        /// calling the Console.WriteLine method on either output stream.
         /// </remarks>
         public void ScrollUp ( )
         {
             Console.Error.WriteLine ( );
+
+            _intInitialRow = COORDINATE_NOT_SET;
+            _intLastWriteCol = COORDINATE_NOT_SET;
+            _intLastWriteCol = COORDINATE_NOT_SET;
+            _intLastWriteRow = COORDINATE_NOT_SET;
         }   // public void ScrollUp
         #endregion  // Public Methods for Repositioning the Cursor
 

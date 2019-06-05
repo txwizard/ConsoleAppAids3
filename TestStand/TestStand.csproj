@@ -33,8 +33,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestStand</RootNamespace>
     <AssemblyName>TestStand</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -46,6 +47,7 @@
     <DefineConstants>TRACE;DEBUG;ALT_EXCPT_LOG_PATH SUBSYSTEM_CUI ALT_EXCPT_LOG_COLOURS HIDE_STACKTRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -55,6 +57,7 @@
     <DefineConstants>TRACE;ALT_EXCPT_LOG_PATH SUBSYSTEM_CUI ALT_EXCPT_LOG_COLOURS HIDE_STACKTRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>WW_Icon1.ico</ApplicationIcon>
@@ -67,6 +70,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
@@ -76,26 +80,42 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="WizardWrx.AssemblyUtils">
-      <HintPath>..\..\WizardWrx_NET_API\AssemblyUtils\bin\Release\Wizardwrx.AssemblyUtils.dll</HintPath>
+    <Reference Include="WizardWrx.AnyCSV, Version=7.0.120.30587, Culture=neutral, PublicKeyToken=39f6551a21db420a, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.AnyCSV.7.0.120.30587\lib\net20\WizardWrx.AnyCSV.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.BitMath">
-      <HintPath>..\..\BitMath\BitMath\bin\Release\Wizardwrx.BitMath.dll</HintPath>
+    <Reference Include="WizardWrx.ASCIIInfo, Version=7.1.83.29298, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.ASCIIInfo.7.1.83.29298\lib\net20\WizardWrx.ASCIIInfo.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.Common">
-      <HintPath>..\..\WizardWrx_NET_API\Common\bin\Release\Wizardwrx.Common.dll</HintPath>
+    <Reference Include="WizardWrx.AssemblyUtils, Version=7.17.116.35196, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.AssemblyUtils.7.17.116.35196\lib\net35-client\WizardWrx.AssemblyUtils.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.ConsoleStreams">
-      <HintPath>..\..\WizardWrx_NET_API\ConsoleStreams\bin\Release\Wizardwrx.ConsoleStreams.dll</HintPath>
+    <Reference Include="WizardWrx.BitMath, Version=4.3.125.29248, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.BitMath.4.3.125.29248\lib\net20\WizardWrx.BitMath.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.Core">
-      <HintPath>..\..\WizardWrx_NET_API\Core\bin\Release\Wizardwrx.Core.dll</HintPath>
+    <Reference Include="WizardWrx.Common, Version=7.17.114.35192, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.Common.7.17.114.35192\lib\net20\WizardWrx.Common.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.DLLConfigurationManager">
-      <HintPath>..\..\WizardWrx_NET_API\DLLConfigurationManager\bin\Release\Wizardwrx.DLLConfigurationManager.dll</HintPath>
+    <Reference Include="WizardWrx.ConsoleStreams, Version=7.15.191.37663, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.ConsoleStreams.7.15.191.37663\lib\net35-client\WizardWrx.ConsoleStreams.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.Core, Version=7.19.175.22513, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.Core.7.19.175.22513\lib\net35-client\WizardWrx.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.DiagnosticInfo, Version=7.15.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.DiagnosticInfo.7.15.1\lib\net45\WizardWrx.DiagnosticInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.DLLConfigurationManager, Version=7.15.211.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.DLLConfigurationManager.7.15.211\lib\net35-client\WizardWrx.DLLConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.FormatStringEngine, Version=7.15.162.826, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.FormatStringEngine.7.15.162.826\lib\net20\WizardWrx.FormatStringEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.MoreMath, Version=7.15.1.36803, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.MoreMath.7.15.1.36803\lib\net45\WizardWrx.MoreMath.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -139,9 +160,10 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>wwBldNbrMgr.exe -r "-p$(ProjectDir) " "-t$(TargetPath)"
-if exist "$(SolutionDir)WizardWrx_$(SolutionName)_Binaries_$(ConfigurationName).7z" sdelete -r "$(SolutionDir)WizardWrx_$(SolutionName)_Binaries_$(ConfigurationName).7z"
+if exist       "$(SolutionDir)WizardWrx_$(SolutionName)_Binaries_$(ConfigurationName).7z" sdelete -r "$(SolutionDir)WizardWrx_$(SolutionName)_Binaries_$(ConfigurationName).7z"
 7z a -bb3 -stl "$(SolutionDir)WizardWrx_$(SolutionName)_Binaries_$(ConfigurationName).7z" "$(SolutionDir)$(ProjectName)\bin\$(ConfigurationName)\*"
-7z l "$(SolutionDir)WizardWrx_$(SolutionName)_Binaries_$(ConfigurationName).7z"
+7z l           "$(SolutionDir)WizardWrx_$(SolutionName)_Binaries_$(ConfigurationName).7z"
+attrib         "$(SolutionDir)WizardWrx_$(SolutionName)_Binaries_$(ConfigurationName).7z" +r
 if $(ConfigurationName) == Release (
     echo Regenerate API documentation.
     docfx.exe $(SolutionDir)docfx_project\docfx.json --metadata

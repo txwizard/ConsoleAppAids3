@@ -57,16 +57,7 @@ F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin
 F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.Core.xml
 F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.DLLConfigurationManager.pdb
 F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.DLLConfigurationManager.xml
-F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.ConsoleStreams.pdb
 F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.ConsoleStreams.xml
-F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.BitMath.pdb
-F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.BitMath.xml
-F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.FormatStringEngine.pdb
-F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.FormatStringEngine.xml
-F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.ASCIIInfo.pdb
-F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.ASCIIInfo.xml
-F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.AnyCSV.pdb
-F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.AnyCSV.xml
 F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.csprojAssemblyReference.cache
 F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.csproj.CoreCompileInputs.cache
 F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.csproj.CopyComplete

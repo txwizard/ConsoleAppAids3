@@ -31,6 +31,12 @@
 	2018/08/06 7.0     DAG Manually update the copyright year to coincide with a
 	                       new build against the final release candidate of the
 	                       main WizardWrx class library constellation.
+
+	2019/01/30 7.1     DAG Reset the console row indicator when ScrollUp is
+	                       called on a FixedConsoleWriter object, so that the
+	                       object need not be re-created when you want to reuse
+	                       it further down screen. I'm calling this a point
+	                       release, although it is only a bug fix.
     ============================================================================
 */
 
@@ -46,7 +52,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration ( "" )]
 [assembly: AssemblyCompany ( "David A. Gray" )]
 [assembly: AssemblyProduct ( "WizardWrx .NET Utility Libraries" )]
-[assembly: AssemblyCopyright ( "Copyright 2014-2018, David A. Gray" )]
+[assembly: AssemblyCopyright ( "Copyright 2014-2019, David A. Gray" )]
 [assembly: AssemblyTrademark ( "This library is distributed under a three-clause BSD license." )]
 [assembly: AssemblyCulture ( "" )]
 
@@ -68,4 +74,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion ( "7.0.514.*" )]
+[assembly: AssemblyVersion ( "7.1.526.*" )]

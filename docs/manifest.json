@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "api/TestStand.Properties.Settings.html",
-          "hash": "kXt1lBioMGwaQMHLj+UDNQ=="
+          "hash": "ZGNEYyl2elWt8fcFa/r7wA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -24,7 +24,7 @@
           "hash": "raTk0WB++34DByMC7Wap5g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction.html",
-          "hash": "TT8MKBEC+yfBwMjXvTuEyA=="
+          "hash": "druuZRmQwy/kldzGumZ8ag=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -45,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html",
-          "hash": "vlA+7lWDDWQA2RrRY5AaOA=="
+          "hash": "Ik0aZdjWc7gBm9delL6A5g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -57,10 +57,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion.html",
-          "hash": "9QmN/hadYryCwWQs5WN7EQ=="
+          "hash": "RQi86fZoSOeZZU+UrSBFaQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -69,10 +69,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.DisplayAids.html",
-          "hash": "vliD7p+eND7AyhyDorWpWA=="
+          "hash": "gx79cZkvpG47Doe2+hMFlQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -81,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.FixedConsoleWriter.CRBehavior.html",
-          "hash": "DAAd1BpbwwQPy0NFTyvfvA=="
+          "hash": "FAeZl1Hzxt1Yks0JO5z2tg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -93,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html",
-          "hash": "mAuJ9rwuNWbYl6y2HQC47g=="
+          "hash": "gdH2hJBl/GlEp2E6hkPGzg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -108,7 +108,7 @@
           "hash": "M1+FQrYOGhRONVcmverpqA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -120,7 +120,7 @@
           "hash": "kVV6oE7xWY6iIM/TstQouw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -144,7 +144,7 @@
           "hash": "dIzO5xzq6k5quP5pewYh5g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -168,7 +168,7 @@
           "hash": "rkJqeTRA04Q74+Olht6lpw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -187,8 +187,7 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
+        "can_incremental": true,
         "incrementalPhase": "build"
       },
       "processors": {
@@ -198,19 +197,19 @@
           "incrementalPhase": "build"
         },
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build"
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build"
         }
       }
     },
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
         "incrementalPhase": "postProcessing"
       },
       "processors": {}
