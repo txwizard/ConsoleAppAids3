@@ -154,6 +154,20 @@
 	2019/01/30 7.1     DAG Test the corrected ScrollUp method by invoking one of
                            the FixedConsoleWriter methods from two places, with
                            at least intervening console write.
+
+	2020/10/23 7.2     DAG 1) Implement Semantic Version Numbering. This build
+                              also incorporates the current stable versions of
+                              the WizardWrx .NET API asseblies, which finally
+                              fully implement Semantic Version Numbering as of a
+                              few days ago.
+
+                           2) Test an issue that suggests that the compiler sees
+                              a call to the default ConsoleAppStateManager
+                              constructor as legal, although it won't work for
+                              this singleton, and should be flagged as illegal.
+
+                           3) Add the new required second argument to method call
+                              ReportGenerators.ShowKeyAssemblyProperties.
     ============================================================================
 */
 
@@ -166,7 +180,7 @@ using WizardWrx;                                                                
 using WizardWrx.ConsoleAppAids3;												// This is the library under test.
 using WizardWrx.AssemblyUtils;													// I split WizardWrx.DLLServeices2.dll into 7 smaller, more focused libraries,
 using WizardWrx.ConsoleStreams;                                                 // of which this class uses all but one, which I listed alphabetically, not
-using WizardWrx.Core;       													// necessarily reflecting the chain of dependencies.
+using WizardWrx.Core;       													// necessarily reflecting the dependency chain.
 using WizardWrx.DLLConfigurationManager;
 
 
@@ -342,6 +356,15 @@ namespace TestStand
 
         static void Main ( string [ ] pastrArgs )
         {
+            //  ----------------------------------------------------------------
+            //  This must happen first thing to fully simulate the conditions
+            //  that arose in the code that exposed this bug.
+            //
+            //  See the comment written just above the commented-out method.
+            //  ----------------------------------------------------------------
+
+            //  TryToCallDefaultConstructorOnConsoleAppStateManager ( s_theApp );
+
             s_theApp = ConsoleAppStateManager.GetTheSingleInstance ( );
             CmdLneArgsBasic cmdArgs = new CmdLneArgsBasic (
                 s_achrValidSwitches ,
@@ -385,11 +408,15 @@ namespace TestStand
                 Console.WriteLine ( strDeferredMessage );
             }   // if ( !string.IsNullOrEmpty ( s_strDeferredMessage ) )
 
-			//	----------------------------------------------------------------
-			//	Generate a report about the library under test.
-			//	----------------------------------------------------------------
+            //	----------------------------------------------------------------
+            //	Generate a report about the library under test.
+            //	----------------------------------------------------------------
 
-			ReportGenerators.ShowKeyAssemblyProperties ( System.Reflection.Assembly.GetAssembly ( s_theApp.GetType ( ) ) );
+            ReportGenerators.ShowKeyAssemblyProperties (
+                System.Reflection.Assembly.GetAssembly (    // Assembly pasmSubject = Assembly for which to display key properties
+                    s_theApp.GetType ( ) ) ,                // Type type            = Given a type, identify the assembly that exposes it.
+                MagicNumbers.ZERO ,                         // int pintJ            = ordinal number, incremented by the method
+                MagicNumbers.PLUS_ONE );                    // int pintNDependents  = Number of items in list being processed
 
             string strSingleTest = cmdArgs.GetSwitchByName (
                 SW_ONE_TEST ,
@@ -2457,5 +2484,60 @@ namespace TestStand
 				);																				// System.Diagnostics.Trace.WriteLine
 			#endif	// #if TRACE
 		}	// private static void HandleConsoleIOException
-	}   // class Program
+
+
+        //  --------------------------------------------------------------------
+        //  I created this routine to evaluate a bug that surfaced while I was
+        //  updating another assembly that uses the library under test, which I
+        //  discovered was allowed by the compiler to call a default constructor
+        //  on ConsoleAppStateManager.
+        //
+        //  Thankfully, since the class was uninitialized, the program quickly
+        //  fell apart with a null reference exception.
+        //  --------------------------------------------------------------------
+
+        //private static void TryToCallDefaultConstructorOnConsoleAppStateManager ( ConsoleAppStateManager s_theApp )
+        //{
+        //    Console.WriteLine (
+        //        @"{1}Test method {0} is starting up.{1}" ,                  // Format Control String
+        //        ClassAndMethodDiagnosticInfo.GetMyMethodName ( ) ,          // Format Item 0: Test method {0}
+        //        Environment.NewLine );                                      // Format Item 1: {1}Test method AND is done.{1}
+
+        //    try
+        //    {
+        //        if ( s_theApp == null )
+        //        {
+        //            s_theApp = new ConsoleAppStateManager ( );
+        //        }   // TRUE (anticipated outcome) block, if ( s_theApp == null )
+        //        else
+        //        {
+        //            Console.WriteLine (
+        //                @"{2}Input parameter {0}, a reference to an object of type {1}, is NOT null.{2}" ,
+        //                nameof ( s_theApp ) ,                                   // Format Item 0: Input parameter {0}
+        //                typeof ( ConsoleAppStateManager ) ,                     // Format Item 1: a reference to an object of type {1}
+        //                Environment.NewLine );                                  // Format Item 2: {2}Input AND is NOT null.{2}
+        //        }   // FALSE (unanticipated outcome) block, if ( s_theApp == null )
+        //    }
+        //    catch ( Exception exAll )
+        //    {
+        //        Console.WriteLine (
+        //            @"{2}An {0} exception arose in method {1}{2}" ,             // Format Control String
+        //            exAll.GetType ( ).FullName ,                                // Format Item 0: An {0} exception
+        //            ClassAndMethodDiagnosticInfo.GetMyMethodName ( )            // Format Item 1: arose in method {1}
+        //            , Environment.NewLine );                                    // Format Item 2: {2}An AND method {1}{2}
+        //        Console.WriteLine ( @"Message    =  {0}" , exAll.Message );
+        //        Console.WriteLine ( @"HResult    =  {0}" , exAll.HResult );
+        //        Console.WriteLine ( @"Source     =  {0}" , exAll.Source );
+        //        Console.WriteLine ( @"TargetSite =  {0}" , exAll.TargetSite );
+
+        //        Console.WriteLine ( @"StackTrae:{1}{0}{1}" , exAll.StackTrace , Environment.NewLine );
+        //    } finally
+        //    {
+        //        Console.WriteLine (
+        //            @"{1}Test method {0} is done.{1}" ,                         // Format Control String
+        //            ClassAndMethodDiagnosticInfo.GetMyMethodName ( ) ,          // Format Item 0: Test method {0}
+        //            Environment.NewLine );                                      // Format Item 1: {1}Test method AND is done.{1}
+        //    }
+        //}   // private static void TryToCallDefaultConstructorOnConsoleAppStateManager
+    }   // class Program
 }   // namespace TestStand

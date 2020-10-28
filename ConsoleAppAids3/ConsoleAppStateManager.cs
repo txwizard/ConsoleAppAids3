@@ -22,15 +22,15 @@
 						those of the embedded StateManager. The final nail in
 						the inheritance coffin is that the current versions of
 						both classes now inherit from GenericSingletonBase, a
-						generic abstract base class defined in DllServices2 that
-						hides most of the plumbing required for the Singleton in
-                        their common base class.
+						generic abstract base class defined in WizardWrs.Core 
+                        that hides most of the plumbing required for the
+                        Singleton in their common base class.
 
     Created:            Sunday, 18 May 2014
 
 	Author:             David A. Gray
 
-	License:            Copyright (C) 2014-2017, David A. Gray. 
+	License:            Copyright (C) 2014-2020, David A. Gray. 
 						All rights reserved.
 
                         Redistribution and use in source and binary forms, with
@@ -100,6 +100,18 @@
 
 	2018/11/26 7.0     DAG Eliminate the unreferenced system namespaces, and tag
                            my own assembly references with explanatory notes.
+
+	2020/10/23 7.2     DAG 1) Explicitly hide the default constructor to prevent
+                              the compilers from allowing it to be called. This
+                              oversight came to the surface when I inadvertently
+                              wrote a call to the default constructor in another
+                              assembly, WWDisplayAssemblyInfo.exe.
+
+                           2) Implement Semantic Version Numbering. This build
+                              also incorporates the current stable versions of
+                              the WizardWrx .NET API asseblies, which finally
+                              fully implement Semantic Version Numbering as of a
+                              few days ago.
     ============================================================================
 */
 
@@ -123,17 +135,15 @@ namespace WizardWrx.ConsoleAppAids3
 	/// could reasonably be expected to be defined locally. In particular, the
 	/// services for ascertaining the redirection state of the three standard
 	/// console handles and the names of the files to which they are redirected
-	/// seem logically out of place. They are in that library for two reasons.
-	/// 
-	/// 1) The ExceptionLogger class, which belongs where it is because it meets
-	/// needs that are substantially identical, regardless of the Windows 
-	/// subsystem in which it runs. While I could have made a wrapper that 
-	/// inherits from the ExceptionLogger, that seemed pointless for the few
-	/// lines of code that would have gone into the derived class, when this
-	/// library has unrelated dependencies on DLLServices2.
-	/// 
-	/// 2) It confines the services that invoke unmanaged code, and must make 
-	/// significant link demands, to one library.
+	/// seem logically out of place.
+    /// 
+    /// They are in that library because the ExceptionLogger class, which 
+    /// belongs where it is because it meets needs that are substantially
+    /// identical, regardless of the Windows subsystem in which it runs. While I
+    /// could have made a wrapper that inherits from the ExceptionLogger, that
+    /// seemed pointless for the few lines of code that would have gone into the
+    /// derived class, when this library has unrelated dependencies on
+    /// WizardWrx.Core.
 	/// </remarks>
     public class ConsoleAppStateManager : GenericSingletonBase<ConsoleAppStateManager>
     {
@@ -240,18 +250,31 @@ namespace WizardWrx.ConsoleAppAids3
 		private static readonly SyncRoot s_srCriticalSection = new SyncRoot ( typeof ( ConsoleAppStateManager ).ToString ( ) );
 
 
-		/// <summary>
-		/// Get a reference to the ConsoleAppStateManager singleton, which
-		/// organizes a host of useful application state information under one
-		/// object.
+        /// <summary>
+        /// A fundamental tenet of the Singleton design pattern is that the
+        /// default constructor must be hidden, and it must be the only
+        /// constructor of any kind.
+        /// 
+        /// Since the base class has a protected default constructor, derived
+        /// classes must explicitly hide theirs to prevent the compiler allowing
+        /// one to be called.
+        /// </summary>
+        private ConsoleAppStateManager ( )
+        {
+        }   // Since the base class has a protected default constructor, derived classes must explicitly hide theirs.
+
+        /// <summary>
+        /// Get a reference to the ConsoleAppStateManager singleton, which
+        /// organizes a host of useful application state information under one
+        /// object.
         /// </summary>
         /// <returns>
-		/// The return value is the initialized singleton.
-		/// </returns>
-		/// <remarks>
-		/// This method must override and hide the like named method on the base
-		/// class, because it has extra work to do.
-		/// </remarks>
+        /// The return value is the initialized singleton.
+        /// </returns>
+        /// <remarks>
+        /// This method must override and hide the like named method on the base
+        /// class, because it has extra work to do.
+        /// </remarks>
         public new static ConsoleAppStateManager GetTheSingleInstance ( )
         {
 			if ( s_genTheOnlyInstance._me == null )
@@ -773,7 +796,7 @@ namespace WizardWrx.ConsoleAppAids3
             ConsoleColor pclrTextColor ,
             ConsoleColor pclrTextBackgroundColor ,
             DisplayAids.InterruptCriterion penmInterruptCriterion )
-        {
+        {   // ToDo: Consider adding overloads that take signed integers.
             if ( penmNormalExitAction != NormalExitAction.Silent )
             {
                 this.DisplayEOJMessage ( );
@@ -788,12 +811,12 @@ namespace WizardWrx.ConsoleAppAids3
 
                 case NormalExitAction.Timed:
                     Console.WriteLine ( pstrOperatorPrompt );
-                    DisplayAids.TimedWait (
+                    DisplayAids.TimedWait (             // ToDo: Align comment on the last argument.
 						puintSecondsToWait ,                                				// puintWaitSeconds
 						pstrCountdownWaitingFor ,                           				// pstrCountdownWaitingFor
 						ConsoleColor.Black ,                                				// pclrTextColor
 						ConsoleColor.Black ,                                				// pclrTextBackgroundColor
-                        penmInterruptCriterion );    // penmInterruptCriterion
+                        penmInterruptCriterion );       // penmInterruptCriterion
                     Environment.Exit ( ( int ) puintStatusCode );
                     break;
 

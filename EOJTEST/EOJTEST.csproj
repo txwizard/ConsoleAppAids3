@@ -21,18 +21,26 @@
 //  2014/05/20 DAG Promote version number from 3.0 to 4.1. The only change is a
 //                 new aseembly reference, WizardWrx.DLLServices. This change is
 //                 confined to EOJTEST.csproj, which keeps the reference list.
+//
 //  2014/05/20 DAG Promote version number from 4.1 to 5.0, so that the whole set
 //                 of new libraries is at the same version, which is higher than
 //                 that of any of their predcecessors.
+//
 //  2015/06/04 DAG Document the relocation of this assembly from the
 //                 ApplicationHelpers project to ConsoleAppAids2, since I had it
 //                 open to make a more significant change, raising ToolsVersion
 //                 from 4.0 to 12.0, to match Microsoft Visual Studio 2013.
+//
 //  2018/11/25 DAG Raise ToolsVersion from 12.0 to 15.0, to match Microsoft
 //                 Visual Studio 2017.
+//
+//  2020-10-23 DAG Add the Deterministic compiler switch, which goes well with
+//                 SemVer version numbering.
 //  ============================================================================
   -->
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0"
+	     DefaultTargets="Build"
+	     xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -46,7 +54,10 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <!-- 2020-10-23 02:52:34 - DAG - Add the Deterministic compiler switch, which goes well with SemVer version numbering. -->
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
@@ -57,6 +68,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
@@ -66,9 +78,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+
   <PropertyGroup>
     <ApplicationIcon>WW_Icon1.ico</ApplicationIcon>
   </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
@@ -78,6 +92,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -87,6 +102,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -104,26 +120,33 @@
       <HintPath>..\..\WizardWrx_NET_API\DLLConfigurationManager\bin\Release\Wizardwrx.DLLConfigurationManager.dll</HintPath>
     </Reference>
   </ItemGroup>
+
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+
   <ItemGroup>
     <Content Include="WW_Icon1.ico" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\ConsoleAppAids3\ConsoleAppAids3.csproj">
       <Project>{5a6766d8-2a8e-4f03-9c82-c42c5537f73e}</Project>
       <Name>ConsoleAppAids3</Name>
     </ProjectReference>
   </ItemGroup>
+
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
   <PropertyGroup>
     <PreBuildEvent>wwBldNbrMgr.exe "$(ProjectDir) "</PreBuildEvent>
   </PropertyGroup>
+
   <PropertyGroup>
     <PostBuildEvent>wwBldNbrMgr.exe -r "-p$(ProjectDir) " "-t$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
+
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

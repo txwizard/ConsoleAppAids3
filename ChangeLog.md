@@ -4,6 +4,21 @@ This file is a running history of fixes and improvements from version 7.0
 onwards. Changes are documented for the newest version first. Within each
 version, classes are listed alphabetically.
 
+# Version 7.2
+This update of the `WizardWrx.ConsoleAppAids3` library resolves an issue that
+allowed a calling routine to instantiate an uninitialized, utterly useless
+instance of the `ConsoleAppStateManager` object. In so doing, the bug breaks a
+fundamental tenet of the Singleton design pattern which it is intended to
+implement. Although the compiler allowed the instance to be created, it would
+fail with a null reference exception on first use.
+
+Additionally, this release implements Semantic Version Numbering and the related
+Deterministic compiler switch.
+
+This build also incorporates the current stable versions of the `WizardWrx .NET
+API` asseblies, which finally fully implement Semantic Version Numbering as of a
+few days ago.
+
 # Version 7.1
 
 Reset the console row indicator when `ScrollUp` is called on a

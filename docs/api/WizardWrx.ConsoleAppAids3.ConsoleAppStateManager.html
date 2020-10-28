@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ConsoleAppStateManager
    ">
-    <meta name="generator" content="docfx 2.40.0.0">
+    <meta name="generator" content="docfx 2.56.3.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -127,19 +127,14 @@ programs.</p>
 could reasonably be expected to be defined locally. In particular, the
 services for ascertaining the redirection state of the three standard
 console handles and the names of the files to which they are redirected
-seem logically out of place. They are in that library for two reasons.</p>
-<ol>
-<li><p>The ExceptionLogger class, which belongs where it is because it meets
-needs that are substantially identical, regardless of the Windows
-subsystem in which it runs. While I could have made a wrapper that
-inherits from the ExceptionLogger, that seemed pointless for the few
-lines of code that would have gone into the derived class, when this
-library has unrelated dependencies on DLLServices2.</p>
-</li>
-<li><p>It confines the services that invoke unmanaged code, and must make
-significant link demands, to one library.</p>
-</li>
-</ol>
+seem logically out of place.</p>
+<p>They are in that library because the ExceptionLogger class, which
+belongs where it is because it meets needs that are substantially
+identical, regardless of the Windows subsystem in which it runs. While I
+could have made a wrapper that inherits from the ExceptionLogger, that
+seemed pointless for the few lines of code that would have gone into the
+derived class, when this library has unrelated dependencies on
+WizardWrx.Core.</p>
 </div>
   <h3 id="fields">Fields
   </h3>
@@ -148,7 +143,7 @@ significant link demands, to one library.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_BACKGROUND_COLOR_DEFAULT.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_BACKGROUND_COLOR_DEFAULT%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L220">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L230">View Source</a>
   </span>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_BACKGROUND_COLOR_DEFAULT" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_BACKGROUND_COLOR_DEFAULT">TIMED_WAIT_BACKGROUND_COLOR_DEFAULT</h4>
   <div class="markdown level1 summary"><p>Use this member of the ConsoleColor enumeration, along with the
@@ -181,7 +176,7 @@ mode application in its default screen colors.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_DEFAULT_SECONDS.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_DEFAULT_SECONDS%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L181">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L191">View Source</a>
   </span>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_DEFAULT_SECONDS" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_DEFAULT_SECONDS">TIMED_WAIT_DEFAULT_SECONDS</h4>
   <div class="markdown level1 summary"><p>This constant specifies the default number of seconds to wait when
@@ -213,7 +208,7 @@ of up to 30 seconds, which should be about right most of the time.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_INTERRUPT_CRITERION.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_INTERRUPT_CRITERION%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L202">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L212">View Source</a>
   </span>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_INTERRUPT_CRITERION" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_INTERRUPT_CRITERION">TIMED_WAIT_INTERRUPT_CRITERION</h4>
   <div class="markdown level1 summary"><p>This constant specifies the default method by which the timed wait
@@ -246,7 +241,7 @@ pressing the ENTER (Return) key once (CarriageReturn).</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_TEXT_COLOR_DEFAULT.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_TEXT_COLOR_DEFAULT%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L211">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L221">View Source</a>
   </span>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_TEXT_COLOR_DEFAULT" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_TEXT_COLOR_DEFAULT">TIMED_WAIT_TEXT_COLOR_DEFAULT</h4>
   <div class="markdown level1 summary"><p>Use this member of the ConsoleColor enumeration, along with the
@@ -279,7 +274,7 @@ console mode application in its default screen colors.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_WAITING_FOR_DEFAULT.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_WAITING_FOR_DEFAULT%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L193">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L203">View Source</a>
   </span>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_WAITING_FOR_DEFAULT" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_WAITING_FOR_DEFAULT">TIMED_WAIT_WAITING_FOR_DEFAULT</h4>
   <div class="markdown level1 summary"><p>This constant specifies a default description of the event that
@@ -316,7 +311,7 @@ implements this feature.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_BaseStateManager.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.BaseStateManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L228">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L238">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_BaseStateManager_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.BaseStateManager*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_BaseStateManager" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.BaseStateManager">BaseStateManager</h4>
@@ -349,7 +344,7 @@ implements this feature.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_DisplayBOJMessage.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.DisplayBOJMessage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L277">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L300">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_DisplayBOJMessage_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.DisplayBOJMessage*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_DisplayBOJMessage" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.DisplayBOJMessage">DisplayBOJMessage()</h4>
@@ -371,7 +366,7 @@ uses a thread-safe method to write its output on the console.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_DisplayEOJMessage.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.DisplayEOJMessage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L292">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L315">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_DisplayEOJMessage_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.DisplayEOJMessage*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_DisplayEOJMessage" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.DisplayEOJMessage">DisplayEOJMessage()</h4>
@@ -392,7 +387,7 @@ object lock.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_ErrorExit_System_UInt32_.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ErrorExit(System.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L321">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L344">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_ErrorExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ErrorExit*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_ErrorExit_System_UInt32_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ErrorExit(System.UInt32)">ErrorExit(UInt32)</h4>
@@ -439,7 +434,7 @@ to the OS, sending along the exit code.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetBOJMessage.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetBOJMessage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L376">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L399">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetBOJMessage_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetBOJMessage*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetBOJMessage" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetBOJMessage">GetBOJMessage()</h4>
@@ -480,7 +475,7 @@ object lock.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetEOJMessage.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetEOJMessage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L428">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L451">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetEOJMessage_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetEOJMessage*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetEOJMessage" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetEOJMessage">GetEOJMessage()</h4>
@@ -517,7 +512,7 @@ object lock.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetTheSingleInstance.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetTheSingleInstance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L255">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L278">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetTheSingleInstance_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetTheSingleInstance*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_GetTheSingleInstance" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetTheSingleInstance">GetTheSingleInstance()</h4>
@@ -555,7 +550,7 @@ class, because it has extra work to do.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L495">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L518">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit">NormalExit()</h4>
@@ -582,7 +577,7 @@ carbon unit prompt and an immediate exit instruction.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.String%2CWizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L638">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L661">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)">NormalExit(String, ConsoleAppStateManager.NormalExitAction)</h4>
@@ -637,7 +632,7 @@ argument.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L563">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L586">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32)">NormalExit(UInt32)</h4>
@@ -679,7 +674,7 @@ carbon unit prompt and an immediate exit instruction.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L529">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L552">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String)">NormalExit(UInt32, String)</h4>
@@ -734,7 +729,7 @@ used with some of the new overloads.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32%2CSystem.String%2CWizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L597">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L620">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)">NormalExit(UInt32, String, ConsoleAppStateManager.NormalExitAction)</h4>
@@ -793,7 +788,7 @@ its own. Theoretically, every other overload could call this one.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_System_UInt32_System_String_System_ConsoleColor_System_ConsoleColor_WizardWrx_ConsoleAppAids3_DisplayAids_InterruptCriterion_.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32%2CSystem.String%2CWizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction%2CSystem.UInt32%2CSystem.String%2CSystem.ConsoleColor%2CSystem.ConsoleColor%2CWizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L767">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L790">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_System_UInt32_System_String_System_ConsoleColor_System_ConsoleColor_WizardWrx_ConsoleAppAids3_DisplayAids_InterruptCriterion_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction,System.UInt32,System.String,System.ConsoleColor,System.ConsoleColor,WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion)">NormalExit(UInt32, String, ConsoleAppStateManager.NormalExitAction, UInt32, String, ConsoleColor, ConsoleColor, DisplayAids.InterruptCriterion)</h4>
@@ -897,7 +892,7 @@ its own. Theoretically, every other overload could call this one.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32%2CWizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L669">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L692">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)">NormalExit(UInt32, ConsoleAppStateManager.NormalExitAction)</h4>
@@ -949,7 +944,7 @@ prompt message, forcing it to use its default message.</p>
     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L700">View Source</a>
+    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L723">View Source</a>
   </span>
   <a id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*"></a>
   <h4 id="WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_" data-uid="WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)">NormalExit(ConsoleAppStateManager.NormalExitAction)</h4>
@@ -1003,7 +998,7 @@ forcing it to use its default message.</p>
                     <a href="https://github.com/txwizard/ConsoleAppAids3/new/master/apiSpec/new?filename=WizardWrx_ConsoleAppAids3_ConsoleAppStateManager.md&amp;value=---%0Auid%3A%20WizardWrx.ConsoleAppAids3.ConsoleAppStateManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L138" class="contribution-link">View Source</a>
+                    <a href="https://github.com/txwizard/ConsoleAppAids3/blob/master/ConsoleAppAids3/ConsoleAppStateManager.cs/#L148" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -224,8 +224,9 @@
             <remarks>
             Given the location from which an assembly was loaded, you can learn
             almost anything else you need to know about that file, such as its size,
-            age, and directory. Given the directory, you can locate satellite files,
-            such as custom configuration files.
+            age, version, and directory. Given the directory, you can locate
+            satellite files, such as configuration files that contain settings that
+            it uses.
             </remarks>
             <seealso cref="T:WizardWrx.Core.PropertyDefaults"/>
         </member>
@@ -236,6 +237,24 @@
             from which the assembly is loaded, unless the assembly was loaded
             from the Global Assembly Cache (GAC). In that case, substitute the
             application directory.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.Core.AssemblyLocatorBase.PropertySourceCounts">
+            <summary>
+            SetPropertiesFromDLLConfiguration fills and returns this structure,
+            to account for all defined properties, whether or not their values
+            are configured.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.Core.AssemblyLocatorBase.PropertySourceCounts.SpecifiedInConfiguration">
+            <summary>
+            Count of properties read from the configuration file.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.Core.AssemblyLocatorBase.PropertySourceCounts.Defaulted">
+            <summary>
+            Count of properties omitted from the configuration file, and
+            left at their default values.
             </summary>
         </member>
         <member name="F:WizardWrx.Core.AssemblyLocatorBase._strAssemblyLocation">
@@ -317,11 +336,23 @@
             the assembly in which the derived class is defined was loaded.
             </summary>
         </member>
-        <member name="P:WizardWrx.Core.AssemblyLocatorBase.ConfigMessage">
+        <member name="P:WizardWrx.Core.AssemblyLocatorBase.RecoveredConfigurationExceptions">
             <summary>
-            This property returns a message when the configuration file is
-            missing or empty. Under normal conditions, it returns the empty
-            string.
+            This read only property returns a generic List of Exceptions that
+            arose during the initialization phase of an instance, and were
+            silently recovered, so that they can be reported for investigation.
+            </summary>
+            <remarks>
+            This property supersedes ConfigMessage, which returned the list of
+            exceptions as one long string, discarding their all-important stack
+            traces.
+            </remarks>
+        </member>
+        <member name="P:WizardWrx.Core.AssemblyLocatorBase.MissingConfigSettings">
+            <summary>
+            This read-only property returns a generic List of string, each of
+            which is a message that names a property that was omitted from the
+            configuration file, along with its default value.
             </summary>
         </member>
         <member name="P:WizardWrx.Core.AssemblyLocatorBase.DLLConfiguration">
@@ -330,7 +361,7 @@
             assembly in which the derived class is defined.
             </summary>
         </member>
-        <member name="P:WizardWrx.Core.AssemblyLocatorBase.DLLettingsSection">
+        <member name="P:WizardWrx.Core.AssemblyLocatorBase.DLLSettingsSection">
             <summary>
             Gets a reference to the entire AppSettingsSection object tied to
             the assembly in which the derived class is defined.
@@ -2816,6 +2847,17 @@
             Both constructors call this method to initialize their properties.
             </summary>
         </member>
+        <member name="M:WizardWrx.Core.PropertyDefaults.EnumerateMissingConfigurationValues">
+            <summary>
+            Enumeate missing configuration values, if any.
+            </summary>
+            <returns>
+            This method returns a message suitable for display on a console or a
+            Windows message box. The returned message summarises the state of
+            affairs, even when all defined values are represented in the
+            configuration file.
+            </returns>
+        </member>
         <member name="T:WizardWrx.Core.RegistryValues">
             <summary>
             This sealed class exposes static methods for efficiently testing for the
@@ -3037,6 +3079,111 @@
             GetRegDwordValue and GetRegMultiStringValue. However, since it is
             almost certain to find use on its own, I marked it public.
             </remarks>
+        </member>
+        <member name="T:WizardWrx.Core.StringFixups">
+            <summary>
+            Instances of this class represent pairs of fixup strings to apply as
+            replacement pairs to amend a string, such as the JSON response from a
+            REST endpoint that motivated its creation.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.Core.StringFixups.StringFixup">
+            <summary>
+            A fixup pair is a pair of strings.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.Core.StringFixups.StringFixup.InputValue">
+            <summary>
+            Specify the string to be replaced with OutputValue when found in
+            an input string.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.Core.StringFixups.StringFixup.OutputValue">
+            <summary>
+            Specify the string to substitute for InputValue when found in an
+            input string.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.Core.StringFixups.StringFixup.#ctor(System.String,System.String)">
+            <summary>
+            This constructor permits initializing static read-only arrays of
+            these structures.
+            </summary>
+            <param name="pstrInputValue">
+            String to assign to the InputValue property
+            </param>
+            <param name="pstroutputValue">
+            String to assign to the OutpuValue property
+            </param>
+        </member>
+        <member name="M:WizardWrx.Core.StringFixups.StringFixup.ToString">
+            <summary>
+            Override the ToString method on the base class to render the two
+            structure members' values when the framework invokes the default
+            ToString method, such as when it populates a watch window.
+            </summary>
+            <returns>
+            The return value is a formatted string that displays the name
+            and value of each of the two members of the structure.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.Core.StringFixups.#ctor">
+            <summary>
+            The default constructor is marked as private to force all instances
+            to be initialized.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.Core.StringFixups.#ctor(WizardWrx.Core.StringFixups.StringFixup[])">
+            <summary>
+            The public constructor is overloaded, to guarantee that instances
+            are properly initialized.
+            </summary>
+            <param name="pafixupPair">
+            The array of StringFixup string pairs to apply to string fed into
+            the ApplyFixups method
+            </param>
+        </member>
+        <member name="M:WizardWrx.Core.StringFixups.ApplyFixups(System.String)">
+            <summary>
+            Call this method to apply the StringFixup array that was passed into
+            the constructor.
+            </summary>
+            <param name="pstrInputString">
+            String to transform by applying the StringFixup array that was passed into
+            the constructor
+            </param>
+            <returns>
+            The <paramref name="pstrInputString"/>, transformed by applying each
+            StringFixup to it in turn
+            </returns>
+        </member>
+        <member name="F:WizardWrx.Core.StringFixups._afixupPairs">
+            <summary>
+            The input array is sequestered here.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.Core.StringFixups.ValidateFixupPairArray(WizardWrx.Core.StringFixups.StringFixup[])">
+            <summary>
+            Unless sumething is wrong with it, return the input <paramref name="pafixupPairs"/>
+            to the calling routine.
+            </summary>
+            <param name="pafixupPairs">
+            Array of StringFixup structures to validate
+            </param>
+            <returns>
+            If the method succeeds, the return value is a reference to the input <paramref name="pafixupPairs"/>.
+            Otherwise, the method throws an ArgumentNullException exception or
+            an ArgumentException exception, depending on the circumstances.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            An ArgumentNullException exception arises when the entire <paramref name="pafixupPairs"/>
+            array is a null reference.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            An ArgumentException exception arises when the entire array is empty
+            or one of its InputValue members is a null reference or the empty
+            string.
+            </exception>
         </member>
         <member name="T:WizardWrx.Core.TimeDisplayFormatter">
             <summary>
@@ -3386,6 +3533,120 @@
             constant.
             </returns>
         </member>
+        <member name="T:WizardWrx.Core.UnconfiguredDLLSettings">
+            <summary>
+            Organize the DLL configuration values that were omitted from the
+            associated configuration file. Since multiple classes can and do share a
+            DLL configuration file, this class must be a Singleton.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.Core.UnconfiguredDLLSettings.Add(System.String,System.String,System.String)">
+            <summary>
+            Add a new unconfigured setting.
+            </summary>
+            <param name="configFileName">
+            Identify the affected configuration file.
+            </param>
+            <param name="propName">
+            Identify the name of the missing property.
+            </param>
+            <param name="propValue">
+            Recird its default value.
+            </param>
+        </member>
+        <member name="M:WizardWrx.Core.UnconfiguredDLLSettings.GetMissingPropsForFile(System.String)">
+            <summary>
+            Return the list of parameters that are missing from the specified
+            configuration file.
+            </summary>
+            <param name="pstrConfigFileName">
+            Specify the name of the file for which the list is wanted.
+            </param>
+            <returns>
+            The return value is a list of UnconfiguredSetting objects, which may
+            be empty.
+            </returns>
+        </member>
+        <member name="P:WizardWrx.Core.UnconfiguredDLLSettings.Count">
+            <summary>
+            Expose the Count property of the dictionary.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.Core.UnconfiguredDLLSettings.UnconfiguredSetting">
+            <summary>
+            Settings are organized into a private collection that belongs to the
+            singleton.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.Core.UnconfiguredDLLSettings.UnconfiguredSetting.#ctor">
+            <summary>
+            The default constructor is intended to remain unused.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.Core.UnconfiguredDLLSettings.UnconfiguredSetting.#ctor(System.String,System.String,System.String)">
+            <summary>
+            All interaction is expected to be with this constructor.
+            </summary>
+            <param name="configFileName">
+            Settings are associated with a named configuration file. Only
+            its base name matters, however.
+            </param>
+            <param name="propertyName">
+            Each property name must be unique within the scope of its
+            configuration file.
+            </param>
+            <param name="propertyValue">
+            The default property value is recorded herein for reference.
+            </param>
+        </member>
+        <member name="P:WizardWrx.Core.UnconfiguredDLLSettings.UnconfiguredSetting.ConfigFileName">
+            <summary>
+            Gets or sets the configuration file name
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.UnconfiguredDLLSettings.UnconfiguredSetting.PropName">
+            <summary>
+            Gets or sets the property name
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.UnconfiguredDLLSettings.UnconfiguredSetting.PropValue">
+            <summary>
+            Gets or sets the default value assigned to the property
+            </summary>
+        </member>
+        <member name="M:WizardWrx.Core.UnconfiguredDLLSettings.UnconfiguredSetting.Equals(System.Object)">
+            <summary>
+            Override the Equals method on the base class to give a value
+            that contains the absolute (fully qualified) configuration value
+            name, composed of the configuration file name and the key name.
+            </summary>
+            <param name="obj">
+            Comparand
+            </param>
+            <returns>
+            True if this instance and the other refer to the same
+            configuration file key.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.Core.UnconfiguredDLLSettings.UnconfiguredSetting.GetHashCode">
+            <summary>
+            Return a hash code based on the equality value.
+            </summary>
+            <returns>
+            The return value is the hash code that corresponds to the
+            equality value.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.Core.UnconfiguredDLLSettings.UnconfiguredSetting.ToString">
+            <summary>
+            Return a concatenated string composed of the name of the
+            configuration file followed by the configuration value name.
+            </summary>
+            <returns>
+            The return value is the configuration file name and key name,
+            separated by an underscore character.
+            </returns>
+        </member>
         <member name="T:WizardWrx.Core.UnmanagedLibrary">
             <summary>
             Utility class to wrap an unmanaged DLL and be responsible for freeing it
@@ -3500,9 +3761,14 @@
               Looks up a localized string similar to The list of aliases is empty..
             </summary>
         </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_ARRAY_IS_EMPTY">
+            <summary>
+              Looks up a localized string similar to Array cannot be empty..
+            </summary>
+        </member>
         <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_CANNOT_PARSE">
             <summary>
-              Looks up a localized string similar to ERROR: The CreateFormatString method cannot process the specified format string.{1}    Specified format string = {0.
+              Looks up a localized string similar to ERROR: The CreateFormatString method cannot process the specified format string.{1}    Specified format string = {0}.
             </summary>
         </member>
         <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_COMMA_AND_LITERAL">
@@ -3535,9 +3801,9 @@
               Looks up a localized string similar to ERROR: The DisplayOrder property cannot be set to zero..
             </summary>
         </member>
-        <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_DIVISOR_CANNOT_BE_ZERO">
+        <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_DUPLICATE_CONFIG_PROP_NAME">
             <summary>
-              Looks up a localized string similar to Since this method requires dividing by the value of argument {0}, its value canot be zero. The {1} value was {2}, which MAY be zero..
+              Looks up a localized string similar to Property name {0} in configuration file {1} is a duplicate name..
             </summary>
         </member>
         <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_DUPLICATE_SWITCH">
@@ -3553,6 +3819,16 @@
         <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_EXCEPTION_IN_DEFINE_NEW_SWITCH">
             <summary>
               Looks up a localized string similar to An {0} Exception was caught while attempting to define a switch named {1} with a default value of {2}..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_EXCEPTION_NOT_THROWN">
+            <summary>
+              Looks up a localized string similar to Message from Exception Logged without throwing: {0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_FROM_THROWN_EXCEPTION">
+            <summary>
+              Looks up a localized string similar to Message from Exception Thrown and Logged: {0}.
             </summary>
         </member>
         <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_INTERNAL_ERROR_UNSUPP_ALG">
@@ -3605,6 +3881,11 @@
               Looks up a localized string similar to starting at character position {0}{1}{2}.
             </summary>
         </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_STRING_FIXUP_PAIR_IS_INVALID">
+            <summary>
+              Looks up a localized string similar to The InputValue of the fixup pair at ordinal position {0} (subscript = {1}) is a null reference or the empty string.{4}    The OutputValue at that position is {2}, which is {3}..
+            </summary>
+        </member>
         <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_THIS_REPORTITEM_IS_NULL">
             <summary>
               Looks up a localized string similar to ERROR: The value of the report item labeled {0} has not been set..
@@ -3628,6 +3909,16 @@
         <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_VARIABLE_LITERAL">
             <summary>
               Looks up a localized string similar to variable.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.FILE_DETAILS">
+            <summary>
+              Looks up a localized string similar to {9}{0} Absolute Name = {1}{8}{7} Modified Date = {2}{8}{7} Date Created  = {3}{8}{7} Date Accessed = {4}{8}{7} Size in bytes = {5}{8}{7} Attributes    = {6}{10}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.FORMAT_SUBSTRINGSTARTANDLENGTH_TOSSTRING">
+            <summary>
+              Looks up a localized string similar to SubstringStart = {0}, SubstringLength = {1}.
             </summary>
         </member>
         <member name="P:WizardWrx.Core.Properties.Resources.IMAGE_SUBSYSTEM_EFI_APPLICATION">
@@ -3715,6 +4006,41 @@
               Looks up a localized string similar to {0} ({1} UTC).
             </summary>
         </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.MSG_ACCEPTED_DEFAULT_VALUE">
+            <summary>
+              Looks up a localized string similar to     {0} of {1}: {2} = {3}{4}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.MSG_ACCEPTED_LIST_END">
+            <summary>
+              Looks up a localized string similar to {0}End of list{0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.MSG_ALL_CONFIG_SETTINGS_COVERED">
+            <summary>
+              Looks up a localized string similar to All {0} configuration settings defined for {1} are covered by its configuration file..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.MSG_DEFAULT_ACCEPTED">
+            <summary>
+              Looks up a localized string similar to {0} property default value of {1} accepted in lieu of value in configuration file, which is absent..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.MSG_SOME_CONFIG_SETTINGS_OMITTED">
+            <summary>
+              Looks up a localized string similar to {0} of {1} configuration settings defined for {2} are missing from its configuration file.{3}{3} Details follow.{3}{3}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.MSG_STACK_TRACE_IS_FROM_ENVIRONMENT">
+            <summary>
+              Looks up a localized string similar to at System.Environment.get_StackTrace().
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.MSG_STRING_FIXUPS_TOSTRING">
+            <summary>
+              Looks up a localized string similar to InputValue = {0}, OutputValue = {1}.
+            </summary>
+        </member>
         <member name="P:WizardWrx.Core.Properties.Resources.PROCESSOR_AND_PROCESS_ARCHITECTURES">
             <summary>
               Looks up a localized string similar to {2}Processor Architecture = {0}{2}Process Machine Word   = {1} bits{2}.
@@ -3758,6 +4084,51 @@
         <member name="P:WizardWrx.Core.Properties.Resources.TIME_LABEL_UTC">
             <summary>
               Looks up a localized string similar to UTC.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.TRACEMSG_EXCEPTION_NOT_THROWN_1">
+            <summary>
+              Looks up a localized string similar to Properties of the Exception object returned by TraceLogger.WriteWithBothTimesLabeledLocalFirst: Message                        = {0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.TRACEMSG_EXCEPTION_NOT_THROWN_2">
+            <summary>
+              Looks up a localized string similar to Source                         = {0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.TRACEMSG_EXCEPTION_NOT_THROWN_3">
+            <summary>
+              Looks up a localized string similar to TargetSite.Name                = {0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.TRACEMSG_EXCEPTION_NOT_THROWN_4">
+            <summary>
+              Looks up a localized string similar to StackTrace                     = {0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.TRACEMSG_EXCEPTION_NOT_THROWN_5">
+            <summary>
+              Looks up a localized string similar to InnerException.Message         = {0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.TRACEMSG_EXCEPTION_NOT_THROWN_6">
+            <summary>
+              Looks up a localized string similar to InnerException.Source          = {0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.TRACEMSG_EXCEPTION_NOT_THROWN_7">
+            <summary>
+              Looks up a localized string similar to InnerException.TargetSite.Name = {0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.TRACEMSG_EXCEPTION_NOT_THROWN_8">
+            <summary>
+              Looks up a localized string similar to InnerException.StackTrace      = {0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.TRACEMSG_EXCEPTION_NOT_THROWN_9">
+            <summary>
+              Looks up a localized string similar to &quot;                                                                                                InnerException                 = [null].
             </summary>
         </member>
         <member name="T:WizardWrx.Cryptography.DigestFile">
@@ -4278,6 +4649,106 @@
             static class must expose them.
             </summary>
         </member>
+        <member name="F:WizardWrx.FileInfoExtensionMethods.LENGTH_REPORTED_WHEN_FILE_NOT_FOUND">
+            <summary>
+            Unless the specified file exists and is accessible via the current
+            user's security token, Windows throws a FileNotFoundException
+            Exception. Rather than allow that to happen, this method reports its
+            length as -1, a patently invalid value for a file length.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.FileInfoExtensionMethods.FileDetailsToShow">
+            <summary>
+            Use with ShowFileDetails parameter penmFileDetailsToShow.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.FileInfoExtensionMethods.FileDetailsToShow.None">
+            <summary>
+            Show only basic information: no UTC times, only LastWriteTime,
+            and no Attributes.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.FileInfoExtensionMethods.FileDetailsToShow.LocalTime">
+            <summary>
+            Render all times as Local.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.FileInfoExtensionMethods.FileDetailsToShow.UtcTime">
+            <summary>
+            Render all times as UTC.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.FileInfoExtensionMethods.FileDetailsToShow.CreatedTime">
+            <summary>
+            Include the Created time.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.FileInfoExtensionMethods.FileDetailsToShow.AccessedTime">
+            <summary>
+            Include the Accessed time.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.FileInfoExtensionMethods.FileDetailsToShow.Size">
+            <summary>
+            Include the file size in bytes.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.FileInfoExtensionMethods.FileDetailsToShow.Attributes">
+            <summary>
+            Include the file attributes, both as a mask and as
+            human-readable values.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.FileInfoExtensionMethods.FileDetailsToShow.LocalAndUtc">
+            <summary>
+            Render time stamps as both Local and UTC.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.FileInfoExtensionMethods.FileDetailsToShow.AllTimes">
+            <summary>
+            Report all three time stamps.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.FileInfoExtensionMethods.FileDetailsToShow.AllTimesWithUtc">
+            <summary>
+            Report all times, showing both Local and UTC time stamps.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.FileInfoExtensionMethods.FileDetailsToShow.Everything">
+            <summary>
+            Show everything.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.FileInfoExtensionMethods.ComputeTokenEnd(System.Int32,System.Int32,System.String)">
+            <summary>
+            Given <paramref name="pintPosTokenBegin"/>, the position of the
+            beginning of a substring, <paramref name="pintPosTokenEnd"/>, the
+            position of the token that marks the end of the substring, and the
+            token, itself, represented by <paramref name="pstrToken"/>, from
+            which to determine its length, return the length of the substring,
+            inclusive of its terminal token.
+            </summary>
+            <param name="pintPosTokenBegin">
+            Integer containing the position at which the substring of interest
+            begins
+            </param>
+            <param name="pintPosTokenEnd">
+            Integer containing the position at which the token that marks the
+            end of the substring of interest begins
+            </param>
+            <param name="pstrToken">
+            String containing the token that marks the end of the substring of
+            interest
+            </param>
+            <returns>
+            The return value is the length of the substring of interest,
+            inclusive of its terminal token.
+            </returns>
+            <remarks>
+            Though intended for use by the static constructor, this method may
+            warrant being exposed as a public static method for wider use.
+            </remarks>
+        </member>
         <member name="M:WizardWrx.FileInfoExtensionMethods.FileAttributeArchiveClear(System.IO.FileInfo)">
             <summary>
             Clear the Archive FileAttributes on a file.
@@ -4286,7 +4757,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <returns>
             If the Archive attribute is set on entry, the return value is
@@ -4301,7 +4772,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <param name="penmInitialStatus">
             Specify the FileInfoExtension.enmInitialStatus value returned by the last call to 
@@ -4320,7 +4791,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <returns>
             If the Archive attribute is set on entry, the return value is
@@ -4335,7 +4806,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <returns>
             If the Hidden attribute is set on entry, the return value is
@@ -4350,7 +4821,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <param name="penmInitialStatus">
             Specify the FileInfoExtension.enmInitialStatus value returned by the last call to 
@@ -4369,7 +4840,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <returns>
             If the Hidden attribute is set on entry, the return value is
@@ -4384,7 +4855,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <returns>
             If the ReadOnly attribute is set on entry, the return value is
@@ -4399,7 +4870,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <param name="penmInitialStatus">
             Specify the FileInfoExtension.enmInitialStatus value returned by the last call to 
@@ -4418,7 +4889,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <returns>
             If the ReadOnly attribute is set on entry, the return value is
@@ -4433,7 +4904,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <returns>
             If the specified bit (It's usually just one.) is set on entry, the
@@ -4448,7 +4919,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <param name="penmInitialStatus">
             Specify the FileInfoExtension.enmInitialStatus value returned by the last call to 
@@ -4467,7 +4938,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <returns>
             If the specified bit (It's usually just one.) is set on entry, the
@@ -4482,7 +4953,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <param name="penmFileAttributes">
             This argument specifies the member(s) of the FileAttributes bitwise
@@ -4501,7 +4972,7 @@
             As an extension method, the first argument must be a reference to
             the instance that invoked it, which is used in much the same way as
             the implicit this parameter that leads the list of parameters for a
-            call to any C=+ instance method.
+            call to any C# instance method.
             </param>
             <param name="penmFileAttributes">
             This argument specifies the member(s) of the FileAttributes bitwise
@@ -4510,6 +4981,69 @@
             <returns>
             If the specified bit (It's usually just one.) is set on entry, the
             return value is WasSet; otherwise, it is WasCleared.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.FileInfoExtensionMethods.ShowFileDetails(System.IO.FileInfo,WizardWrx.FileInfoExtensionMethods.FileDetailsToShow,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            This is a general-purpose method for reporting details about a file.
+            </summary>
+            <param name="pfi">
+            The framework supplies a reference to the FileInfo instance with
+            which the call is associated.
+            </param>
+            <param name="penmFileDetailsToShow">
+            Use one or more members of the FileDetailsToShow enumeration to
+            specify the details to display. The FileDetailsToShow enumeration is
+            a bit mask, and the enumeration defines the combinations that are
+            most likely to be useful as additional members.
+            
+            The default value is FileDetailsToShow.Everything.
+            </param>
+            <param name="pstrLabel">
+            The label string is optional and, if specified, appears at the start
+            of the returned string. String magic is thereafter employed to keep
+            subsequent lines of text aligned vertically.
+            
+            The default value is NULL, which resolves internally to the empty
+            string.
+            </param>
+            <param name="pfPrefixWithNewline">
+            If TRUE, the whole string begins with a platform-dependent newline.
+            Otherwise, the string begins with the label specified by parameter
+            <paramref name="pstrLabel"/>, if any, followed by the absolute file
+            name.
+            
+            The default value is FALSE.
+            </param>
+            <param name="pfSuffixWithNewline">
+            If TRUE, the string is terminated with a platform-dependent newline.
+            Otherwise, the string ends with the last value specified by the
+            <paramref name="penmFileDetailsToShow"/> bit mask.
+            
+            The default value is FALSE.
+            </param>
+            <returns>
+            The return value is a human-readable multi-line report suitable for
+            display on a console log, event log, print file, or message box.
+            When the file is absent, its length is reported as -1.
+            </returns>
+            <see href="https://docs.microsoft.com/en-us/dotnet/api/system.io.fileinfo.length?view=netframework-4.8#System_IO_FileInfo_Length"/>
+        </member>
+        <member name="M:WizardWrx.FileInfoExtensionMethods.ComputeLengthToReport(System.IO.FileInfo)">
+            <summary>
+            The cleanest way to handle this special case is by way of a private
+            method that takes the whole FileInfo reference, since the outcome is
+            dependent upon the value of its Exists property, along with the more
+            obvious dependency upon the Length property.
+            </summary>
+            <param name="pfi">
+            This method receives a reference to the FileInfo object that was fed
+            into the calling method, ShowFileDetails.
+            </param>
+            <returns>
+            The NumericFormats.NUMBER_PER_REG_SETTINGS_0D custom format string
+            is applied to the Length property to return a string representation
+            of its Length property.
             </returns>
         </member>
         <member name="T:WizardWrx.FileNameTricks">
@@ -5452,309 +5986,6 @@
             The C# implementation is not quite as neat as the C/C++ macro.
             </remarks>
         </member>
-        <member name="T:WizardWrx.MoreMath">
-            <summary>
-            This static class exposes methods that perform a variety of infrequently
-            used, but technically obscure or deceptively tricky mathematical
-            computations.
-            </summary>
-        </member>
-        <member name="F:WizardWrx.MoreMath.EXCEPTION_ON_INVALID_INPUT">
-            <summary>
-            Use with IsGregorianLeapYear and IsValidGregorianYear to cause them
-            to throw an exception when either is fed an invalid Gregorian year,
-            rather than return FALSE.
-            </summary>
-        </member>
-        <member name="F:WizardWrx.MoreMath.FALSE_ON_INVALID_INPUT">
-            <summary>
-            Use with IsGregorianLeapYear and IsValidGregorianYear to cause them
-            to suppress the ArgumentOutOfRange exception when either is fed an
-            invalid Gregorian year; instead, both return FALSE.
-            </summary>
-        </member>
-        <member name="F:WizardWrx.MoreMath.GRGORIAN_CALENDAR_ADOPTION_YEAR">
-            <summary>
-            Year values must be greater than this value. Callers may use this
-            constant to perform their own validations, or for other
-            purposes.
-            
-            The Gregorian calendar was adopted in 1582. To be on the safe side,
-            this class rejects years prior to the following year, since, in its
-            present form, it cannot correctly process dates on the Julian
-            calendar that was in use before 1583.
-            </summary>
-        </member>
-        <member name="M:WizardWrx.MoreMath.IsEvenlyDivisibleByAnyInteger(System.Int32,System.Int32)">
-            <summary>
-            Evaluate whether integer <paramref name="pintDividend"/> is evenly
-            divisible by integer <paramref name="pintDivisor"/>.
-            </summary>
-            <param name="pintDividend">
-            Specify the integer to evaluate for even divisibility against
-            <paramref name="pintDivisor"/>.
-            </param>
-            <param name="pintDivisor">
-            Specify the integer to determine whether integer
-            <paramref name="pintDividend"/> is evenly divisible.
-            </param>
-            <returns>
-            Return TRUE if integer <paramref name="pintDividend"/> is evenly
-            divisible by <paramref name="pintDivisor"/>.
-            
-            Otherwise, return FALSE.
-            </returns>
-            <exception cref="T:System.ArgumentException">
-            An ArgumentException exception arises when
-            <paramref name="pintDivisor"/> is equal to zero, an illegal value,
-            since the modulus operator is implemented as an integer division,
-            and division by zero is an illegal operation, which raises an
-            DivideByZeroException exception. Rather than report the unhelpful
-            DivideByZeroException exception, <paramref name="pintDivisor"/> is
-            evaluated, and the ArgumentException is raised in its place, so that
-            the dividend passed into the method can be reported.
-            </exception>
-            <seealso cref="M:WizardWrx.MoreMath.Mod(System.Int32,System.Int32)"/>
-            <seealso cref="M:WizardWrx.MoreMath.Remainder(System.Int32,System.Int32)"/>
-        </member>
-        <member name="M:WizardWrx.MoreMath.IsEvenlyDivisibleByAnyInteger(System.Int64,System.Int64)">
-            <summary>
-            Evaluate whether long integer <paramref name="plngDividend"/> is
-            evenly divisible by long integer <paramref name="plngDivisor"/>.
-            </summary>
-            <param name="plngDividend">
-            Specify the long integer to evaluate for even divisibility against
-            <paramref name="plngDivisor"/>.
-            </param>
-            <param name="plngDivisor">
-            Specify the long integer to determine whether long integer
-            <paramref name="plngDividend"/> is evenly divisible.
-            </param>
-            <returns>
-            Return TRUE if long integer <paramref name="plngDividend"/> is
-            evenly divisible by <paramref name="plngDivisor"/>. therwise, return
-            FALSE.
-            </returns>
-            <exception cref="T:System.ArgumentException">
-            An ArgumentException exception arises when
-            <paramref name="plngDivisor"/> is equal to zero, an illegal value,
-            since the modulus operator is implemented as an integer division,
-            and division by zero is an illegal operation, which raises an
-            DivideByZeroException exception. Rather than report the unhelpful
-            DivideByZeroException exception, <paramref name="plngDivisor"/> is
-            evaluated, and the ArgumentException is raised in its place, so that
-            the dividend passed into the method can be reported.
-            </exception>
-            <seealso cref="M:WizardWrx.MoreMath.Mod(System.Int64,System.Int64)"/>
-            <seealso cref="M:WizardWrx.MoreMath.Remainder(System.Int64,System.Int64)"/>
-        </member>
-        <member name="M:WizardWrx.MoreMath.IsGregorianLeapYear(System.Int32,System.Boolean)">
-            <summary>
-            Given a valid year, return True if the year is a leap year, else
-            return False.
-            
-            If the input year is invalid, an ArgumentOutOfRange exception is
-            thrown.
-            
-            According to the first reference cited below, the Grgorian
-            calendar was adopted in 1582. Hence, this formula is invalid for
-            years before 1583. Consequently, any year before 1583 is treated
-            as invalid, and an ArgumentOutOfRange exception is thrown, which is
-            enforced by the IsValidGregorianYear method.
-            </summary>
-            <param name="pintYear">
-            Gregorian year number, greater than 1582, to evaluate
-            </param>
-            <param name="pfThrowError">
-            Specify FALSE_ON_INVALID_INPUT to suppress the default behavior,
-            which is for IsValidGregorianYear, when called upon to validate
-            <paramref name="pintYear"/>, to throw an ArgumentOutOfRangeException
-            exception. The default value is EXCEPTION_ON_INVALID_INPUT (true).
-            </param>
-            <returns>
-            TRUE if <paramref name="pintYear"/> is a leap year, else FALSE.
-            </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            An ArgumentOutOfRangeException exception arises when 
-            <paramref name="pintYear"/> is an invalid Gregorian year, unless
-            <paramref name="pfThrowError"/> is EXCEPTION_ON_INVALID_INPUT
-            (false), in which case, the method return FALSE.
-            </exception>
-            <see href="https://www.tondering.dk/claus/cal/christian.php"/>
-            <see href="https://support.microsoft.com/en-us/help/214019/method-to-determine-whether-a-year-is-a-leap-year"/>
-        </member>
-        <member name="M:WizardWrx.MoreMath.IsValidGregorianYear(System.Int32,System.Boolean)">
-            <summary>
-            This method returns True if the year is valid for the Gregorian
-            calendar.
-            
-            The lower limit is exposed as a public constant,
-            GRGORIAN_CALENDAR_ADOPTION_YEAR.
-            </summary>
-            /// <param name="pintYear">
-            Gregorian year number, greater than 1582, to evaluate
-            </param>
-            <param name="pfThrowError">
-            TRUE if caller wants an invalid input to provoke an exception.
-            
-            To inprove the quality of your internal documentation, You may use
-            public constant EXCEPTION_ON_INVALID_INPUT in lieu of TRUE, and
-            RETURN_ON_INVALID_INPUT in lieu of FALSE.
-            </param>
-            <returns>
-            TRUE if the input is a valid Gregorian year.
-            </returns>
-        </member>
-        <member name="M:WizardWrx.MoreMath.Mod(System.Int32,System.Int32)">
-            <summary>
-            Return the modulus, which is the remainder from dividing one integer
-            by another.
-            </summary>
-            <param name="pintDividend">
-            Specify the number into which <paramref name="pintDivisor"/> should
-            be divided to obtain a remainder.
-            </param>
-            <param name="pintDivisor">
-            Specify the number by which <paramref name="pintDividend"/> should
-            be divided to obtain a remainder.
-            </param>
-            <returns>
-            The return value is the integer result of dividing
-            <paramref name="pintDividend"/> by <paramref name="pintDivisor"/>.
-            </returns>
-            <remarks>
-            The Mod and Remainder methods are synonymns. Their simplicity lends
-            them to inline implementation.
-            </remarks>
-            <exception cref="T:System.ArgumentException">
-            An ArgumentException exception arises when
-            <paramref name="pintDivisor"/> is equal to zero, an illegal value,
-            since the modulus operator is implemented as an integer division,
-            and division by zero is an illegal operation, which raises an
-            DivideByZeroException exception. Rather than report the unhelpful
-            DivideByZeroException exception, <paramref name="pintDivisor"/> is
-            evaluated, and the ArgumentException is raised in its place, so that
-            the dividend passed into the method can be reported.
-            </exception>
-            <seealso cref="M:WizardWrx.MoreMath.Remainder(System.Int32,System.Int32)"/>
-            <seealso cref="M:WizardWrx.MoreMath.IsEvenlyDivisibleByAnyInteger(System.Int32,System.Int32)"/>
-        </member>
-        <member name="M:WizardWrx.MoreMath.Mod(System.Int64,System.Int64)">
-            <summary>
-            Return the modulus, which is the remainder from dividing one integer
-            by another.
-            </summary>
-            <param name="plngDividend">
-            Specify the number into which <paramref name="plngDivisor"/> should
-            be divided to obtain a remainder.
-            </param>
-            <param name="plngDivisor">
-            Specify the number by which <paramref name="plngDividend"/> should
-            be divided to obtain a remainder.
-            </param>
-            <returns>
-            The return value is the long integer result of dividing
-            <paramref name="plngDividend"/> by <paramref name="plngDivisor"/>.
-            </returns>
-            <remarks>
-            The Mod and Remainder methods are synonymns. Their simplicity lends
-            them to inline implementation.
-            </remarks>
-            <exception cref="T:System.ArgumentException">
-            An ArgumentException exception arises when
-            <paramref name="plngDivisor"/> is equal to zero, an illegal value,
-            since the modulus operator is implemented as an integer division,
-            and division by zero is an illegal operation, which raises an
-            DivideByZeroException exception. Rather than report the unhelpful
-            DivideByZeroException exception, <paramref name="plngDivisor"/> is
-            evaluated, and the ArgumentException is raised in its place, so that
-            the dividend passed into the method can be reported.
-            </exception>
-            <seealso cref="M:WizardWrx.MoreMath.Remainder(System.Int64,System.Int64)"/>
-            <seealso cref="M:WizardWrx.MoreMath.IsEvenlyDivisibleByAnyInteger(System.Int32,System.Int32)"/>
-        </member>
-        <member name="M:WizardWrx.MoreMath.Remainder(System.Int32,System.Int32)">
-            <summary>
-            Return the modulus, which is the remainder from dividing one integer
-            by another.
-            </summary>
-            <param name="pintDividend">
-            Specify the number into which <paramref name="pintDivisor"/> should
-            be divided to obtain a remainder.
-            </param>
-            <param name="pintDivisor">
-            Specify the number by which <paramref name="pintDividend"/> should
-            be divided to obtain a remainder.
-            </param>
-            <returns>
-            The return value is the integer result of dividing
-            <paramref name="pintDividend"/> by <paramref name="pintDivisor"/>.
-            </returns>
-            <remarks>
-            The Mod and Remainder methods are synonymns. Their simplicity lends
-            them to inline implementation.
-            </remarks>
-            <exception cref="T:System.ArgumentException">
-            An ArgumentException exception arises when
-            <paramref name="pintDivisor"/> is equal to zero, an illegal value,
-            since the modulus operator is implemented as an integer division,
-            and division by zero is an illegal operation, which raises an
-            DivideByZeroException exception. Rather than report the unhelpful
-            DivideByZeroException exception, <paramref name="pintDivisor"/> is
-            evaluated, and the ArgumentException is raised in its place, so that
-            the dividend passed into the method can be reported.
-            </exception>
-            <seealso cref="M:WizardWrx.MoreMath.Mod(System.Int32,System.Int32)"/>
-            <seealso cref="M:WizardWrx.MoreMath.IsEvenlyDivisibleByAnyInteger(System.Int32,System.Int32)"/>
-        </member>
-        <member name="M:WizardWrx.MoreMath.Remainder(System.Int64,System.Int64)">
-            <summary>
-            Return the modulus, which is the remainder from dividing one integer
-            by another.
-            </summary>
-            <param name="plngDividend">
-            Specify the number into which <paramref name="plngDivisor"/> should
-            be divided to obtain a remainder.
-            </param>
-            <param name="plngDivisor">
-            Specify the number by which <paramref name="plngDividend"/> should
-            be divided to obtain a remainder.
-            </param>
-            <returns>
-            The return value is the integer result of dividing
-            <paramref name="plngDividend"/> by <paramref name="plngDivisor"/>.
-            </returns>
-            <remarks>
-            The Mod and Remainder methods are synonymns. Their simplicity lends
-            them to inline implementation.
-            </remarks>
-            <exception cref="T:System.ArgumentException">
-            An ArgumentException exception arises when
-            <paramref name="plngDivisor"/> is equal to zero, an illegal value,
-            since the modulus operator is implemented as an integer division,
-            and division by zero is an illegal operation, which raises an
-            DivideByZeroException exception. Rather than report the unhelpful
-            DivideByZeroException exception, <paramref name="plngDivisor"/> is
-            evaluated, and the ArgumentException is raised in its place, so that
-            the dividend passed into the method can be reported.
-            </exception>
-            <seealso cref="M:WizardWrx.MoreMath.Mod(System.Int64,System.Int64)"/>
-            <seealso cref="M:WizardWrx.MoreMath.IsEvenlyDivisibleByAnyInteger(System.Int64,System.Int64)"/>
-        </member>
-        <member name="M:WizardWrx.MoreMath.CreateYearOutOfRangeMsg(System.Int32)">
-            <summary>
-            This method returns a string that contains the value, and the
-            upper and lower limits that it must meet, according to the rules
-            against which it was evaluated.
-            </summary>
-            <param name="pintBadYear">
-            Invalid Gregorian year that provoked the error.
-            </param>
-            <returns>
-            The returned string is a message, suitable for use as the Message
-            argument to an ArgumentOutOfRange exception constructor.
-            </returns>
-        </member>
         <member name="T:WizardWrx.NumberFormatters">
             <summary>
             This static class exposes methods to further simplify formatting of
@@ -5898,6 +6129,136 @@
             <returns>
             Formatted integer, ready to display
             </returns>
+        </member>
+        <member name="T:WizardWrx.RecoveredException">
+            <summary>
+            Override the Exception class, so that the Source, StackTrace, and
+            TargetSite properties can be directly initialized.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.RecoveredException.#ctor">
+            <summary>
+            The default constructor must be marked as private, so that it cannot
+            be called.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.RecoveredException.#ctor(System.String)">
+            <summary>
+            The usual constructor that takes a Message must also be marked as
+            private, so that it cannot be called, either.
+            </summary>
+            <param name="message">
+            The usual message property, available to all Exception consumers
+            </param>
+        </member>
+        <member name="M:WizardWrx.RecoveredException.#ctor(System.String,System.Exception)">
+            <summary>
+            The usual constructor that takes a <paramref name="message"/> and an
+            <paramref name="innerException"/> must also be hidden from view.
+            </summary>
+            <param name="message">
+            The usual message property, available to all Exception consumers
+            </param>
+            <param name="innerException">
+            The usual InnerException property, available to all Exception consumers
+            </param>
+        </member>
+        <member name="M:WizardWrx.RecoveredException.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Call this method when you have only a message to record.
+            </summary>
+            <param name="message">
+            The usual message property, available to all Exception consumers
+            </param>
+            <param name="Source"></param>
+            Gets or sets the name of the application or the object that causes the error
+            <param name="StackTrace">
+            Gets a string representation of the immediate frames on the call stack
+            </param>
+            <param name="TargetSite">
+            Gets the method that throws the current exception
+            </param>
+        </member>
+        <member name="M:WizardWrx.RecoveredException.#ctor(System.String,System.Exception,System.String,System.String,System.String)">
+            <summary>
+            Call this method when you have an InnerException Exception to preserve.
+            </summary>
+            <param name="message">
+            The usual message property, available to all Exception consumers
+            </param>
+            <param name="innerException">
+            The usual InnerException property, available to all Exception consumers
+            </param>
+            <param name="Source"></param>
+            Gets or sets the name of the application or the object that causes the error
+            <param name="StackTrace">
+            Gets a string representation of the immediate frames on the call stack
+            </param>
+            <param name="TargetSite">
+            Gets the method that throws the current exception
+            </param>
+        </member>
+        <member name="M:WizardWrx.RecoveredException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Enable serialization by implementing the protected constructor that
+            can recreate an exception from serialization data.
+            </summary>
+            <param name="info">
+            Specify the SerializationInfo object from which to reconstruct the
+            RecoveredException.
+            </param>
+            <param name="context">
+            Specify the StreamingContext object from which to reconstruct the
+            RecoveredException.
+            </param>
+        </member>
+        <member name="M:WizardWrx.RecoveredException.InitializeInstance(System.String,System.String,System.String)">
+            <summary>
+            Both public constructors call this little routine to initialize the
+            three properties that are usually initalized by the runtime system.
+            </summary>
+            <param name="source">
+            Gets or sets the name of the application or the object that causes the error
+            </param>
+            <param name="stackTrace">
+            Gets a string representation of the immediate frames on the call stack
+            </param>
+            <param name="targetSite">
+            Gets the method that throws the current exception
+            </param>
+        </member>
+        <member name="M:WizardWrx.RecoveredException.PruneStackTrace(System.String)">
+            <summary>
+            If the stack trace originated from the System.Environment property,
+            its first two entries are irrelevant, and should be discarded. This
+            routine makes that happen.
+            </summary>
+            <param name="pstrStackTrace"></param>
+            This method receives the stack trace that was passed into the
+            sonctructor.
+            <returns>
+            If the stack trace came from the System.Environment.StackTrace
+            property, its first two entries are discarded. Otherwise, the whole
+            string is returned.
+            </returns>
+        </member>
+        <member name="P:WizardWrx.RecoveredException.Source">
+            <summary>
+            This is a stand-in for the Source property that is usually set
+            by the runtime environment when an exception is thrown.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.RecoveredException.StackTrace">
+            <summary>
+            This is a stand-in for the StackTrace property that is usually set
+            by the runtime environment when an exception is thrown.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.RecoveredException.TargetSite">
+            <summary>
+            This is a stand-in for the TargetSite property that is usually set
+            by the runtime environment when an exception is thrown.
+            </summary>
         </member>
         <member name="T:WizardWrx.ReportDetail">
             <summary>
@@ -7078,6 +7439,22 @@
             method, MakeToken, which takes one argument.
             </summary>
         </member>
+        <member name="M:WizardWrx.StringExtensions.ApplyFixups(System.String,WizardWrx.Core.StringFixups.StringFixup[])">
+            <summary>
+            Call this extension method to perform a one-off string
+            transformation.
+            </summary>
+            <param name="pstrIn">
+            Input string to transform by applying <paramref name="pafixupPairs"/>
+            </param>
+            <param name="pafixupPairs">
+            Array of StringFixup objects to apply to <paramref name="pstrIn"/>
+            </param>
+            <returns>
+            The <paramref name="pstrIn"/>, transformed by applying each
+            <paramref name="pafixupPairs"/> StringFixup to it in turn
+            </returns>
+        </member>
         <member name="M:WizardWrx.StringExtensions.AppendFullStopIfMissing(System.String)">
             <summary>
             Unless the last character of the input string is a period (full
@@ -7266,6 +7643,78 @@
              overloads that stops looking after scanning count characters, nor do
              I have immediate plans to implement one, though it wouldn't be hard.
              </remarks>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.EnumerateSubstringPositions(System.String,System.String)">
+             <summary>
+             Return an array of integers, each a position of substring
+             <paramref name="pstrToCount"/> in string <paramref name="pstrSource"/>.
+             </summary>
+             <param name="pstrSource">
+             Specify the string in which to count occurrences of substring
+             pstrToCount.
+            
+             If pstrSource is null or empty, the method returns zero.
+             
+             Since this is an extension method, pstrIn is supplied by the BCL
+             when it binds this method to an instance of System.string.
+             </param>
+             <param name="pstrToCount">
+             Specify the substring to count in string pstrSource.
+             
+             The empty string causes the method to return 
+             MagicNumbers.STRING_INDEXOF_NOT_FOUND, or -1.
+             </param>
+             <returns>
+             When the method succeeds, its return value is an array of integers,
+             each of which is the position of an occurrence of <paramref name="pstrToCount"/>
+             in <paramref name="pstrToCount"/>, following the search algorithm
+             dictated by StringComparison.CurrentCulture. When either of the two
+             string parameters is a null reference or the empty string, the
+             return value is NULL, for which callers must test. Since either
+             string could be empty or a null reference, in normal operations, it
+             seemed appropriate to treat such a case as routine, rather than
+             throwing an exception. Conversely, when both strings are valid, but
+             <paramref name="pstrToCount"/> never occurs in <paramref name="pstrSource"/>,
+             the return value is an empty array.
+             </returns>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.EnumerateSubstringPositions(System.String,System.String,System.StringComparison)">
+             <summary>
+             Return an array of integers, each a position of substring
+             <paramref name="pstrToCount"/> in string <paramref name="pstrSource"/>.
+             </summary>
+             <param name="pstrSource">
+             Specify the string in which to count occurrences of substring
+             pstrToCount.
+            
+             If pstrSource is null or empty, the method returns zero.
+             
+             Since this is an extension method, pstrIn is supplied by the BCL
+             when it binds this method to an instance of System.string.
+             </param>
+             <param name="pstrToCount">
+             Specify the substring to count in string pstrSource.
+             
+             The empty string causes the method to return 
+             MagicNumbers.STRING_INDEXOF_NOT_FOUND, or -1.
+             </param>
+             <param name="penmComparisonType">
+             Specify a member of the System.StringComparison enumeration, which
+             defines the rules for performing the comparison.
+             </param>
+             <returns>
+             When the method succeeds, its return value is an array of integers,
+             each of which is the position of an occurrence of <paramref name="pstrToCount"/>
+             in <paramref name="pstrToCount"/>, following the search algorithm
+             dictated by <paramref name="penmComparisonType"/>. When either of
+             the two string parameters is a null reference or the empty string,
+             the return value is NULL, for which callers must test. Since either
+             string could be empty or a null reference, in normal operations, it
+             seemed appropriate to treat such a case as routine, rather than
+             throwing an exception. Conversely, when both strings are valid, but
+             <paramref name="pstrToCount"/> never occurs in <paramref name="pstrSource"/>,
+             the return value is an empty array.
+             </returns>
         </member>
         <member name="M:WizardWrx.StringExtensions.CountUnresolvedEnvironmentStrings(System.String)">
             <summary>
@@ -7617,6 +8066,20 @@
             argument pstrFieldName.
             </returns>
         </member>
+        <member name="M:WizardWrx.StringExtensions.OldMacLineEndings(System.String)">
+            <summary>
+            Replace a string that may contain mixed or unwanted line endings
+            with a string that contains only the expected line ending type.
+            </summary>
+            <param name="pstrSource">
+            String in which to replace line endings
+            </param>
+            <returns>
+            A copy of <paramref name="pstrSource"/>, with non-coformant line
+            endings replaced. A line ending is treated as non-conformant when it
+            is an otherwise valid line ending, but isn't a bare CR character.
+            </returns>
+        </member>
         <member name="M:WizardWrx.StringExtensions.ParseCommentInHTMLComment(System.String)">
              <summary>
              Extract parameters, expressed as key-value pairs, from a standard
@@ -7749,6 +8212,13 @@
             and the default null reference representation, pass a null reference
             as the value of <paramref name="pstrValueIfNull"/>.
             </remarks>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.ReplaceEscapedTabsInStringFromResX(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pstrStringFromResX"></param>
+            <returns></returns>
         </member>
         <member name="M:WizardWrx.StringExtensions.ReplaceTokensFromList(System.String,System.Collections.Specialized.NameValueCollection)">
             <summary>
@@ -8071,6 +8541,95 @@
              Regardless, the return value is a new System.String object.
              </returns>
         </member>
+        <member name="M:WizardWrx.StringExtensions.UnixLineEndings(System.String)">
+            <summary>
+            Replace a string that may contain mixed or unwanted line endings
+            with a string that contains only the expected line ending type.
+            </summary>
+            <param name="pstrSource">
+            String in which to replace line endings
+            </param>
+            <returns>
+            A copy of <paramref name="pstrSource"/>, with non-coformant line
+            endings replaced. A line ending is treated as non-conformant when it
+            is an otherwise valid line ending, but isn't a bare LF character.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.WindowsLineEndings(System.String)">
+            <summary>
+            Replace a string that may contain mixed or unwanted line endings
+            with a string that contains only the expected line ending type.
+            </summary>
+            <param name="pstrSource">
+            String in which to replace line endings
+            </param>
+            <returns>
+            A copy of <paramref name="pstrSource"/>, with non-coformant line
+            endings replaced. A line ending is treated as non-conformant when it
+            is an otherwise valid line ending, but doesn't belong to a CR/LF
+            character pair.
+            </returns>
+        </member>
+        <member name="F:WizardWrx.StringExtensions.CHAR_SPLIT_OLD_MACINTOSH">
+            <summary>
+            When private method LineEndingFixup calls SetDesiredLineEnding (also
+            private), the latter returns a single-character string that contains
+            one of these characters, which becomes the new line ending in the
+            string that LineEndingFixup eventually returns when old Macintosh
+            line endings are requested.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.StringExtensions.CHAR_SPLIT_UNIX">
+            <summary>
+            When private method LineEndingFixup calls SetDesiredLineEnding (also
+            private), the latter returns a single-character string that contains
+            one of these characters, which becomes the new line ending in the
+            string that LineEndingFixup eventually returns when Unix line
+            endings are requested.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.StringExtensions.RequiredLineEndings">
+            <summary>
+            This enumeration is used internally to specify the line ending type
+            that private method LineEndingFixup should return when called by
+            UnixLineEndings, WindowsLineEndings, or OldMacLineEndings. The 
+            fourth line break combination, LFCR, is unsupported as a return
+            type.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.StringExtensions.RequiredLineEndings.OldMacintosh">
+            <summary>
+            Identified line breaks are guaranteed to be bare CR characters.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.StringExtensions.RequiredLineEndings.Unix">
+            <summary>
+            Identified line breaks are guaranteed to be bare LF characters.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.StringExtensions.RequiredLineEndings.Windows">
+            <summary>
+            Identified line breaks are guaranteed to be CR/LF character pairs.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.LineEndingFixup(System.String,WizardWrx.StringExtensions.RequiredLineEndings)">
+            <summary>
+            Methods OldMacLineEndings, UnixLineEndings, and WindowsLineEndings
+            call this routine to do their work.
+            </summary>
+            <param name="pstrSource">
+            String in which to replace line endings
+            </param>
+            <param name="penmRequiredLineEndings">
+            Use the RequiredLineEndings enumeration to specify the desired type
+            of line endings.
+            </param>
+            <returns>
+            A copy of <paramref name="pstrSource"/>, with non-coformant line
+            endings replaced. A line ending is treated as non-conformant when it
+            differs from the type indicated by <paramref name="penmRequiredLineEndings"/>.
+            </returns>
+        </member>
         <member name="M:WizardWrx.StringExtensions.PaddedStringLength(System.String,System.Int32)">
             <summary>
             All four LeftPadNChars and RightPadNChars extension methods use the
@@ -8097,6 +8656,222 @@
             coerce the underlying Pad methods to deliver the desired effect. Any
             decent optimizing compiler should render this inline, in registers.
             </remarks>
+        </member>
+        <member name="T:WizardWrx.StringExtensions.LineEndingFixupState">
+            <summary>
+            On behalf of public static methods OldMacLineEndings, 
+            UnixLineEndings, and WindowsLineEndings, private static method
+            LineEndingFixup uses an instance of this class to manage the
+            resources required to perform its work. Public method UpdateState
+            does most of the work required by LineEndingFixup.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.StringExtensions.LineEndingFixupState.CharacterType">
+            <summary>
+            This enumeration is used internally to indicate the state of the
+            LineEndingFixup state machine.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.StringExtensions.LineEndingFixupState.CharacterType.Indeterminate">
+            <summary>
+            The initial state of the machine is that the last character seen
+            is unknown.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.StringExtensions.LineEndingFixupState.CharacterType.Other">
+            <summary>
+            The last character seen isn't a newline character.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.StringExtensions.LineEndingFixupState.CharacterType.OldMacintosh">
+            <summary>
+            The last character seen was a bare CR character, which is either
+            the old Macintosh line break character, or belongs to a
+            two-character line break.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.StringExtensions.LineEndingFixupState.CharacterType.Unix">
+            <summary>
+            The last character seen was a bare LF character, which is either
+            a Unix line break character, or belongs to a two-character line
+            break.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.LineEndingFixupState.#ctor">
+            <summary>
+            The constructor is kept private to guarantee that all instances
+            are fully initialized.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.LineEndingFixupState.#ctor(WizardWrx.StringExtensions.RequiredLineEndings,System.String)">
+            <summary>
+            The only public constructor initializes an instance for use by
+            LineEndingFixup.
+            </summary>
+            <param name="penmRequiredLineEndings">
+            LineEndingFixup uses a member of the RequiredLineEndings
+            enumeration to specify the type of line endings to be included
+            in the new string that it generates from input string
+            <paramref name="pstrInput"/>.
+            </param>
+            <param name="pstrInput">
+            Existing line endings in this string are replaced as needed by
+            the type of line endings specified by <paramref name="penmRequiredLineEndings"/>.
+            </param>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.LineEndingFixupState.GetTransformedString">
+            <summary>
+            Since the StringBuilder is a reference type, exposing it makes
+            it vulnerable to attack. Therefore, it is kept private, and this
+            instance method must be explicitly called to get its value as an
+            immutable entity, a new string.
+            </summary>
+            <returns>
+            The contents of the StringBuilder in which the transformed
+            string is assembled are returned as a new string.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.LineEndingFixupState.UpdateState(System.Int32)">
+            <summary>
+            LineEndingFixup calls this method once for each character in the
+            string that was fed into the instance constructor, and once more
+            to handle the final character. The algorithm that it implements
+            completes all conversions in one pass.
+            </summary>
+            <param name="pintCurrCharPos">
+            The index of the FOR loop within which this routine is called
+            identifies the zero-based position within the internal array of
+            characters that is constructed from the input string to process.
+            </param>
+        </member>
+        <member name="P:WizardWrx.StringExtensions.LineEndingFixupState.DesiredLineEnding">
+            <summary>
+            Strictly speaking this string could be left private. Making it
+            public as a read-only member is a debugging aid that preserves
+            the integrity of the instance.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.StringExtensions.LineEndingFixupState.InputCharacterCount">
+            <summary>
+            The FOR loop at the heart of LineEndingFixup initializes its
+            limit value from this read-only property.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.StringExtensions.LineEndingFixupState.LastCharacter">
+            <summary>
+            Like DesiredLineEnding, this could be kept private, but is made
+            public as a debugging aid.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.StringExtensions.LineEndingFixupState.NewLineEndings">
+            <summary>
+            Like DesiredLineEnding, this could be kept private, but is made
+            public as a debugging aid.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.LineEndingFixupState.AppendNewline(System.Int32,WizardWrx.StringExtensions.LineEndingFixupState.CharacterType)">
+            <summary>
+            Use the current character position relative to the beginning of
+            the run of newline characters and the type of the current and
+            immediately previous character in the run to determine whether a
+            newline should be emitted.
+            </summary>
+            <param name="pintCurrCharPos">
+            The position (offset) of the current character is compared with
+            the position of the first character in the current run of
+            newline characters to determine whether to append a newline.
+            </param>
+            <param name="penmCurrentCharacterType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.LineEndingFixupState.ClassifyThisCharacter(System.Char)">
+            <summary>
+            Update the LastCharacter property (CharacterType enum).
+            </summary>
+            <param name="pchrCurrent">
+            Pass in the current character, which is about to become the last
+            character processed.
+            </param>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.LineEndingFixupState.IsThisCharANewline(System.Char)">
+            <summary>
+            Evaluate the character at a specified position in the input
+            string, returning TRUE if it is a newline character (CR or LF).
+            </summary>
+            <param name="pchrThis">
+            Specify the character to evaluate.
+            </param>
+            <returns>
+            Return TRUE if the character at the position specified by
+            <paramref name="pchrThis"/> is a newline (CR or LF)
+            character. Otherwise, return FALSE.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.LineEndingFixupState.IsRunOfNelines">
+            <summary>
+            Determine whether the current newline character belongs to a run of them.
+            </summary>
+            <returns>
+            Return TRUE unless _intPosLastNewlineChar is equal to
+            ArrayInfo.ARRAY_INVALID_INDEX; otherwise, return FALSE. Though
+            this method could go ahead and update _intPosLastNewlineChar, it
+            leaves it unchanges, so that its execution is devoid of side
+            effects.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.LineEndingFixupState.GetCharacterAtOffset(System.Int32)">
+            <summary>
+            Switch blocks in public instance method UpdateState use this
+            routine to return the character at the position (offset)
+            specified by <paramref name="pintCurrCharPos"/>.
+            </summary>
+            <param name="pintCurrCharPos">
+            The zero-based offset that was fed into instance method
+            UpdateState by its controler, LineEndingFixup
+            </param>
+            <returns>
+            The return value is the character at the specified position
+            (offset) in the input string, a copy of which is maintained in
+            private character array _achrInputCharacters. Returning this in
+            a method exposes the actual character that determines which
+            branch of the switch block executes. Otherwise, the debugger
+            reports only the return value returned by the property getter.
+            It is anticipated that this routine will be optimized away in a
+            release build.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.StringExtensions.LineEndingFixupState.SetDesiredLineEnding">
+            <summary>
+            The public constructor invokes this method once, during the
+            initialization phase, to establish the value of the desired line
+            ending, which may be a single character or a pair of them.
+            </summary>
+            <returns>
+            The return value is always a string that contains one character or a
+            pair of them.
+            </returns>
+        </member>
+        <member name="F:WizardWrx.StringExtensions.LineEndingFixupState._achrInputCharacters">
+            <summary>
+            The constructor initializes this character array from the input
+            string. Thereafter, public method UpdateState processes it one
+            character at a time.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.StringExtensions.LineEndingFixupState._intPosNewlineRunStart">
+            <summary>
+            When two or more newline characters appear in a sequence, it is
+            essential to determine whether they are a pair and, if so, treat
+            them as such.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.StringExtensions.LineEndingFixupState._sbWork">
+            <summary>
+            Since the StringBuilder is a reference type, exposing it makes
+            it vulnerable to attack. Therefore, it is kept private, and a
+            public instance method, GetTransformedString, must be explicitly
+            called to get its value as a new string, an immutable entity.
+            </summary>
         </member>
         <member name="T:WizardWrx.SyncRoot">
             <summary>
@@ -8654,7 +9429,7 @@
         </member>
         <member name="T:WizardWrx.TextBlocks">
             <summary>
-            Methods for creating and manipulating test blocks.
+            This class defines methods for creating and manipulating bounded text blocks.
             </summary>
         </member>
         <member name="F:WizardWrx.TextBlocks.BLOCK_BEGIN_TEXT">
@@ -8704,7 +9479,7 @@
         </member>
         <member name="P:WizardWrx.TextBlocks.MarkerText">
             <summary>
-            This is the text that forms the middle (and variable) part of the 
+            This is the text that forms the middle (and variable) part of the
             TextBlocks marker strings.
             </summary>
         </member>

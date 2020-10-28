@@ -37,6 +37,12 @@
 	                       object need not be re-created when you want to reuse
 	                       it further down screen. I'm calling this a point
 	                       release, although it is only a bug fix.
+
+	2020/10/23 7.2     DAG Implement Semantic Version Numbering. This build also
+                           incorporates the current stable versions of the
+                           WizardWrx .NET API asseblies, which finally fully
+                           implement Semantic Version Numbering as of a few days
+                           ago.
     ============================================================================
 */
 
@@ -52,7 +58,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration ( "" )]
 [assembly: AssemblyCompany ( "David A. Gray" )]
 [assembly: AssemblyProduct ( "WizardWrx .NET Utility Libraries" )]
-[assembly: AssemblyCopyright ( "Copyright 2014-2019, David A. Gray" )]
+[assembly: AssemblyCopyright ( "Copyright 2014-2020, David A. Gray" )]
 [assembly: AssemblyTrademark ( "This library is distributed under a three-clause BSD license." )]
 [assembly: AssemblyCulture ( "" )]
 
@@ -74,4 +80,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion ( "7.1.526.*" )]
+[assembly: AssemblyVersion ( "7.2.536.0" )]

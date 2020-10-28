@@ -105,6 +105,15 @@
 
 	2018/11/26 7.0     DAG Eliminate the unreferenced system namespaces, and tag
                            my own assembly references with explanatory notes.
+
+	2020/10/23 7.2     DAG 1) Implement Semantic Version Numbering. This build
+                              also incorporates the current stable versions of
+                              the WizardWrx .NET API asseblies, which finally
+                              fully implement Semantic Version Numbering as of a
+                              few days ago.
+
+                           2) Add the new required second argument to method call
+                              ReportGenerators.ShowKeyAssemblyProperties.
     ============================================================================
 */
 
@@ -112,6 +121,7 @@
 using System;
 
 using WizardWrx;                                                                // This is the mother of all my library namespaces.
+using WizardWrx.AssemblyUtils;													// Shorten the absolute call path to ReportGenerators.ShowKeyAssemblyProperties.
 using WizardWrx.ConsoleAppAids3;												// This is the library under test.
 
 
@@ -161,7 +171,11 @@ namespace EOJTEST
 
             _me.DisplayBOJMessage ( );
 
-			WizardWrx.AssemblyUtils.ReportGenerators.ShowKeyAssemblyProperties ( System.Reflection.Assembly.GetAssembly ( _me.GetType ( ) ) );
+            ReportGenerators.ShowKeyAssemblyProperties (
+                System.Reflection.Assembly.GetAssembly (    // Assembly pasmSubject = Assembly for which to display key properties
+                    _me.GetType ( ) ) ,                     // Type type            = Given a type, identify the assembly that exposes it.
+                MagicNumbers.ZERO ,                         // int pintJ            = ordinal number, incremented by the method
+                MagicNumbers.PLUS_ONE );                    // int pintNDependents  = Number of items in list being processed
 
             try
             {

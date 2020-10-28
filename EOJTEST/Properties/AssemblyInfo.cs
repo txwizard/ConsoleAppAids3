@@ -48,6 +48,12 @@
 	2018/08/06 7.0     DAG Manually update the copyright year to coincide with a
 	                       new build against the final release candidate of the
 	                       main WizardWrx class library constellation.
+
+	2020/10/23 7.2     DAG Implement Semantic Version Numbering. This build also
+                           incorporates the current stable versions of the
+                           WizardWrx .NET API asseblies, which finally fully
+                           implement Semantic Version Numbering as of a few days
+                           ago.
     ============================================================================
 */
 
@@ -63,7 +69,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration ( "" )]
 [assembly: AssemblyCompany ( "WizardWrx" )]
 [assembly: AssemblyProduct ( "WizardWrx .NET Utility Libraries" )]
-[assembly: AssemblyCopyright ( "Copyright © 2012-2018, David A. Gray" )]
+[assembly: AssemblyCopyright ( "Copyright © 2012-2020, David A. Gray" )]
 [assembly: AssemblyTrademark ( "This library is distributed under a three-clause BSD license." )]
 [assembly: AssemblyCulture ( "" )]
 
@@ -85,4 +91,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion ( "7.0.491.*" )]
+[assembly: AssemblyVersion ( "7.2.499.0" )]

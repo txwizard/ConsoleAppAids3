@@ -970,6 +970,9 @@
             </example>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION_LONG"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN_THOUSAND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_THOUSAND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_MILLION"/>
@@ -981,6 +984,9 @@
             </summary>
             <seealso cref="F:WizardWrx.MagicNumbers.EVENLY_DIVISIBLE"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION_LONG"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN_THOUSAND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_THOUSAND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_MILLION"/>
@@ -994,6 +1000,51 @@
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN_THOUSAND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION_LONG"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_MILLION"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_BILLION"/>
+        </member>
+        <member name="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION">
+            <summary>
+            Use this constant when you need a literal value of exactly one hundred million.
+            </summary>
+            <seealso cref="F:WizardWrx.MagicNumbers.EVENLY_DIVISIBLE"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION_LONG"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_MILLION"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_BILLION"/>
+        </member>
+        <member name="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION_LONG">
+            <summary>
+            Use this constant when you need a long integer literal value of exactly one hundred million.
+            </summary>
+            <seealso cref="F:WizardWrx.MagicNumbers.EVENLY_DIVISIBLE"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_MILLION"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_BILLION"/>
+        </member>
+        <member name="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_THOUSAND">
+            <summary>
+            Use this constant when you need a literal value of exactly one hundred thousand.
+            </summary>
+            <seealso cref="F:WizardWrx.MagicNumbers.EVENLY_DIVISIBLE"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION_LONG"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_THOUSAND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_MILLION"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_BILLION"/>
         </member>
@@ -1004,10 +1055,14 @@
             <seealso cref="F:WizardWrx.MagicNumbers.EVENLY_DIVISIBLE"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION_LONG"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN_THOUSAND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_MILLION"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_BILLION"/>
             <seealso cref="F:WizardWrx.MagicNumbers.MILLISECONDS_PER_SECOND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_SECOND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_SECOND"/>
         </member>
         <member name="F:WizardWrx.MagicNumbers.EXACTLY_TEN_THOUSAND">
@@ -1020,6 +1075,9 @@
             <seealso cref="F:WizardWrx.MagicNumbers.EVENLY_DIVISIBLE"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION_LONG"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_THOUSAND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_MILLION"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_BILLION"/>
@@ -1031,6 +1089,9 @@
             <seealso cref="F:WizardWrx.MagicNumbers.EVENLY_DIVISIBLE"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION_LONG"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_THOUSAND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN_THOUSAND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_BILLION"/>
@@ -1042,6 +1103,9 @@
             <seealso cref="F:WizardWrx.MagicNumbers.EVENLY_DIVISIBLE"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_HUNDRED_MILLION_LONG"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN_THOUSAND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_THOUSAND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_MILLION"/>
@@ -1051,6 +1115,7 @@
             Use this constant when you need a literal value of exactly one second worth of milliseconds..
             </summary>
             <see cref="F:WizardWrx.MagicNumbers.EXACTLY_ONE_THOUSAND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_SECOND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_SECOND"/>
         </member>
         <member name="F:WizardWrx.MagicNumbers.MINUS_ONE">
@@ -1178,19 +1243,166 @@
         <member name="F:WizardWrx.MagicNumbers.TICKS_PER_SECOND">
             <summary>
             There are ten million ticks of one hundred nanoseconds each in one second.
+            
+            BREAKING CHANGE: Prior to version 7.14, this value was understated
+            by a factor of one thousand.
+            
+            Use this constant to construct a TimeSpan of the corresponding
+            length (value) by way of its one-argument constructor, or to
+            increase or decrease the value of a time span by the corresponding
+            amount by way of its one-argument method.
             </summary>
             <see cref="F:WizardWrx.MagicNumbers.EXACTLY_TEN_THOUSAND"/>
+            <see cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_SECOND"/>
             <seealso cref="F:WizardWrx.MagicNumbers.MILLISECONDS_PER_SECOND"/>
+        </member>
+        <member name="F:WizardWrx.MagicNumbers.TICKS_PER_1_WEEK">
+            <summary>
+            There are 6,048,000,000,000 ticks in one calendar week.
+            
+            Use this constant to construct a TimeSpan of the corresponding
+            length (value) by way of its one-argument constructor, or to
+            increase or decrease the value of a time span by the corresponding
+            amount by way of its one-argument method.
+            </summary>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_DAY"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_59"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_00"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_HOUR"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MINUTE"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_SECOND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MILLISECOND"/>
+        </member>
+        <member name="F:WizardWrx.MagicNumbers.TICKS_PER_1_DAY">
+            <summary>
+            There are 864,000,000,000 ticks in one calendar day.
+            
+            Use this constant to construct a TimeSpan of the corresponding
+            length (value) by way of its one-argument constructor, or to
+            increase or decrease the value of a time span by the corresponding
+            amount by way of its one-argument method.
+            </summary>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_WEEK"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_59"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_00"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_HOUR"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MINUTE"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_SECOND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MILLISECOND"/>
+        </member>
+        <member name="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_59">
+            <summary>
+            There are 863,990,000,000 ticks in one calendar day less one second.
+            
+            Use this constant to construct a TimeSpan of the corresponding
+            length (value) by way of its one-argument constructor, or to
+            increase or decrease the value of a time span by the corresponding
+            amount by way of its one-argument method.
+            </summary>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_WEEK"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_DAY"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_00"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_HOUR"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MINUTE"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_SECOND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MILLISECOND"/>
+        </member>
+        <member name="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_00">
+            <summary>
+            There are 863,400,000,000 ticks in one calendar day less one minute. 
+            
+            Use this constant to construct a TimeSpan of the corresponding
+            length (value) by way of its one-argument constructor, or to
+            increase or decrease the value of a time span by the corresponding
+            amount by way of its one-argument method.
+            </summary>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_WEEK"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_DAY"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_59"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_HOUR"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MINUTE"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_SECOND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MILLISECOND"/>
+        </member>
+        <member name="F:WizardWrx.MagicNumbers.TICKS_PER_1_HOUR">
+            <summary>
+            There are 36,000,000,000 ticks in one hour.
+            
+            Use this constant to construct a TimeSpan of the corresponding
+            length (value) by way of its one-argument constructor, or to
+            increase or decrease the value of a time span by the corresponding
+            amount by way of its one-argument method.
+            </summary>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_WEEK"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_DAY"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_59"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_00"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MINUTE"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_SECOND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MILLISECOND"/>
+        </member>
+        <member name="F:WizardWrx.MagicNumbers.TICKS_PER_1_MINUTE">
+            <summary>
+            There are 600,000,000 ticks in one minute.
+            
+            Use this constant to construct a TimeSpan of the corresponding
+            length (value) by way of its one-argument constructor, or to
+            increase or decrease the value of a time span by the corresponding
+            amount by way of its one-argument method.
+            </summary>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_WEEK"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_DAY"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_59"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_00"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_HOUR"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_SECOND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MILLISECOND"/>
+        </member>
+        <member name="F:WizardWrx.MagicNumbers.TICKS_PER_1_SECOND">
+            <summary>
+            There are 10,000,000 ticks in one second.
+            
+            Use this constant to construct a TimeSpan of the corresponding
+            length (value) by way of its one-argument constructor, or to
+            increase or decrease the value of a time span by the corresponding
+            amount by way of its one-argument method.
+            </summary>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_WEEK"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_DAY"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_59"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_00"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_HOUR"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MINUTE"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MILLISECOND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_SECOND"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.MILLISECONDS_PER_SECOND"/>
+        </member>
+        <member name="F:WizardWrx.MagicNumbers.TICKS_PER_1_MILLISECOND">
+            <summary>
+            There are 10,000 ticks in one millisecond.
+            
+            Use this constant to construct a TimeSpan of the corresponding
+            length (value) by way of its one-argument constructor, or to
+            increase or decrease the value of a time span by the corresponding
+            amount by way of its one-argument method.
+            </summary>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_WEEK"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_DAY"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_59"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_23_59_00"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_HOUR"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_MINUTE"/>
+            <seealso cref="F:WizardWrx.MagicNumbers.TICKS_PER_1_SECOND"/>
         </member>
         <member name="F:WizardWrx.MagicNumbers.UNC_PREFIX_START_POS">
             <summary>
-            A UNC prefix starts here.
+            A UNC prefix starts here at this character position.
             </summary>
             <seealso cref="F:WizardWrx.MagicNumbers.MINUS_ONE"/>
         </member>
         <member name="F:WizardWrx.MagicNumbers.UNC_PREFIX_START_LEN">
             <summary>
-            A UNC prefix is this long.
+            A UNC prefix has this many characters.
             </summary>
             <seealso cref="F:WizardWrx.MagicNumbers.PLUS_TWO"/>
         </member>
@@ -1901,44 +2113,73 @@
             <seealso href="https://msdn.microsoft.com/en-us/library/dwhawy9k(v=vs.100).aspx"/>
         </member>
         <member name="F:WizardWrx.NumericFormats.DECIMAL_DIGITS_DEFAULT">
-             <summary>
-             For some applications, such as the static methods of this class, we
-             set our own default number of decimal places, rather than relying on
-             the Regional Settings (Locale), which can be changed, at any time,
-             by any user, even with restricted permissions.
-             
-             ========================================================================
-             Format string            Generator Routine       Width Override
-             -----------------------  ----------------------  -----------------------
-             DECIMAL					 FixedWidthInteger		 int pintTotalDigits
-             FIXED					 FixedPointDecimal		 int pintFractionDigits
-             GENERAL                  GeneralXPrecision       int pintPrecisionDigits [1]
-             HEXADECIMAL				 HexadecimalInteger		 int pintTotalDigits
-             NUMBER_PER_REG_SETTINGS  IntegerPerRegSettings
-             NUMBER_PER_REG_SETTINGS	 NumberPerRegSettings	 int pintFractionDigits
-             PERCENT					 PercentToDecimalPlaces	 int pintFractionDigits
-             ========================================================================
-            
-             Note 1: There is only one of these methods, and it accepts the
-             pintTotalDigits argument.
-             </summary>
-             <see cref="M:WizardWrx.NumericFormats.FixedWidthInteger"/>
-             <see cref="M:WizardWrx.NumericFormats.FixedWidthInteger(System.Int32)"/>
-             <see cref="M:WizardWrx.NumericFormats.FixedPointDecimal"/>
-             <see cref="M:WizardWrx.NumericFormats.FixedPointDecimal(System.Int32)"/>
-             <see cref="M:WizardWrx.NumericFormats.GeneralXPrecision(System.Int32)"/>
-             <see cref="M:WizardWrx.NumericFormats.HexadecimalInteger"/>
-             <see cref="M:WizardWrx.NumericFormats.HexadecimalInteger(System.Int32)"/>
-             <see cref="M:WizardWrx.NumericFormats.NumberPerRegSettings"/>
-             <see cref="M:WizardWrx.NumericFormats.NumberPerRegSettings(System.Int32)"/>
-             <see cref="M:WizardWrx.NumericFormats.PercentToDecimalPlaces"/>
-             <see cref="M:WizardWrx.NumericFormats.PercentToDecimalPlaces(System.Int32)"/>
-             <see cref="M:WizardWrx.NumericFormats.ScientificXPrecisionLC(System.Int32)"/>
-             <see cref="M:WizardWrx.NumericFormats.ScientificXPrecisionLC(System.Int32)"/>
-             <see cref="M:WizardWrx.NumericFormats.ScientificXPrecisionUC(System.Int32)"/>
-             <seealso cref="F:WizardWrx.NumericFormats.DECIMAL_DIGITS_MIN"/>
-             <seealso cref="F:WizardWrx.NumericFormats.DECIMAL_DIGITS_MAX"/>
-             <seealso cref="F:WizardWrx.NumericFormats.DECIMAL_DIGITS_NONE"/>
+            <summary>
+            For some applications, such as the static methods of this class, we
+            set our own default number of decimal places, rather than relying on
+            the Regional Settings (Locale), which can be changed, at any time,
+            by any user, even with restricted permissions.
+            <list type="table">
+            <listheader>
+            <term>Format String</term>
+            <term>Generator Routine</term>
+            <term>Width Override</term>
+            </listheader>
+            <item>
+            <term>DECIMAL</term>
+            <term>FixedWidthInteger</term>
+            <term>int pintTotalDigits</term>
+            </item>
+            <item>
+            <term>FIXED</term>
+            <term>FixedPointDecimal</term>
+            <term>int pintFractionDigits</term>
+            </item>
+            <item>
+            <term>GENERAL</term>
+            <term>GeneralXPrecision</term>
+            <term>int pintPrecisionDigits [1]</term>
+            </item>
+            <item>
+            <term>HEXADECIMAL</term>
+            <term>HexadecimalInteger</term>
+            <term>int pintTotalDigits</term>
+            </item>
+            <item>
+            <term>NUMBER_PER_REG_SETTINGS</term>
+            <term>IntegerPerRegSettings</term>
+            <term>N /A</term>
+            </item>
+            <item>
+            <term>NUMBER_PER_REG_SETTINGS</term>
+            <term>NumberPerRegSettings</term>
+            <term>int pintFractionDigits</term>
+            </item>
+            <item>
+            <term>PERCENT</term>
+            <term>PercentToDecimalPlaces</term>
+            <term>int pintFractionDigits</term>
+            </item>
+            </list>
+            Note 1: There is only one of these methods, and it accepts the
+            pintTotalDigits argument.
+            </summary>
+            <see cref="M:WizardWrx.NumericFormats.FixedWidthInteger"/>
+            <see cref="M:WizardWrx.NumericFormats.FixedWidthInteger(System.Int32)"/>
+            <see cref="M:WizardWrx.NumericFormats.FixedPointDecimal"/>
+            <see cref="M:WizardWrx.NumericFormats.FixedPointDecimal(System.Int32)"/>
+            <see cref="M:WizardWrx.NumericFormats.GeneralXPrecision(System.Int32)"/>
+            <see cref="M:WizardWrx.NumericFormats.HexadecimalInteger"/>
+            <see cref="M:WizardWrx.NumericFormats.HexadecimalInteger(System.Int32)"/>
+            <see cref="M:WizardWrx.NumericFormats.NumberPerRegSettings"/>
+            <see cref="M:WizardWrx.NumericFormats.NumberPerRegSettings(System.Int32)"/>
+            <see cref="M:WizardWrx.NumericFormats.PercentToDecimalPlaces"/>
+            <see cref="M:WizardWrx.NumericFormats.PercentToDecimalPlaces(System.Int32)"/>
+            <see cref="M:WizardWrx.NumericFormats.ScientificXPrecisionLC(System.Int32)"/>
+            <see cref="M:WizardWrx.NumericFormats.ScientificXPrecisionLC(System.Int32)"/>
+            <see cref="M:WizardWrx.NumericFormats.ScientificXPrecisionUC(System.Int32)"/>
+            <seealso cref="F:WizardWrx.NumericFormats.DECIMAL_DIGITS_MIN"/>
+            <seealso cref="F:WizardWrx.NumericFormats.DECIMAL_DIGITS_MAX"/>
+            <seealso cref="F:WizardWrx.NumericFormats.DECIMAL_DIGITS_NONE"/>
         </member>
         <member name="F:WizardWrx.NumericFormats.DECIMAL_DIGITS_MIN">
             <summary>
@@ -2057,6 +2298,30 @@
             </returns>
             <see href="https://msdn.microsoft.com/en-us/library/dwhawy9k(v=vs.100).aspx#DFormatString"/>
             <seealso href="https://msdn.microsoft.com/en-us/library/dwhawy9k(v=vs.100).aspx"/>
+        </member>
+        <member name="M:WizardWrx.NumericFormats.FormatIntegerLeftPadded(System.Int32,System.Int32)">
+            <summary>
+            Format an integer so that it appears left padded so that its total
+            horizontal width is a specified number of characters, which must be
+            greater than or equal to the minimum number of characters required
+            to render it.
+            </summary>
+            <param name="pintValue">
+            Specify the integer to format to occupy the greater of the number of
+            characters required to display it or the width specified by
+            <paramref name="pintDesiredWidth"/>.
+            </param>
+            <param name="pintDesiredWidth">
+            Specify the minimum desired width in characters to be occupied by
+            the returned string, which is expected to be right-aligned and left
+            padded with spaces.
+            </param>
+            <returns>
+            The return value is a string representation of
+            <paramref name="pintValue"/>
+            formatted right-aligned in a horizontal row of at least
+            <paramref name="pintDesiredWidth"/> characters.
+            </returns>
         </member>
         <member name="M:WizardWrx.NumericFormats.FormatStatusCode(System.Int32)">
             <summary>
@@ -3104,6 +3369,7 @@
             <seealso cref="F:WizardWrx.SpecialCharacters.SEMICOLON"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.TAB_CHAR"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.UNDERSCORE_CHAR"/>
+            <seealso cref="F:WizardWrx.SpecialStrings.COLON"/>
         </member>
         <member name="F:WizardWrx.SpecialCharacters.COMMA">
             <summary>
@@ -3118,6 +3384,7 @@
             <seealso cref="F:WizardWrx.SpecialCharacters.SEMICOLON"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.TAB_CHAR"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.UNDERSCORE_CHAR"/>
+            <seealso cref="F:WizardWrx.SpecialStrings.COMMA"/>
         </member>
         <member name="F:WizardWrx.SpecialCharacters.DLM_FORMAT_ITEM_BEGIN">
             <summary>
@@ -3144,6 +3411,7 @@
             </summary>
             <seealso cref="F:WizardWrx.SpecialCharacters.SINGLE_QUOTE"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.SPACE_CHAR"/>
+            <seealso cref="F:WizardWrx.SpecialStrings.DOUBLE_QUOTE"/>
         </member>
         <member name="F:WizardWrx.SpecialCharacters.ENV_STR_DLM">
             <summary>
@@ -3172,6 +3440,7 @@
             example, when specifying a delimiter character or appending a full
             stop character to a string.
             </summary>
+            <seealso cref="F:WizardWrx.SpecialStrings.FULL_STOP"/>
         </member>
         <member name="F:WizardWrx.SpecialCharacters.HASH_TAG">
             <summary>
@@ -3186,6 +3455,7 @@
             <seealso cref="F:WizardWrx.SpecialCharacters.EQUALS_SIGN"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.HASH_TAG"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.UNDERSCORE_CHAR"/>
+            <seealso cref="F:WizardWrx.SpecialStrings.HYPHEN"/>
         </member>
         <member name="F:WizardWrx.SpecialCharacters.LAST_ASCII_CHAR">
             <summary>
@@ -3281,6 +3551,7 @@
             <seealso cref="F:WizardWrx.SpecialCharacters.PIPE_CHAR"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.TAB_CHAR"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.UNDERSCORE_CHAR"/>
+            <seealso cref="F:WizardWrx.SpecialStrings.SEMICOLON"/>
         </member>
         <member name="F:WizardWrx.SpecialCharacters.SINGLE_QUOTE">
             <summary>
@@ -3289,6 +3560,7 @@
             </summary>
             <seealso cref="F:WizardWrx.SpecialCharacters.DOUBLE_QUOTE"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.SPACE_CHAR"/>
+            <seealso cref="F:WizardWrx.SpecialStrings.SINGLE_QUOTE"/>
         </member>
         <member name="F:WizardWrx.SpecialCharacters.SPACE_CHAR">
             <summary>
@@ -3317,6 +3589,7 @@
             <seealso cref="F:WizardWrx.SpecialCharacters.PIPE_CHAR"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.SEMICOLON"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.UNDERSCORE_CHAR"/>
+            <seealso cref="F:WizardWrx.SpecialStrings.TAB_CHAR"/>
         </member>
         <member name="F:WizardWrx.SpecialCharacters.UNDERSCORE_CHAR">
             <summary>
@@ -3329,6 +3602,7 @@
             <seealso cref="F:WizardWrx.SpecialCharacters.EQUALS_SIGN"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.HYPHEN"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.TAB_CHAR"/>
+            <seealso cref="F:WizardWrx.SpecialStrings.UNDERSCORE_CHAR"/>
         </member>
         <member name="T:WizardWrx.SpecialStrings">
             <summary>
@@ -3396,6 +3670,27 @@
             <seealso cref="F:WizardWrx.SpecialStrings.ASP_APP_START_PAGE_KEY"/>
             <seealso cref="F:WizardWrx.SpecialStrings.ASP_RELATIVE_PATH_BEGIN"/>
         </member>
+        <member name="F:WizardWrx.SpecialStrings.COLON">
+            <summary>
+            This is one of many single characters that are frequently needed as
+            single-character string constants.
+            </summary>
+            <seealso cref="F:WizardWrx.SpecialCharacters.COLON"/>
+        </member>
+        <member name="F:WizardWrx.SpecialStrings.COMMA">
+            <summary>
+            This is one of many single characters that are frequently needed as
+            single-character string constants.
+            </summary>
+            <seealso cref="F:WizardWrx.SpecialCharacters.COMMA"/>
+        </member>
+        <member name="F:WizardWrx.SpecialStrings.DOUBLE_QUOTE">
+            <summary>
+            This is one of many single characters that are frequently needed as
+            single-character string constants.
+            </summary>
+            <seealso cref="F:WizardWrx.SpecialCharacters.DOUBLE_QUOTE"/>
+        </member>
         <member name="F:WizardWrx.SpecialStrings.EMPTY_STRING">
             <summary>
             I like having a way to initialize a constant to the empty string.
@@ -3427,6 +3722,20 @@
             </remarks>
             <see cref="F:WizardWrx.MagicNumbers.ERROR_SUCCESS"/>
             <seealso cref="F:WizardWrx.MagicNumbers.ERROR_RUNTIME"/>
+        </member>
+        <member name="F:WizardWrx.SpecialStrings.FULL_STOP">
+            <summary>
+            This is one of many single characters that are frequently needed as
+            single-character string constants.
+            </summary>
+            <seealso cref="F:WizardWrx.SpecialCharacters.FULL_STOP"/>
+        </member>
+        <member name="F:WizardWrx.SpecialStrings.HYPHEN">
+            <summary>
+            This is one of many single characters that are frequently needed as
+            single-character string constants.
+            </summary>
+            <seealso cref="F:WizardWrx.SpecialCharacters.HYPHEN"/>
         </member>
         <member name="F:WizardWrx.SpecialStrings.HTML_COMMENT_PREFIX">
             <summary>
@@ -3470,6 +3779,20 @@
             string.
             </summary>
             <seealso cref="F:WizardWrx.SpecialCharacters.PERCENT_SIGN"/>
+        </member>
+        <member name="F:WizardWrx.SpecialStrings.SEMICOLON">
+            <summary>
+            This is one of many single characters that are frequently needed as
+            single-character string constants.
+            </summary>
+            <seealso cref="F:WizardWrx.SpecialCharacters.SEMICOLON"/>
+        </member>
+        <member name="F:WizardWrx.SpecialStrings.SINGLE_QUOTE">
+            <summary>
+            This is one of many single characters that are frequently needed as
+            single-character string constants.
+            </summary>
+            <seealso cref="F:WizardWrx.SpecialCharacters.SINGLE_QUOTE"/>
         </member>
         <member name="F:WizardWrx.SpecialStrings.SPACE_CHAR">
             <summary>
@@ -3523,6 +3846,20 @@
             <seealso cref="F:WizardWrx.SpecialCharacters.CARRIAGE_RETURN"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.LINEFEED"/>
             <seealso cref="F:WizardWrx.SpecialStrings.STRING_SPLIT_CARRIAGE_RETURN"/>
+        </member>
+        <member name="F:WizardWrx.SpecialStrings.TAB_CHAR">
+            <summary>
+            This is one of many single characters that are frequently needed as
+            single-character string constants.
+            </summary>
+            <seealso cref="F:WizardWrx.SpecialCharacters.TAB_CHAR"/>
+        </member>
+        <member name="F:WizardWrx.SpecialStrings.UNDERSCORE_CHAR">
+            <summary>
+            This is one of many single characters that are frequently needed as
+            single-character string constants.
+            </summary>
+            <seealso cref="F:WizardWrx.SpecialCharacters.UNDERSCORE_CHAR"/>
         </member>
         <member name="T:WizardWrx.StringTricks">
             <summary>
@@ -4205,6 +4542,26 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.ANSWER_IS_FALSE">
+            <summary>
+              Looks up a localized string similar to false.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.ANSWER_IS_NO">
+            <summary>
+              Looks up a localized string similar to no.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.ANSWER_IS_TRUE">
+            <summary>
+              Looks up a localized string similar to true.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.ANSWER_IS_YES">
+            <summary>
+              Looks up a localized string similar to yes.
+            </summary>
+        </member>
         <member name="P:WizardWrx.Common.Properties.Resources.DEFAULT_EVENT_SOURCE_ID_STRING">
             <summary>
               Looks up a localized string similar to WizardWrx.
@@ -4223,6 +4580,11 @@
         <member name="P:WizardWrx.Common.Properties.Resources.ERRMSG_ARG_OUT_OF_RANGE">
             <summary>
               Looks up a localized string similar to Value of {0} is out of range; it must be between {1} and {2}..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.ERRMSG_ARRAY_IS_EMPTY">
+            <summary>
+              Looks up a localized string similar to Array {0} ie empty; it exists, but contains no elements..
             </summary>
         </member>
         <member name="P:WizardWrx.Common.Properties.Resources.ERRMSG_BADSTRING">
@@ -4265,6 +4627,11 @@
               Looks up a localized string similar to A null reference to a string is never valid in this context..
             </summary>
         </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.ERRMSG_REFERENCE_IS_NULL">
+            <summary>
+              Looks up a localized string similar to Object {0} is a null reference..
+            </summary>
+        </member>
         <member name="P:WizardWrx.Common.Properties.Resources.ERRMSG_RUNTIME">
             <summary>
               Looks up a localized string similar to A run-time exception has occurred..
@@ -4275,14 +4642,84 @@
               Looks up a localized string similar to The task completed successfully..
             </summary>
         </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_BLANK_CAPS">
+            <summary>
+              Looks up a localized string similar to BLANK.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_BLANK_STRING">
+            <summary>
+              Looks up a localized string similar to [blank].
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_INTEGER_EVENLY_DIVISIBLE_BY">
+            <summary>
+              Looks up a localized string similar to is evenly divisible by.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_INTEGER_IS_EVEN">
+            <summary>
+              Looks up a localized string similar to is even.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_INTEGER_IS_ODD">
+            <summary>
+              Looks up a localized string similar to is odd.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_IS">
+            <summary>
+              Looks up a localized string similar to is.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_IS_NOT">
+            <summary>
+              Looks up a localized string similar to is not.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_OBJECT_DOES_NOT_EXIST">
+            <summary>
+              Looks up a localized string similar to does not exist.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_OBJECT_EXISTS">
+            <summary>
+              Looks up a localized string similar to exists.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_OBJECT_IS_ABSENT">
+            <summary>
+              Looks up a localized string similar to is absent.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_OBJECT_IS_MISSING">
+            <summary>
+              Looks up a localized string similar to is missing.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_OBJECT_IS_PRESENT">
+            <summary>
+              Looks up a localized string similar to is present.
+            </summary>
+        </member>
         <member name="P:WizardWrx.Common.Properties.Resources.MSG_OBJECT_REFERENCE_IS_NULL">
             <summary>
               Looks up a localized string similar to [null].
             </summary>
         </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_OBJECT_REFERENCE_IS_NULL_CAPS">
+            <summary>
+              Looks up a localized string similar to NULL.
+            </summary>
+        </member>
         <member name="P:WizardWrx.Common.Properties.Resources.MSG_STATUS_CODE">
             <summary>
               Looks up a localized string similar to {0} ({1:D} decimal).
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_STRING_IS_EMPTY">
+            <summary>
+              Looks up a localized string similar to [empty].
             </summary>
         </member>
         <member name="P:WizardWrx.Common.Properties.Resources.MSG_STRING_IS_NULL_OR_EMPTY">
@@ -4293,6 +4730,116 @@
         <member name="P:WizardWrx.Common.Properties.Resources.MSG_THE_EMPTY_STRING">
             <summary>
               Looks up a localized string similar to [empty string].
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_VALUE_IS_FALSE">
+            <summary>
+              Looks up a localized string similar to false.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_VALUE_IS_INVALID">
+            <summary>
+              Looks up a localized string similar to invalid.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_VALUE_IS_TRUE">
+            <summary>
+              Looks up a localized string similar to true.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.MSG_VALUE_IS_VALID">
+            <summary>
+              Looks up a localized string similar to valid.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.REGISTRY_VALUE_TYPE_BINARY">
+            <summary>
+              Looks up a localized string similar to REG_BINARY.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.REGISTRY_VALUE_TYPE_DWORD">
+            <summary>
+              Looks up a localized string similar to REG_DWORD.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.REGISTRY_VALUE_TYPE_EXPAND">
+            <summary>
+              Looks up a localized string similar to REG_EXPAND_SZ.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.REGISTRY_VALUE_TYPE_MULTI">
+            <summary>
+              Looks up a localized string similar to REG_MULTI_SZ.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.REGISTRY_VALUE_TYPE_QWORD">
+            <summary>
+              Looks up a localized string similar to REG_QWORD.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.STACK_TRACE_ENTRY_PREFIX">
+            <summary>
+              Looks up a localized string similar to    at .
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_BUILD_ABBR">
+            <summary>
+              Looks up a localized string similar to Bld..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_BUILD_LONG">
+            <summary>
+              Looks up a localized string similar to Build Number.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_BUILD_SHORT">
+            <summary>
+              Looks up a localized string similar to Build.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_MAJOR_ABBR">
+            <summary>
+              Looks up a localized string similar to Maj..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_MAJOR_LONG">
+            <summary>
+              Looks up a localized string similar to Major Version.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_MAJOR_SHORT">
+            <summary>
+              Looks up a localized string similar to Major.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_MINOR_ABBR">
+            <summary>
+              Looks up a localized string similar to Min..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_MINOR_LONG">
+            <summary>
+              Looks up a localized string similar to Minor Version.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_MINOR_SHORT">
+            <summary>
+              Looks up a localized string similar to Minor.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_REVNO_ABBR">
+            <summary>
+              Looks up a localized string similar to Rev..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_REVNO_LONG">
+            <summary>
+              Looks up a localized string similar to Revision.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_REVNO_SHORT">
+            <summary>
+              Looks up a localized string similar to Revision.
             </summary>
         </member>
     </members>

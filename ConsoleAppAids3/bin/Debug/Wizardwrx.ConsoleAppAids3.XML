@@ -17,17 +17,15 @@
             could reasonably be expected to be defined locally. In particular, the
             services for ascertaining the redirection state of the three standard
             console handles and the names of the files to which they are redirected
-            seem logically out of place. They are in that library for two reasons.
+            seem logically out of place.
             
-            1) The ExceptionLogger class, which belongs where it is because it meets
-            needs that are substantially identical, regardless of the Windows 
-            subsystem in which it runs. While I could have made a wrapper that 
-            inherits from the ExceptionLogger, that seemed pointless for the few
-            lines of code that would have gone into the derived class, when this
-            library has unrelated dependencies on DLLServices2.
-            
-            2) It confines the services that invoke unmanaged code, and must make 
-            significant link demands, to one library.
+            They are in that library because the ExceptionLogger class, which 
+            belongs where it is because it meets needs that are substantially
+            identical, regardless of the Windows subsystem in which it runs. While I
+            could have made a wrapper that inherits from the ExceptionLogger, that
+            seemed pointless for the few lines of code that would have gone into the
+            derived class, when this library has unrelated dependencies on
+            WizardWrx.Core.
             </remarks>
         </member>
         <member name="T:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction">
@@ -109,6 +107,17 @@
         <member name="P:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.BaseStateManager">
             <summary>
             Expose the real state manager behind this adapter.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.#ctor">
+            <summary>
+            A fundamental tenet of the Singleton design pattern is that the
+            default constructor must be hidden, and it must be the only
+            constructor of any kind.
+            
+            Since the base class has a protected default constructor, derived
+            classes must explicitly hide theirs to prevent the compiler allowing
+            one to be called.
             </summary>
         </member>
         <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetTheSingleInstance">

@@ -20,6 +20,9 @@
 //  ========== === =============================================================
 //  2018/11/25 DAG Raise ToolsVersion from 12.0 to 15.0, to match Microsoft
 //                 Visual Studio 2017.
+//
+//  2020-10-23 DAG Add the Deterministic compiler switch, which goes well with
+//                 SemVer version numbering.
 //  ============================================================================
   -->
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -37,6 +40,8 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <!-- 2020-10-23 02:52:34 - DAG - Add the Deterministic compiler switch, which goes well with SemVer version numbering. -->
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -84,38 +89,38 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="WizardWrx.AnyCSV, Version=7.0.120.30587, Culture=neutral, PublicKeyToken=39f6551a21db420a, processorArchitecture=MSIL">
-      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.AnyCSV.7.0.120.30587\lib\net20\WizardWrx.AnyCSV.dll</HintPath>
+    <Reference Include="WizardWrx.AnyCSV, Version=7.2.145.0, Culture=neutral, PublicKeyToken=39f6551a21db420a, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.AnyCSV.7.2.145\lib\net20\WizardWrx.AnyCSV.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.ASCIIInfo, Version=7.1.83.29298, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.ASCIIInfo.7.1.83.29298\lib\net20\WizardWrx.ASCIIInfo.dll</HintPath>
+    <Reference Include="WizardWrx.ASCIIInfo, Version=7.23.85.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.ASCIIInfo.7.23.85\lib\net20\WizardWrx.ASCIIInfo.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.AssemblyUtils, Version=7.17.116.35196, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.AssemblyUtils.7.17.116.35196\lib\net35-client\WizardWrx.AssemblyUtils.dll</HintPath>
+    <Reference Include="WizardWrx.AssemblyUtils, Version=7.23.122.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.AssemblyUtils.7.23.122\lib\net35-client\WizardWrx.AssemblyUtils.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.BitMath, Version=4.3.125.29248, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.BitMath.4.3.125.29248\lib\net20\WizardWrx.BitMath.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.Common, Version=7.17.114.35192, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.Common.7.17.114.35192\lib\net20\WizardWrx.Common.dll</HintPath>
+    <Reference Include="WizardWrx.Common, Version=7.23.125.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.Common.7.23.125\lib\net20\WizardWrx.Common.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.ConsoleStreams, Version=7.15.191.37663, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.ConsoleStreams.7.15.191.37663\lib\net35-client\WizardWrx.ConsoleStreams.dll</HintPath>
+    <Reference Include="WizardWrx.ConsoleStreams, Version=7.23.193.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.ConsoleStreams.7.23.193\lib\net35-client\WizardWrx.ConsoleStreams.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.Core, Version=7.19.175.22513, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.Core.7.19.175.22513\lib\net35-client\WizardWrx.Core.dll</HintPath>
+    <Reference Include="WizardWrx.Core, Version=7.23.183.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.Core.7.23.183\lib\net35-client\WizardWrx.Core.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.DiagnosticInfo, Version=7.15.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.DiagnosticInfo.7.15.1\lib\net45\WizardWrx.DiagnosticInfo.dll</HintPath>
+    <Reference Include="WizardWrx.DiagnosticInfo, Version=7.22.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.DiagnosticInfo.7.22.6\lib\net45\WizardWrx.DiagnosticInfo.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.DLLConfigurationManager, Version=7.15.211.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.DLLConfigurationManager.7.15.211\lib\net35-client\WizardWrx.DLLConfigurationManager.dll</HintPath>
+    <Reference Include="WizardWrx.DLLConfigurationManager, Version=7.23.214.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.DLLConfigurationManager.7.23.214\lib\net35-client\WizardWrx.DLLConfigurationManager.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.FormatStringEngine, Version=7.15.162.826, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.FormatStringEngine.7.15.162.826\lib\net20\WizardWrx.FormatStringEngine.dll</HintPath>
+    <Reference Include="WizardWrx.FormatStringEngine, Version=7.23.169.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.FormatStringEngine.7.23.169\lib\net20\WizardWrx.FormatStringEngine.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.MoreMath, Version=7.15.1.36803, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.MoreMath.7.15.1.36803\lib\net45\WizardWrx.MoreMath.dll</HintPath>
+    <Reference Include="WizardWrx.MoreMath, Version=7.23.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.MoreMath.7.23.5\lib\net45\WizardWrx.MoreMath.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
