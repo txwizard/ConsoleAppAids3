@@ -10,11 +10,12 @@
     	<projectUrl>https://github.com/txwizard/ConsoleAppAids3</projectUrl>
 	    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     	<description>$description$</description>
-	    <releaseNotes>This update of the WizardWrx.ConsoleAppAids3 library resolves an issue that allowed a calling routine to instantiate an uninitialized, utterly useless instance of the ConsoleAppStateManager object. In so doing, the bug breaks a fundamental tenet of the Singleton design pattern which it is intended to implement. Additionally, this release implements semantic versioning and the Deterministic compiler switch.</releaseNotes>
+	    <releaseNotes>This update of the WizardWrx.ConsoleAppAids3 library defines a new method, LoadBasicErrorMessages, that loads the appropriate string described by the table in the newest section of ChangeLog.md.</releaseNotes>
     	<copyright>$copyright$</copyright>
     	<tags>Constrained console scrolling, specialized console application management</tags>
 	</metadata>
 	<files>
+   		<file src="..\changelog.md" target="" />
    		<file src="readme.md" target="" />
    		<file src="readme.txt" target="" />
    		<file src="bin\$configuration$\$id$.pdb" target="lib" />

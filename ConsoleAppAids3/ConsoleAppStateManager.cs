@@ -112,6 +112,9 @@
                               the WizardWrx .NET API asseblies, which finally
                               fully implement Semantic Version Numbering as of a
                               few days ago.
+
+    2021/03/05 8.0     DAG LoadBasicErrorMessages replaces LoadErrorMessageTable
+                           on the attached BaseStateManager object.
     ============================================================================
 */
 
@@ -283,12 +286,52 @@ namespace WizardWrx.ConsoleAppAids3
 						s_genTheOnlyInstance._me = StateManager.GetTheSingleInstance ( );
 
 			return s_genTheOnlyInstance;
-        }	// public static ConsoleAppStateManager GetTheSingleInstance ( )
+        }   // public static ConsoleAppStateManager GetTheSingleInstance ( )
         #endregion  // Singleton Infrastructure
 
 
-		#region BOJ and EOJ Message Displays
-		/// <summary>
+        #region LoadBasicErrorMessages Methods
+        /// <summary>
+        /// Load a set of invariant message strings for use with the program end
+        /// message generators.
+        /// </summary>
+        /// <param name="pastrAdditionalMessages">
+        /// When the program has only the basic status messages for clean 
+        /// completion and runtime exceptions, this argument may be either NULL
+        /// or a reference to an empty array, both of which get the same
+        /// treatment.
+        /// </param>
+        /// <returns>
+        /// The return value is total count of exception messages, which is
+        /// always at least two.
+        /// </returns>
+        public int LoadBasicErrorMessages ( string [ ] pastrAdditionalMessages = null )
+        {
+            int rintMessageCount = ComputeMessageCount ( pastrAdditionalMessages );
+
+            string [ ] astrAllMessages = new string [ rintMessageCount ];
+
+            astrAllMessages [ MagicNumbers.ERROR_SUCCESS ] = Common.Properties.Resources.ERRMSG_SUCCESS;
+            astrAllMessages [ MagicNumbers.ERROR_RUNTIME ] = Common.Properties.Resources.ERRMSG_RUNTIME;
+
+            for ( int intJ = STANDARD_MESSAGE_COUNT,
+                      intK = ArrayInfo.ARRAY_FIRST_ELEMENT ;
+
+                      intK < rintMessageCount - STANDARD_MESSAGE_COUNT ;
+
+                      intJ++,
+                      intK++ )
+            {
+                astrAllMessages [ intJ ] = pastrAdditionalMessages [ intK ];
+            }   // for ( int intJ = STANDARD_MESSAGE_COUNT, intK = ArrayInfo.ARRAY_FIRST_ELEMENT ; intK < intMessageCount - STANDARD_MESSAGE_COUNT ; intJ++, intK++ )
+
+            return rintMessageCount;
+        }   // public int LoadBasicErrorMessages
+        #endregion  // LoadBasicErrorMessages Methods
+
+
+        #region BOJ and EOJ Message Displays
+        /// <summary>
         /// When called for the first time, this method displays a BOJ message
         /// on the console. Subsequent calls return immediately, without taking
         /// any action.
@@ -848,6 +891,33 @@ namespace WizardWrx.ConsoleAppAids3
                     break;
             }   // switch ( penmNormalExitAction )
         }   // public void NormalExit (8 of 8)
-		#endregion	// NortmalExit Methods
-	}   // class ConsoleAppStateManager
+        #endregion // NortmalExit Methods
+
+
+        #region Private Symbolic Constants
+        const int STANDARD_MESSAGE_COUNT = 2;
+        #endregion  // STANDARD_MESSAGE_COUNT
+
+
+        #region Private Static Methods
+        /// <summary>
+        /// The message count is always at least 2. Whem <paramref name="pastrAdditionalMessages"/>
+        /// is a null reference or a reference to the empty array, it is also 2.
+        /// However, when <paramref name="pastrAdditionalMessages"/> containes
+        /// one or more elements, the count is increased to accommodee them.
+        /// </summary>
+        /// <param name="pastrAdditionalMessages">
+        /// Pass in the optional list of additonal messages if needed. Status
+        /// codes zero and one are covered by stanard messages that are pulled
+        /// from the resource strings stored in WizardWrx.Common.dll.
+        /// </param>
+        /// <returns>
+        /// The total number of messages is as described under <paramref name="pastrAdditionalMessages"/>.
+        /// </returns>
+        private static int ComputeMessageCount ( string [ ] pastrAdditionalMessages )
+        {
+            return pastrAdditionalMessages == null ? STANDARD_MESSAGE_COUNT : pastrAdditionalMessages.Length + STANDARD_MESSAGE_COUNT;
+        }   // private static int ComputeMessageCount
+        #endregion  // Private Static Method
+    }   // class ConsoleAppStateManager
 }   // partial namespace WizardWrx.ConsoleAppAids3
