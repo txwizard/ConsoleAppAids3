@@ -134,6 +134,22 @@
             class, because it has extra work to do.
             </remarks>
         </member>
+        <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.LoadBasicErrorMessages(System.String[])">
+            <summary>
+            Load a set of invariant message strings for use with the program end
+            message generators.
+            </summary>
+            <param name="pastrAdditionalMessages">
+            When the program has only the basic status messages for clean 
+            completion and runtime exceptions, this argument may be either NULL
+            or a reference to an empty array, both of which get the same
+            treatment.
+            </param>
+            <returns>
+            The return value is total count of exception messages, which is
+            always at least two.
+            </returns>
+        </member>
         <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.DisplayBOJMessage">
             <summary>
             When called for the first time, this method displays a BOJ message
@@ -425,6 +441,22 @@
             This method differs sufficiently from overload 2 that it stands on
             its own. Theoretically, every other overload could call this one.
             </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ComputeMessageCount(System.String[])">
+            <summary>
+            The message count is always at least 2. Whem <paramref name="pastrAdditionalMessages"/>
+            is a null reference or a reference to the empty array, it is also 2.
+            However, when <paramref name="pastrAdditionalMessages"/> containes
+            one or more elements, the count is increased to accommodee them.
+            </summary>
+            <param name="pastrAdditionalMessages">
+            Pass in the optional list of additonal messages if needed. Status
+            codes zero and one are covered by stanard messages that are pulled
+            from the resource strings stored in WizardWrx.Common.dll.
+            </param>
+            <returns>
+            The total number of messages is as described under <paramref name="pastrAdditionalMessages"/>.
+            </returns>
         </member>
         <member name="T:WizardWrx.ConsoleAppAids3.DisplayAids">
             <summary>

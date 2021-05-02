@@ -10,14 +10,13 @@
     	<projectUrl>https://github.com/txwizard/ConsoleAppAids3</projectUrl>
 	    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     	<description>$description$</description>
-	    <releaseNotes>This update of the WizardWrx.ConsoleAppAids3 library defines a new method, LoadBasicErrorMessages, that loads the appropriate string described by the table in the newest section of ChangeLog.md.</releaseNotes>
+	    <releaseNotes>This update of the WizardWrx.ConsoleAppAids3 library is built against the latest versions of its dependent assemblies, and eliminates the redundant ReadMe.txt file.</releaseNotes>
     	<copyright>$copyright$</copyright>
     	<tags>Constrained console scrolling, specialized console application management</tags>
 	</metadata>
 	<files>
    		<file src="..\changelog.md" target="" />
    		<file src="readme.md" target="" />
-   		<file src="readme.txt" target="" />
    		<file src="bin\$configuration$\$id$.pdb" target="lib" />
    		<file src="bin\$configuration$\$id$.xml" target="lib" />
 	</files>

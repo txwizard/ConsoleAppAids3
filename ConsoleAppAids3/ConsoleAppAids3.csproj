@@ -39,33 +39,21 @@
 //                 MoreMath library.
 //  ============================================================================
   -->
-
-<Project ToolsVersion="15.0"
-	     DefaultTargets="Build"
-	     xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- 2020-10-23 00:59:50 - DAG Copy custom task NuGetPackageNameFixup from ConsoleStreams.  -->
-
-  <UsingTask TaskName="NuGetPackageNameFixup"
-  	         TaskFactory="CodeTaskFactory"
-  	         AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+  <UsingTask TaskName="NuGetPackageNameFixup" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
     <ParameterGroup>
-      <RawNugetPackageVersion ParameterType="System.String"
-      	                      Required="true" />
-      <ActualNugetPackageVersion ParameterType="System.String"
-      	                         Output="true" />
+      <RawNugetPackageVersion ParameterType="System.String" Required="true" />
+      <ActualNugetPackageVersion ParameterType="System.String" Output="true" />
     </ParameterGroup>
-
     <Task>
-      <Code Type="Fragment"
-      	    Language="cs"><![CDATA[
+      <Code Type="Fragment" Language="cs"><![CDATA[
             ActualNugetPackageVersion = RawNugetPackageVersion.EndsWith ( ".0" ) ? RawNugetPackageVersion.Substring(0,RawNugetPackageVersion.Length-2) : RawNugetPackageVersion;
             Log.LogMessage ( "Custom Task NuGetPackageNameFixup: RawNugetPackageVersion    = "+ RawNugetPackageVersion    );
             Log.LogMessage ( "Custom Task NuGetPackageNameFixup: ActualNugetPackageVersion = "+ ActualNugetPackageVersion );
       ]]></Code>
     </Task>
   </UsingTask>
-
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -87,7 +75,6 @@
     <PackageDir>Package\$(Configuration)</PackageDir>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>.pdb$;(AllowedOutputExtensionsInPackageBuildOutputFolder)</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -98,7 +85,6 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Wizardwrx.ConsoleAppAids3.XML</DocumentationFile>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -108,47 +94,36 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Wizardwrx.ConsoleAppAids3.xml</DocumentationFile>
   </PropertyGroup>
-
   <ItemGroup>
     <Reference Include="System" />
-
     <Reference Include="WizardWrx.AnyCSV, Version=7.2.145.0, Culture=neutral, PublicKeyToken=39f6551a21db420a, processorArchitecture=MSIL">
       <HintPath>..\packages\WizardWrx.AnyCSV.7.2.145\lib\net20\WizardWrx.AnyCSV.dll</HintPath>
     </Reference>
-
-    <Reference Include="WizardWrx.ASCIIInfo, Version=7.23.85.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.ASCIIInfo.7.23.85\lib\net20\WizardWrx.ASCIIInfo.dll</HintPath>
+    <Reference Include="WizardWrx.ASCIIInfo, Version=8.0.121.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.ASCIIInfo.8.0.121\lib\net20\WizardWrx.ASCIIInfo.dll</HintPath>
     </Reference>
-
-    <Reference Include="WizardWrx.AssemblyUtils, Version=7.23.122.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.AssemblyUtils.7.23.122\lib\net35-client\WizardWrx.AssemblyUtils.dll</HintPath>
+    <Reference Include="WizardWrx.AssemblyUtils, Version=8.0.165.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.AssemblyUtils.8.0.165\lib\net35-client\WizardWrx.AssemblyUtils.dll</HintPath>
     </Reference>
-
     <Reference Include="WizardWrx.BitMath, Version=4.3.125.29248, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.BitMath.4.3.125.29248\lib\net20\WizardWrx.BitMath.dll</HintPath>
     </Reference>
-
-    <Reference Include="WizardWrx.Common, Version=7.23.125.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.Common.7.23.125\lib\net20\WizardWrx.Common.dll</HintPath>
+    <Reference Include="WizardWrx.Common, Version=8.0.142.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.Common.8.0.142\lib\net20\WizardWrx.Common.dll</HintPath>
     </Reference>
-
-    <Reference Include="WizardWrx.ConsoleStreams, Version=7.23.193.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.ConsoleStreams.7.23.193\lib\net35-client\WizardWrx.ConsoleStreams.dll</HintPath>
+    <Reference Include="WizardWrx.ConsoleStreams, Version=8.0.230.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.ConsoleStreams.8.0.230\lib\net35-client\WizardWrx.ConsoleStreams.dll</HintPath>
     </Reference>
-
-    <Reference Include="WizardWrx.Core, Version=7.23.183.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.Core.7.23.183\lib\net35-client\WizardWrx.Core.dll</HintPath>
+    <Reference Include="WizardWrx.Core, Version=8.0.221.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.Core.8.0.221\lib\net35-client\WizardWrx.Core.dll</HintPath>
     </Reference>
-
-    <Reference Include="WizardWrx.DLLConfigurationManager, Version=7.23.214.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.DLLConfigurationManager.7.23.214\lib\net35-client\WizardWrx.DLLConfigurationManager.dll</HintPath>
+    <Reference Include="WizardWrx.DLLConfigurationManager, Version=8.0.254.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.DLLConfigurationManager.8.0.254\lib\net35-client\WizardWrx.DLLConfigurationManager.dll</HintPath>
     </Reference>
-
-    <Reference Include="WizardWrx.FormatStringEngine, Version=7.23.169.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.FormatStringEngine.7.23.169\lib\net20\WizardWrx.FormatStringEngine.dll</HintPath>
+    <Reference Include="WizardWrx.FormatStringEngine, Version=8.0.205.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.FormatStringEngine.8.0.205\lib\net20\WizardWrx.FormatStringEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
-
   <ItemGroup>
     <Compile Include="ConsoleAppStateManager.cs" />
     <Compile Include="DisplayAids.CS" />
@@ -160,7 +135,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -168,60 +142,42 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="WizardWrx.DLLConfigurationManager.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
   <PropertyGroup>
     <PreBuildEvent>wwBldNbrMgr.exe "$(ProjectDir) "</PreBuildEvent>
   </PropertyGroup>
-
   <PropertyGroup>
     <PostBuildEvent>wwBldNbrMgr.exe -r "-p$(ProjectDir) " "-t$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
-
   <!-- 2019/06/04 23:31:14 - DAG Everything from this point to the end is new, and was added to support NuGet package generation. -->
-
   <Target Name="AfterBuild">
     <!-- Load up the information from the assembly -->
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)$(AssemblyName).dll">
-      <Output TaskParameter="Assemblies"
-      	      ItemName="OutputAssemblyInfo" />
+      <Output TaskParameter="Assemblies" ItemName="OutputAssemblyInfo" />
     </GetAssemblyIdentity>
-
     <Message Text="Info: Assembly $(AssemblyName).dll version    = %(OutputAssemblyInfo.Version)" />
     <Message Text="Info: Relative project package directory name = $(PackageDir)" />
   </Target>
-
-  <Target Name="Package"
-  	      AfterTargets="AfterBuild"
-  	      Condition=" '$(Configuration)' == 'Release'">
+  <Target Name="Package" AfterTargets="AfterBuild" Condition=" '$(Configuration)' == 'Release'">
     <!-- Ensure the Package directory exists for this project -->
     <MakeDir Directories="$(PackageDir)" />
     <!-- Package the project -->
-    <Exec WorkingDirectory="$(BuildDir)"
-    	  Command="NuGet.exe pack $(ProjectName).csproj -Properties Configuration=$(Configuration) -OutputDir $(PackageDir) -IncludeReferencedProjects" />
+    <Exec WorkingDirectory="$(BuildDir)" Command="NuGet.exe pack $(ProjectName).csproj -Properties Configuration=$(Configuration) -OutputDir $(PackageDir) -IncludeReferencedProjects" />
   </Target>
-
   <!-- 2019/05/19 00:26:30 - DAG Switch on the push target. -->
   <!-- Publish the project. -->
-  <Target Name="Publish"
-  	      AfterTargets="Package"
-  	      Condition=" '$(Configuration)' == 'Release'">
+  <Target Name="Publish" AfterTargets="Package" Condition=" '$(Configuration)' == 'Release'">
     <NuGetPackageNameFixup RawNugetPackageVersion="%(OutputAssemblyInfo.Version)">
-      <Output PropertyName="NuGetPackageVersion"
-      	      TaskParameter="ActualNugetPackageVersion" />
+      <Output PropertyName="NuGetPackageVersion" TaskParameter="ActualNugetPackageVersion" />
     </NuGetPackageNameFixup>
-    <Exec WorkingDirectory="$(PackageDir)"
-    	  Command="NuGet.exe push $(AssemblyName).$(NuGetPackageVersion).nupkg -Source nuget.org" />
+    <Exec WorkingDirectory="$(PackageDir)" Command="NuGet.exe push $(AssemblyName).$(NuGetPackageVersion).nupkg -Source nuget.org" />
   </Target>
-
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

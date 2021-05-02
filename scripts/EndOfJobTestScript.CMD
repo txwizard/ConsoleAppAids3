@@ -26,10 +26,13 @@
 ::	---------- --- -------------------------------------------------------------
 ::	2012/09/04 DAG Initial implementation and use.
 ::  2017/08/06 DAG Add my standard version and time stamp displays.
+::  2021/02/21 DAG Replace ShowTime.CMD with ShowTime.exe, a small 64-bit C++
+::                 utility that affords much greater control over the format of
+::                 the time display.
 ::	============================================================================
 
 echo BOJ %~0, version %~t0
-call ShowTime.CMD
+ShowTime.exe
 echo Script Directory  = %~dp0
 echo.
 echo Working Directory = %CD%

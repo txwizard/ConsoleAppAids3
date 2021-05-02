@@ -168,6 +168,8 @@
 
                            3) Add the new required second argument to method call
                               ReportGenerators.ShowKeyAssemblyProperties.
+
+	2021/03/05 8.0     DAG LoadBasicErrorMessages replaces LoadErrorMessageTable.
     ============================================================================
 */
 
@@ -214,8 +216,6 @@ namespace TestStand
 
         static string [ ] s_astrErrorMessages =
         {
-            Properties.Resources.ERRMSG_SUCCESS ,								// ERROR_SUCCESS
-            Properties.Resources.ERRMSG_RUNTIME ,								// ERR_RUNTIME
             Properties.Resources.ERRMSG_ERROR_STOP_TEST ,						// ERR_ERROR_STOP_TEST
         };  // static string [ ] s_astrErrorMessages
 
@@ -384,14 +384,27 @@ namespace TestStand
 
             #if ALT_EXCPT_LOG_PATH
                 SetExceptionLoggingProperties ( );
-            #else
+#else
                 s_theApp.BaseStateManager.AppExceptionLogger.OptionFlags = s_theApp.BaseStateManager.AppExceptionLogger.OptionFlags | ExceptionLogger.OutputOptions.Stack | ExceptionLogger.OutputOptions.EventLog | ExceptionLogger.OutputOptions.StandardError;
 //                s_theApp.AppExceptionLogger.EventLoggingState = ExceptionLogger.RecordinEventLog.Enabled;
 //                s_theApp.AppExceptionLogger.AppSubsystem = ExceptionLogger.Subsystem.Console;
-            #endif  // #if ALT_EXCPT_LOG_PATH
+#endif  // #if ALT_EXCPT_LOG_PATH
 
-            s_theApp.BaseStateManager.LoadErrorMessageTable ( s_astrErrorMessages );
+            //  ----------------------------------------------------------------
+            //  In the beginning, each program had its own complete table of
+            //  error messages. Though the first two status codes and the
+            //  corresponding messages were always reserved, the texts didn't
+            //  become standardized for about another year, after which life
+            //  got between me and creating an improved method that loads these
+            //  two messages, then appends application-specific messages.
+            //
+            //  LoadErrorMessageTable is deprecated in favor of a new method,
+            //  LoadBasicErrorMessages, that takes an optional short list of the
+            //  other messages.
+            //  ----------------------------------------------------------------
 
+            //  s_theApp.BaseStateManager.LoadErrorMessageTable ( s_astrErrorMessages );
+            s_theApp.LoadBasicErrorMessages ( s_astrErrorMessages );
             string strDeferredMessage = null;
 
             OutputFormat enmOutputFormat = SetOutputFormat (

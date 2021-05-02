@@ -18,18 +18,21 @@ goto SKIPREM
 ::  ----------------------------------------------------------------------------
 ::
 ::  Date       By  Synopsis
-:;  ---------- --- -------------------------------------------------------------
+::  ---------- --- -------------------------------------------------------------
 ::  2014/03/22 DAG Initial implementation created, tested, and deployed.
 ::  2017/08/06 DAG Replace XCOPY.EXE with XCOPYF.CMD, eliminating the requirment
 ::                 for a local copy of the XCOPY.EXE response file. XCOPYF.CMD
 ::                 didn't yet exist when I created this script.
+::  2021/02/21 DAG Replace ShowTime.CMD with ShowTime.exe, a small 64-bit C++
+::                 utility that affords much greater control over the format of
+::                 the time display.
 ::  ============================================================================
 
 
 :SKIPREM
 
     echo BOJ %~0, version %~t0
-    call ShowTime.CMD
+    ShowTime.exe
     echo.
     echo Script Directory  = %~dp0
     setlocal

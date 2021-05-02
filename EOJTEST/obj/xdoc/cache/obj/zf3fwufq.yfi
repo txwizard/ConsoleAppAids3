@@ -1,0 +1,10 @@
+id: EOJTEST
+language: CSharp
+name:
+  Default: EOJTEST
+qualifiedName:
+  Default: EOJTEST
+type: Assembly
+modifiers: {}
+items: []
+references: {}

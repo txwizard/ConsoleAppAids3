@@ -142,6 +142,22 @@ references:
   isSpec: "True"
   fullName: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.GetTheSingleInstance
   nameWithType: ConsoleAppStateManager.GetTheSingleInstance
+- uid: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.LoadBasicErrorMessages(System.String[])
+  name: LoadBasicErrorMessages(String[])
+  href: api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html#WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_LoadBasicErrorMessages_System_String___
+  commentId: M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.LoadBasicErrorMessages(System.String[])
+  name.vb: LoadBasicErrorMessages(String())
+  fullName: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.LoadBasicErrorMessages(System.String[])
+  fullName.vb: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.LoadBasicErrorMessages(System.String())
+  nameWithType: ConsoleAppStateManager.LoadBasicErrorMessages(String[])
+  nameWithType.vb: ConsoleAppStateManager.LoadBasicErrorMessages(String())
+- uid: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.LoadBasicErrorMessages*
+  name: LoadBasicErrorMessages
+  href: api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html#WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_LoadBasicErrorMessages_
+  commentId: Overload:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.LoadBasicErrorMessages
+  isSpec: "True"
+  fullName: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.LoadBasicErrorMessages
+  nameWithType: ConsoleAppStateManager.LoadBasicErrorMessages
 - uid: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit
   name: NormalExit()
   href: api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html#WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit

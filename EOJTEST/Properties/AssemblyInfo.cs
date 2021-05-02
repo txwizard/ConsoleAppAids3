@@ -54,6 +54,10 @@
                            WizardWrx .NET API asseblies, which finally fully
                            implement Semantic Version Numbering as of a few days
                            ago.
+
+	2021/05/02 8.0     DAG Update the version number to match assemblises in the
+                           solution, and pull dependencies from the global NuGet
+                           repository.
     ============================================================================
 */
 
@@ -67,9 +71,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle ( "EOJTEST" )]
 [assembly: AssemblyDescription ( "Test Stand for NormalExit Method" )]
 [assembly: AssemblyConfiguration ( "" )]
-[assembly: AssemblyCompany ( "WizardWrx" )]
+[assembly: AssemblyCompany ( "David A. Gray" )]
 [assembly: AssemblyProduct ( "WizardWrx .NET Utility Libraries" )]
-[assembly: AssemblyCopyright ( "Copyright © 2012-2020, David A. Gray" )]
+[assembly: AssemblyCopyright ( "Copyright © 2012-2021, David A. Gray" )]
 [assembly: AssemblyTrademark ( "This library is distributed under a three-clause BSD license." )]
 [assembly: AssemblyCulture ( "" )]
 
@@ -91,4 +95,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion ( "7.2.499.0" )]
+[assembly: AssemblyVersion ( "8.0.505.0" )]

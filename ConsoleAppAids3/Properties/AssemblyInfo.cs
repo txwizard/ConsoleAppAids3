@@ -8,8 +8,14 @@
     Remarks:            I don't usually include revision histories in my
                         AssemblyInfo files. This is an exception, because the
                         version update is to account for a change that affects
-                        only the related C# project file. Hence, I won't 
+                        only the related C# project file. Hence, I won't
                         routinely update this history.
+
+						Going forward, this library will be periodically
+						refreshed by building it against newer versions of the
+						WizardWrx .NET API. If this source file and ChangeLog.md
+						are unchanged, it is safe to assume that the only change
+						is a refresh of its dependencies.
 
     ----------------------------------------------------------------------------
     Revision History
@@ -51,6 +57,10 @@
                            current version (8.0) of the WizardWrx .NET API. The
                            library versions are now leveled up, and will stay so
                            for the foreseeable future.
+
+    2021/05/02 8.0.533 DAG Build against the most recent WizardWrx .NET API
+                           library constellation, and add the ChangeLog to the
+                           NuGet package.
     ============================================================================
 */
 
@@ -88,5 +98,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion ( "8.0.531.0" )]
-[assembly: AssemblyFileVersion ( "8.0.531.0" )]
+[assembly: AssemblyVersion ( "8.0.533.0" )]
+[assembly: AssemblyFileVersion ( "8.0.533.0" )]
