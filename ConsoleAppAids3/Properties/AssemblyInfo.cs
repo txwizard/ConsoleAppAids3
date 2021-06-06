@@ -61,6 +61,9 @@
     2021/05/02 8.0.533 DAG Build against the most recent WizardWrx .NET API
                            library constellation, and add the ChangeLog to the
                            NuGet package.
+
+    2021/06/06 8.0.535 DAG Build against the most recent WizardWrx .NET API
+                           library constellation.
     ============================================================================
 */
 
@@ -98,5 +101,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion ( "8.0.533.0" )]
-[assembly: AssemblyFileVersion ( "8.0.533.0" )]
+[assembly: AssemblyVersion ( "8.0.535.0" )]
+[assembly: AssemblyFileVersion ( "8.0.535.0" )]

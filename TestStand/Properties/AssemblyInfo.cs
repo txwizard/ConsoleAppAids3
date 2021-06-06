@@ -43,6 +43,9 @@
                            WizardWrx .NET API asseblies, which finally fully
                            implement Semantic Version Numbering as of a few days
                            ago.
+
+    2021/06/06 8.0.535 DAG Build against the most recent WizardWrx .NET API
+                           library constellation.
     ============================================================================
 */
 
@@ -80,4 +83,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion ( "7.2.544.0" )]
+[assembly: AssemblyVersion ( "7.2.546.0" )]

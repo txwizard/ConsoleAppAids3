@@ -115,6 +115,9 @@
 
     2021/03/05 8.0     DAG LoadBasicErrorMessages replaces LoadErrorMessageTable
                            on the attached BaseStateManager object.
+
+    2021/06/06 8.0.535 DAG Build against the most recent WizardWrx .NET API
+                           library constellation.
     ============================================================================
 */
 

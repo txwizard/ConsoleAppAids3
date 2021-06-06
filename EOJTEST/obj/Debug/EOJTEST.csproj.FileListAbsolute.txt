@@ -63,7 +63,6 @@ F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj
 F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.csproj.CopyComplete
 F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.exe
 F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.pdb
-D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.csprojAssemblyReference.cache
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.csproj.CoreCompileInputs.cache
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.exe
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.pdb
@@ -92,3 +91,4 @@ D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.ASCIIInfo.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.AnyCSV.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.csproj.CopyComplete
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.csproj.AssemblyReference.cache

@@ -84,10 +84,10 @@ D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppA
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Debug\WizardWrx.Core.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Debug\WizardWrx.DLLConfigurationManager.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Debug\WizardWrx.FormatStringEngine.xml
-D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\obj\Debug\ConsoleAppAids3.csprojAssemblyReference.cache
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\obj\Debug\WizardWrx.Properties.Resources.resources
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\obj\Debug\ConsoleAppAids3.csproj.GenerateResource.cache
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\obj\Debug\ConsoleAppAids3.csproj.CoreCompileInputs.cache
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\obj\Debug\ConsoleAppAids3.csproj.CopyComplete
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\obj\Debug\WizardWrx.ConsoleAppAids3.dll
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\obj\Debug\WizardWrx.ConsoleAppAids3.pdb
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\obj\Debug\ConsoleAppAids3.csproj.AssemblyReference.cache
