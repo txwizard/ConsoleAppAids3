@@ -1,4 +1,4 @@
-# WizardWrx.ConsoleAppAids3 Change Log
+﻿# WizardWrx.ConsoleAppAids3 Change Log
 
 This file is a running history of fixes and improvements from version 7.0
 onwards. Changes are documented for the newest version first. Within each
@@ -9,9 +9,9 @@ version, classes are listed alphabetically.
 Build against the most recent WizardWrx .NET API library constellation.
 
 Going forward, this library will be periodically refreshed by building it
-against newer versions of the WizardWrx .NET API. If AssemblyInfo.cs and
-ChangeLog.md (this file) are unchanged, it is safe to assume that the only
-change is a refresh of its dependencies.
+against newer versions of the WizardWrx .NET API. If ChangeLog.md (this file) is
+unchanged, it is safe to assume that the only change is a refresh of its
+dependencies.
 
 # Version 8.0, Released 03/05/2021 18:55:45
 
