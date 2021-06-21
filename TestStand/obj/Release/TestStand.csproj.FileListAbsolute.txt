@@ -54,7 +54,6 @@ D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\b
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\bin\Release\WizardWrx.AnyCSV.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\bin\Release\WizardWrx.ASCIIInfo.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\bin\Release\WizardWrx.AssemblyUtils.xml
-D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\bin\Release\WizardWrx.BitMath.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\bin\Release\WizardWrx.Common.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\bin\Release\WizardWrx.ConsoleStreams.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\bin\Release\WizardWrx.Core.xml
