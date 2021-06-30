@@ -100,3 +100,4 @@ D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Release\EOJTEST.csproj.CopyComplete
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Release\EOJTEST.exe
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Release\EOJTEST.pdb
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Release\EOJTEST.csproj.AssemblyReference.cache
