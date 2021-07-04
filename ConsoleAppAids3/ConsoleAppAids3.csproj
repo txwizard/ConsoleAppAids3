@@ -99,29 +99,29 @@
     <Reference Include="WizardWrx.AnyCSV, Version=7.2.145.0, Culture=neutral, PublicKeyToken=39f6551a21db420a, processorArchitecture=MSIL">
       <HintPath>..\packages\WizardWrx.AnyCSV.7.2.145\lib\net20\WizardWrx.AnyCSV.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.ASCIIInfo, Version=8.0.140.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.ASCIIInfo.8.0.140\lib\net20\WizardWrx.ASCIIInfo.dll</HintPath>
+    <Reference Include="WizardWrx.ASCIIInfo, Version=8.0.143.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.ASCIIInfo.8.0.143\lib\net35-client\WizardWrx.ASCIIInfo.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.AssemblyUtils, Version=8.0.189.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.AssemblyUtils.8.0.189\lib\net35-client\WizardWrx.AssemblyUtils.dll</HintPath>
+    <Reference Include="WizardWrx.AssemblyUtils, Version=8.0.193.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.AssemblyUtils.8.0.193\lib\net35-client\WizardWrx.AssemblyUtils.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.BitMath, Version=4.3.125.29248, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.BitMath.4.3.125.29248\lib\net20\WizardWrx.BitMath.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.Common, Version=8.0.161.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.Common.8.0.161\lib\net20\WizardWrx.Common.dll</HintPath>
+    <Reference Include="WizardWrx.Common, Version=8.0.164.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.Common.8.0.164\lib\net35-client\WizardWrx.Common.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.ConsoleStreams, Version=8.0.249.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.ConsoleStreams.8.0.249\lib\net35-client\WizardWrx.ConsoleStreams.dll</HintPath>
+    <Reference Include="WizardWrx.ConsoleStreams, Version=8.0.253.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.ConsoleStreams.8.0.253\lib\net35-client\WizardWrx.ConsoleStreams.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.Core, Version=8.0.240.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.Core.8.0.240\lib\net35-client\WizardWrx.Core.dll</HintPath>
+    <Reference Include="WizardWrx.Core, Version=8.0.244.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.Core.8.0.244\lib\net35-client\WizardWrx.Core.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.DLLConfigurationManager, Version=8.0.278.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.DLLConfigurationManager.8.0.278\lib\net35-client\WizardWrx.DLLConfigurationManager.dll</HintPath>
+    <Reference Include="WizardWrx.DLLConfigurationManager, Version=8.0.282.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.DLLConfigurationManager.8.0.282\lib\net35-client\WizardWrx.DLLConfigurationManager.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.FormatStringEngine, Version=8.0.224.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.FormatStringEngine.8.0.224\lib\net20\WizardWrx.FormatStringEngine.dll</HintPath>
+    <Reference Include="WizardWrx.FormatStringEngine, Version=8.0.228.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.FormatStringEngine.8.0.228\lib\net35-client\WizardWrx.FormatStringEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
