@@ -1,4 +1,4 @@
-# WizardWrx.ConsoleAppAids3 ReadMe
+﻿# WizardWrx.ConsoleAppAids3 ReadMe
 
 The purpose of this class library is to expedite development of new character
 mode (Console) applications that target any version of the Microsoft .NET
@@ -68,7 +68,7 @@ libraries, `WizardWrx.EmbeddedTextFile.dll`, are copied into your project. Since
 the dependencies are also NuGet packages, the NuGet package manager adds them as
 dependencies, too.
 
-Detailed API documentation is at [https://txwizard.github.io/WizardWrx_ConsoleAppAids3](https://txwizard.github.io/WizardWrx_ConsoleAppAids3).
+Detailed API documentation is at [https://txwizard.github.io/ConsoleAppAids3/](https://txwizard.github.io/ConsoleAppAids3/).
 
 For those who just want to use them, and wish to forego the NuGet package, debug
 and release builds of the libraries, their dependent assemblies, and the unit

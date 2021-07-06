@@ -4,6 +4,13 @@ This file is a running history of fixes and improvements from version 7.0
 onwards. Changes are documented for the newest version first. Within each
 version, classes are listed alphabetically.
 
+# Version 8.0.533 Updated 07/06/2021
+
+Correct the documentation URL shown in the ReadMe file, which was missing a
+required trailing backslash.
+
+The repository is otherwise unchanged.
+
 # Version 8.0.533 Released 05/02/2021 03:05:40
 
 Build against the most recent WizardWrx .NET API library constellation.
