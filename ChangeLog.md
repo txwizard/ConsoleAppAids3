@@ -4,6 +4,35 @@ This file is a running history of fixes and improvements from version 7.0
 onwards. Changes are documented for the newest version first. Within each
 version, classes are listed alphabetically.
 
+# Version 8.0.551 Updated 04/08/2022
+
+Effective immediately, this library will no longer be updated as described
+in the change log entry for version 8.0.533, released 05/02/2021 because the
+practice is wasteful of storage space on GitHub and the NuGet Gallery, not to
+mention the amount of time and extra disk space occupied by endless backups
+and package refreshes.
+
+Since all dependencies are under my control, have dedicated NuGet packages and
+GitHub repositories, updates that do nothing but refresh the dependencies serve
+no practical purpose. It is simpler for everyone to follow instead one of two
+straightforward plans.
+
+1) Configure your NuGet Package Manager to always Get Latest by adding a
+   `config` node, inserting a `dependencyVersion` key, and setting its
+   value to `Highest`.
+
+2) Disable automatic package restore and limit updates to cases in which you
+   need a new feature or learn about a bug fix that affects your application.
+
+Though it promotes code stability, disabling automatic package restore does so
+at the cost of depriving you of automatic access to improvements. While this can
+in some cases be risky, in the case of the WizardWrx packages, over the last
+fifteen years, only one or two cases have arisen that required a breaking change
+and those handful of instances are prominently documented.
+
+Accrdingly, this is the last release that will be confined to up-to-date
+dependencies. All future releases will be feature updates or bug fixes.
+
 # Version 8.0.533 Updated 07/06/2021
 
 Correct the documentation URL shown in the ReadMe file, which was missing a
