@@ -614,6 +614,59 @@
             return FALSE.
             </returns>
         </member>
+        <member name="T:WizardWrx.Core.ByteArrayBase64Converters">
+            <summary>
+            This static class exposes methods that efficiently encode binary data as
+            Base64 byte arrays and converts such byte arrays into binary data in the
+            form of a new byte array or binary data written into a disk file.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.Core.ByteArrayBase64Converters.Base64EncodeBinaryFile(System.String)">
+            <summary>
+            Read an input file into a byte array of Base64 encoded characters
+            that represents its contents in a form that can be included in a
+            MIME encoded email message.
+            </summary>
+            <param name="pstrInputFileName">
+            Pass in the absolute or relative (to the Current Working Directory)
+            name of the file to read and encode into a byte array that represents
+            the Base64 encoded characters.
+            </param>
+            <returns>
+            The return value is a byte array that contains 4 characters for each
+            three bytes read from the input file.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.Core.ByteArrayBase64Converters.Base64DecodeByteArray2File(System.String,System.Byte[])">
+            <summary>
+            Decode byte array <paramref name="pabytBase64Characters"/> and write
+            the decoded bytes into file <paramref name="pstrFileName"/>.
+            </summary>
+            <param name="pstrFileName">
+            Specify the name (absolute or relative to the current working
+            directory) of the file into which to write the decoded bytes
+            represented by <paramref name="pabytBase64Characters"/>.
+            </param>
+            <param name="pabytBase64Characters">
+            Pass in a reference to the array of Base64 encoded bytes to be
+            decoded and saved into file <paramref name="pstrFileName"/>.
+            </param>
+        </member>
+        <member name="M:WizardWrx.Core.ByteArrayBase64Converters.Base64DecodeByteArray(System.Byte[])">
+            <summary>
+            Decode a byte array that represents a set of Base64 encoded
+            characters, returning a new byte array containing their decoded
+            representation.
+            </summary>
+            <param name="pabytBase64Characters">
+            Pass in a reference to the array of Base64 encoded bytes to be
+            decoded and returned.
+            </param>
+            <returns>
+            The return value is the byte array containing the Base64 decoded
+            bytes. Expect an array containing 3/4 as many elements as the input.
+            </returns>
+        </member>
         <member name="T:WizardWrx.Core.ByteArrayFormatters">
             <summary>
             The static methods in this class format byte arrays into strings of
@@ -2773,6 +2826,149 @@
             line.
             </summary>
         </member>
+        <member name="T:WizardWrx.Core.EnvTokenExpander">
+            <summary>
+            This class is implemented as a very lean Singleton.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.Core.EnvTokenExpander.ENV_STR_DLM">
+            <summary>
+            For reference, the character that delminits an environment string
+            token is exposed as a public constant.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.Core.EnvTokenExpander.GetTokenExpander">
+            <summary>
+            All classes that want to call methods on this object must first call
+            this method.
+            </summary>
+            <returns>
+            A reference to the single instance of this object, which all
+            consumers share.
+            </returns>
+            <remarks>
+            This pseudo-constructor must be declared static. Its only real job
+            is to return a reference to itself, personified as _TheInstance. 
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.Core.EnvTokenExpander.Acquire">
+            <summary>
+            Rather than have the caller lock the object, I provide this pair of
+            methods that create a similar effect, by causing a competing caller
+            of an object in a Frozen state to told to wait its turn.
+            </summary>
+            <returns>
+            TRUE, unless the object is already frozen by another thread.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.Core.EnvTokenExpander.ContainsEnvToken(System.String)">
+            <summary>
+            Returns TRUE if the input string contains at least one environment
+            string token.
+            </summary>
+            <param name="pstrIn">
+            String to evaluate for presence of environment string tokens.
+            </param>
+            <returns>
+            TRUE if the string contains at least one environment string token.
+            Otherwise return FALSE.
+            </returns>
+            <remarks>
+            An environment string token is defined as a substring delimited
+            by '%' charagers, which are symbolically represented by
+            ENV_STR_DLM in this class.
+            
+            Because this is a public method of a singleton, it cannot be marked
+            Static. If it were so marked, it would lose access to the private
+            storage that motivated me to finally sit down and figure out how to
+            implement the Singleton pattern in C#.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.Core.EnvTokenExpander.ExtractEnvToken(System.String)">
+            <summary>
+            If the input string contains an enviroment token, extract and return
+            it.
+            </summary>
+            <param name="pstrIn">
+            String from which to extract an environment variable token.
+            </param>
+            <returns>
+            String containing the token, minus its delimiters.
+            </returns>
+            <remarks>
+            An environment string token is defined as a substring delimited
+            by '%' charagers, which are symbolically represented by
+            ENV_STR_DLM in this class.
+            
+            Since this method returns the string without its delimiters, pass it
+            to static method TokenizeEnvVarName to convert it to a string that
+            can be passed into a Replace method, to replace the token with its
+            value, which you got by calling Environment.GetEnvironmentVariable.
+            
+            Because this is a public method of a singleton, it cannot be marked
+            Static. If it were so marked, it would lose access to the private
+            storage that motivated me to finally sit down and figure out how to
+            implement the Singleton pattern in C#.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.Core.EnvTokenExpander.Free">
+            <summary>
+            Rather than have the caller lock the object, I provide this pair of
+            methods that create a similar effect, by causing a competing caller
+            of an object in a Frozen state to be thrown and exception.
+            </summary>
+            <returns>
+            Always True.
+            </returns>
+        </member>
+        <member name="P:WizardWrx.Core.EnvTokenExpander.Busy">
+            <summary>
+            Returns TRUE if the EnvTokenExpander is Busy, which means that a thread
+            has acquired it, by calling its Acquire method.
+            </summary>
+            <remarks>
+            By acquiring the EnvTokenExpander, a thread can shave a tad off the
+            processing needed to find the first occurrance of a token, in order
+            to extract it, if it intends to call ContainsEnvToken before calling
+            ExtractEnvToken.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.Core.EnvTokenExpander.ExpandEnvironmentTokens(System.String,System.String)">
+            <summary>
+            Given a string that contains one or more environment string tokens,
+            expand the tokens, returning the resulting string.
+            </summary>
+            <param name="pstrIn">
+            String to parse and expand environment string tokens.
+            </param>
+            <param name="pstrDefault">
+            Optional string to return as default if an undefined (empty)
+            environment variable is encountered in input string
+            <paramref name="pstrIn"/>.
+            </param>
+            <returns>
+            The return value is string <paramref name="pstrIn"/> with its
+            environment tokens expanded.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.Core.EnvTokenExpander.TokenizeEnvVarName(System.String)">
+            <summary>
+            Given a string, assumed to be the name of an environment string,
+            return it with the expected escape ("quote") characters appended to
+            both ends.
+            </summary>
+            <param name="pstrIn">
+            String to turn into an environment variable token.
+            </param>
+            <returns>
+            String pstrIn, with the escape characters (%) appended to both ends.
+            </returns>
+            <remarks>
+            Use this method to turn the output of ExtractEnvToken into a string
+            that can be fed to a Replace method to substitute the value of the
+            environment variable for its token.
+            </remarks>
+        </member>
         <member name="T:WizardWrx.Core.PropertyDefaults">
             <summary>
             Expose the AppSettingsSection associated with this DLL. 
@@ -3852,6 +4048,16 @@
               Looks up a localized string similar to {0}{3}    Input Value   = {1}{3}    Expected Type = {2}{3}.
             </summary>
         </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_ENVIRONMENT_TOKEN_UNDEFINED">
+            <summary>
+              Looks up a localized string similar to Environment string, {0}, used in the definition of ErrorLogFile, {1}, is undefined..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_ENVIRONMENT_UNAVAILABLE">
+            <summary>
+              Looks up a localized string similar to Can&apos;t acquire the EnvTokenExpander..
+            </summary>
+        </member>
         <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_EXCEPTION_IN_DEFINE_NEW_SWITCH">
             <summary>
               Looks up a localized string similar to An {0} Exception was caught while attempting to define a switch named {1} with a default value of {2}..
@@ -3867,6 +4073,11 @@
               Looks up a localized string similar to Message from Exception Thrown and Logged: {0}.
             </summary>
         </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_ILLEGAL_METHOD_CALL">
+            <summary>
+              Looks up a localized string similar to ContainsEnvToken method cannot be called twice while the EnvTokenExpander is frozen. Extract the token, or thaw the EnvTokenExpander..
+            </summary>
+        </member>
         <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_INTERNAL_ERROR_UNSUPP_ALG">
             <summary>
               Looks up a localized string similar to An internal error has been detected in routine ReformatSysDate.{2}An unexpected FormattingAlgorithm of {0} has been encountered while processing the following input string:{2}{1}.
@@ -3875,6 +4086,11 @@
         <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_INV_TZINFO">
             <summary>
               Looks up a localized string similar to CORRUPTED SYSTEM REGISTRY: The GetDisplayTimeZone method found the specified key, but the corresponding Registry key is corrupted.{1}                           Specified ID = {0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_INVALID_GUARD_STRING_PARAMETERS">
+            <summary>
+              Looks up a localized string similar to String extension method GuardStringIfNeeded was invoked with invalid arguments.{3}    String value = {0}{3}    Integer representation of delimiter character = {1}{3}    Integer representation of guard character = {2}.
             </summary>
         </member>
         <member name="P:WizardWrx.Core.Properties.Resources.ERRMSG_MISSING_CONFIG_FILE">
@@ -4166,6 +4382,85 @@
             <summary>
               Looks up a localized string similar to &quot;                                                                                                InnerException                 = [null].
             </summary>
+        </member>
+        <member name="T:WizardWrx.DateTimeExtensions">
+            <summary>
+            This class implements two overloads of DateOfMostRecentWeekdayDay, a
+            static method, implemented as an extension method on the System.DateTime
+            type. The two overloads accept their one externally visible argment as
+            either a DayOfWeek enumeration member or its integral value.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.DateTimeExtensions.DateOfMostRecentWeekday(System.DateTime,System.DayOfWeek)">
+            <summary>
+            Given a date and a day of the week, return the date of the most
+            recent instance of the specified day of the week.
+            </summary>
+            <param name="pdtmThisDate">
+            Specify the DateTime to serve as the reference point against which
+            calculate the most recent weekday given by <paramref name="penmDayOfWeek"/>.
+            </param>
+            <param name="penmDayOfWeek">
+            Specify the weekday in terms of the DayOfWeek enumeration for which the
+            weekday nearest to <paramref name="pdtmThisDate"/> is desired.
+            </param>
+            <returns>
+            The return value is the date, represented as a DateTime object, for
+            which the DayOfWeek property is the value specified by
+            <paramref name="penmDayOfWeek"/> that is the most recent instance of
+            the specified weekday that is on or before the date specified by
+            <paramref name="pdtmThisDate"/>.
+            </returns>
+            <example>
+            When <paramref name="pdtmThisDate"/> is 03/08/2022 and
+            <paramref name="penmDayOfWeek"/> is Sunday, the return value is
+            Sunday, 03/06/2022.
+            </example>
+            <remarks>
+            Since enumerated types can be freely converted to and from integers,
+            and a program stands a fair chance of having the weekday specified
+            in terms of either, two versions of this method are offered. Since
+            integers are easier to manipulate, the overload that accepts the
+            integer representation of the weekday implements both; the overload
+            that takes the enumeration casts it to integer and calls the other
+            overload, through which it returns.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.DateTimeExtensions.DateOfMostRecentWeekday(System.DateTime,System.Int32)">
+            <summary>
+            Given a date and a day of the week, return the date of the most
+            recent instance of the specified day of the week.
+            </summary>
+            <param name="pdtmThisDate">
+            Specify the DateTime to serve as the reference point against which
+            calculate the most recent weekday given by <paramref name="pintDayOfWeekIndex"/>.
+            </param>
+            <param name="pintDayOfWeekIndex">
+            Specify the weekday in terms of the integer that maps to the intended
+            DayOfWeek enumeration value for which the weekday nearest to
+            <paramref name="pdtmThisDate"/> is desired.
+            </param>
+            <returns>
+            The return value is the date, represented as a DateTime object, for
+            which the DayOfWeek property is the value specified as integer
+            <paramref name="pintDayOfWeekIndex"/> that is the most recent instance of
+            the specified weekday that is on or before the date specified by
+            <paramref name="pdtmThisDate"/>.
+            </returns>
+            <example>
+            When <paramref name="pdtmThisDate"/> is 03/08/2022 and
+            <paramref name="pintDayOfWeekIndex"/> is Sunday, the return value is
+            Sunday, 03/06/2022.
+            </example>
+            <remarks>
+            Since enumerated types can be freely converted to and from integers,
+            and a program stands a fair chance of having the weekday specified
+            in terms of either, two versions of this method are offered. Since
+            integers are easier to manipulate, the overload that accepts the
+            integer representation of the weekday implements both; the overload
+            that takes the enumeration casts it to integer and calls the other
+            overload, through which it returns.
+            </remarks>
         </member>
         <member name="T:WizardWrx.Cryptography.DigestFile">
             <summary>
@@ -5389,14 +5684,6 @@
             to the static read only property that returns a reference to the one and
             only instance.
             </remarks>
-        </member>
-        <member name="F:WizardWrx.GenericSingletonBase`1.PRIVATE_CTOR_OK">
-            <summary>
-            The static GenericSingletonBase constructor uses this flag as the
-            second of two arguments to Activator.CreateInstance, to tell it that
-            a private constructor is acceptable, which meets a requirement of
-            the Singleton design pattern.
-            </summary>
         </member>
         <member name="M:WizardWrx.GenericSingletonBase`1.#ctor">
             <summary>
@@ -8002,6 +8289,34 @@
              returned.
              </remarks>
         </member>
+        <member name="M:WizardWrx.StringExtensions.GuardStringIfNeeded(System.String,System.Char,System.Char)">
+            <summary>
+            Return a new string that is enclosed in a specified quoting
+            character, defaulting to a double quote, if the input string
+            contains a specified delimiter character, defaulting to a comma.
+            </summary>
+            <param name="pstrThisString">
+            Pass in a reference to a string, which may be a null reference or a
+            pointer to the empty string.
+            </param>
+            <param name="pchrDelimiter">
+            Pass in the delimiter character, which cannot be the NULL character,
+            and must differ from the <paramref name="pchrGuard"/> character.
+            </param>
+            <param name="pchrGuard">
+            Pass in the guard character (the quoting character), which cannot be
+            the NULL character, and must differ from the
+            <paramref name="pchrDelimiter"/> character.
+            </param>
+            <returns>
+            When <paramref name="pstrThisString"/> contains at least one instance
+            of the <paramref name="pchrDelimiter"/> character, the return value
+            is <paramref name="pstrThisString"/> enclosed in <paramref name="pchrGuard"/>
+            characters. Otherwise, the string is returned as is, substituting
+            the empty string when <paramref name="pstrThisString"/> is a NULL
+            reference.
+            </returns>
+        </member>
         <member name="M:WizardWrx.StringExtensions.LeftPadNChars(System.String,System.Int32)">
             <summary>
             Left pad the string with a specified number of spaces.
@@ -9286,6 +9601,20 @@
             16:17:30
             </example>
         </member>
+        <member name="F:WizardWrx.SysDateFormatters.TZ_NAME_FULL">
+            <summary>
+            Specify this constant as the pfAbbreviateTZName argument value to
+            method GetDisplayTimeZone to explicitly elicit the default (legacy)
+            behavior of returning the system-defined (spelled out) time zone
+            name.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.SysDateFormatters.TZ_NAME_ABBR">
+            Specify this constant as the pfAbbreviateTZName argument value to
+            method GetDisplayTimeZone to elicit the new behavior of returning
+            the abbreviated time zone name generated from the system-defined
+            (spelled out) time zone name.
+        </member>
         <member name="M:WizardWrx.SysDateFormatters.FormatDateForShow(System.DateTime)">
             <summary>
             Use my standard format string for displaying date stamps in
@@ -9329,7 +9658,7 @@
             rendered according to constant STANDARD_DISPLAY_TIME_FORMAT.
             </returns>
         </member>
-        <member name="M:WizardWrx.SysDateFormatters.GetDisplayTimeZone(System.DateTime,System.String)">
+        <member name="M:WizardWrx.SysDateFormatters.GetDisplayTimeZone(System.DateTime,System.String,System.Boolean)">
             <summary>
             Given a DateTime and a system time zone ID string, return the
             appropriate text to display, depending on whether the specified time
@@ -9342,6 +9671,21 @@
             </param>
             <param name="pstrTimeZoneID">
             Specify a valid time zone ID string. Please see the Remarks.
+            </param>
+            <param name="pfAbbreviateTZName">
+            <para>
+            Specify TZ_NAME_ABBR (Boolean True) to cause the method to return
+            the abbreviated time zone name that it constructs from the full
+            (spelled out) name that is the system default.
+            </para>
+            <para>
+            You may also specify TZ_NAME_FULL to explicitly cause the full time
+            zone name to be returned.
+            </para>
+            <para>
+            If this argument is omitted, the full time zone name is returned, so
+            that this method is backwards compatible.
+            </para>
             </param>
             <returns>
             If the function succeeds, the return value is the appropriate string
@@ -9684,6 +10028,121 @@
             <returns>
             Array of strings, containing exactly one element, which contains
             the single input string.
+            </returns>
+        </member>
+        <member name="T:WizardWrx.TimeZoneInfoExtensions">
+            <summary>
+            Extend the sealed TimeZoneInfo class to support abbreviated time zone
+            names.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.TimeZoneInfoExtensions.AbbreviateDaylightName(System.TimeZoneInfo)">
+            <summary>
+            Get the abbreviated time zone Daylight Name.
+            </summary>
+            <param name="ptzi">
+            Specify the TimeZoneInfo object to process. This implicit paramteer
+            is supplied by the runtime when the extension method is called.
+            </param>
+            <returns>
+            The abbreviated name is constructed from the name specified on the
+            DaylightName property on the TimeZoneInfo object by extracting from
+            it the first letter of each word.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.TimeZoneInfoExtensions.AbbreviateDisplayName(System.TimeZoneInfo)">
+            <summary>
+            Get the abbreviated time zone Display Name.
+            </summary>
+            <param name="ptzi">
+            Specify the TimeZoneInfo object to process. This implicit paramteer
+            is supplied by the runtime when the extension method is called.
+            </param>
+            <returns>
+            <para>
+            The abbreviated name is constructed from the name specified on the
+            DisplayName property on the TimeZoneInfo object by extracting from
+            it the first letter of each word.
+            </para>
+            <para>
+            The Display Name sees much less use because it includes the UTC
+            offset, which confuses users who are unfamiliar with the details of
+            UTC in particular and time zones in general.
+            </para>
+            </returns>
+        </member>
+        <member name="M:WizardWrx.TimeZoneInfoExtensions.AbbreviatedStandardName(System.TimeZoneInfo)">
+            <summary>
+            Get the abbreviated time zone Standard Name.
+            </summary>
+            <param name="ptzi">
+            Specify the TimeZoneInfo object to process. This implicit paramteer
+            is supplied by the runtime when the extension method is called.
+            </param>
+            <returns>
+            The abbreviated name is constructed from the name specified on the
+            StandardName property on the TimeZoneInfo object by extracting from
+            it the first letter of each word.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.TimeZoneInfoExtensions.GetCurrentTimeZoneName(System.TimeZoneInfo,System.DateTime,System.Boolean)">
+            <summary>
+            Given a DateTime object to establish whether to display the Stanadrd
+            Name or the Daylight Name, return the appropriate string for the
+            part of the year that it represents.
+            </summary>
+            <param name="ptzi">
+            Specify the TimeZoneInfo object to process. This implicit paramteer
+            is supplied by the runtime when the extension method is called.
+            </param>
+            <param name="pdtmDateTime">
+            The IsDaylightSavingTime method on the <paramref name="ptzi"/>
+            instance establishes the correct string to return for the time that
+            it represents, assuming that its DateTimeKind property is Local or
+            that it is implicitly interpreted as such.
+            </param>
+            <param name="pfAbbreviate">
+            When True, this flag causes the abbreviated time zone name to be
+            displayed. Otherwise, the appropriate string from the extended
+            TimeZoneInfo instance is returned.
+            </param>
+            <returns>
+            The return value is the standard or daylight time zone name string
+            or abbreviation that represents the time specified by argument
+            <paramref name="pdtmDateTime"/> as directed by argument
+            <paramref name="pfAbbreviate"/>.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.TimeZoneInfoExtensions.AbbreviateAnyTZName(System.String)">
+            <summary>
+            Construct the abbreviated time zone name.
+            </summary>
+            <param name="pstrTimeZoneName">
+            This string specifies one of the three time zone name properties on
+            the TimeZoneInfo object that was passed into the method that called
+            it.
+            </param>
+            <returns>
+            <para>
+            The abbreviated name is constructed from the name specified on the
+            StandardName property on the TimeZoneInfo object by extracting from
+            it the first letter of each word.
+            </para>
+            <para>
+            Two special cases exist.
+            </para>
+            <list type="number">
+            <item>
+            Regional time zones (e .g., Mexico) display the region in
+            parentheses. The abbreviations enclose the first character of the
+            region name in parentheses.
+            </item>
+            <item>
+            Time zones that are known only by their UTC offsets have names like
+            "UTC+11" that are abbreviated as "U+11" by taking the plus character
+            and everything that follows it.
+            </item>
+            </list>
             </returns>
         </member>
     </members>

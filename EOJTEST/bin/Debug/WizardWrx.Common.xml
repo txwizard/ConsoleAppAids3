@@ -161,6 +161,53 @@
             </remarks>
             <seealso cref="M:WizardWrx.ArrayInfo.IndexFromOrdinal(System.Int32)"/>
         </member>
+        <member name="M:WizardWrx.ArrayInfo.RemoveAt``1(``0[],System.Int32)">
+            <summary>
+            This method removes the element at index (subscript) <paramref name="pintIndex"/>
+            from array <paramref name="parr"/>.
+            </summary>
+            <typeparam name="T">
+            The type parameter is unconstrained, since the relevant concern is
+            that the input is an array.
+            </typeparam>
+            <param name="parr">
+            Specify the array from which the element at subscript <paramref name="pintIndex"/>
+            should be removed.
+            </param>
+            <param name="pintIndex">
+            Specify the zero-based index (subscript) of the element to be
+            removed from array <paramref name="parr"/>.
+            </param>
+            <returns>
+            The return value is a new array of type T from which the element at
+            subscript <paramref name="pintIndex"/> has been removed.
+            </returns>
+            <example>
+            <para>
+            Assume an array that contains at least 5 elements, so that 4 is a
+            valid index (subscript).
+            </para>
+            astrArrayOfStrings = astrArrayOfStrings.RemoveAt ( 4 );
+            <para>
+            As is true of string objects, which are also immutable, you must
+            return into a new variable by using an assignment statement. Note,
+            however, that you may reuse the variable name just as you might with
+            an extension method on System.String.
+            </para>
+            </example>
+            <remarks>
+            <para>
+            This method is implemented as an extension method.
+            </para>
+            <para>
+            As mentioned by the article cited herein, since arrays are immutable
+            objects, the only way to plysically remove an element from it is by
+            creating a new array and copying into it every element except the
+            one to be excluded.
+            </para>
+            </remarks>
+            <see href="https://stackoverflow.com/questions/34712363/how-to-remove-an-element-from-an-array-in-c-sharp#:~:text=Since%20arrays%20are%20immutable%20in%20C%23%2C%20you%20can%27t,call%20it%20like%20that%3A%20myarr%20%3D%20myarr.RemoveAt%20%28index%29%3B"/>
+        </member>
         <member name="T:WizardWrx.CSVFileInfo">
             <summary>
             Use these constants and service routines to simplify working with CSV
@@ -3769,6 +3816,12 @@
             <seealso cref="F:WizardWrx.SpecialStrings.STRING_SPLIT_CARRIAGE_RETURN"/>
             <seealso cref="F:WizardWrx.SpecialStrings.STRING_SPLIT_LINEFEED"/>
         </member>
+        <member name="F:WizardWrx.SpecialCharacters.MINUS">
+            <summary>
+            Use this character anywhere in your code that requires a plus sign
+            that represents that symbol explicitly as a character.
+            </summary>
+        </member>
         <member name="F:WizardWrx.SpecialCharacters.NONBREAKING_SPACE_CHAR">
             <summary>
             The non-breaking space character doesn't print; although the Unicode
@@ -3827,6 +3880,10 @@
             <seealso cref="F:WizardWrx.SpecialCharacters.SEMICOLON"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.TAB_CHAR"/>
             <seealso cref="F:WizardWrx.SpecialCharacters.UNDERSCORE_CHAR"/>
+        </member>
+        <member name="F:WizardWrx.SpecialCharacters.PLUS">
+            Use this character anywhere in your code that requires a minus sign
+            that represents that symbol explicitly as a character.
         </member>
         <member name="F:WizardWrx.SpecialCharacters.QUESTION_MARK">
             <summary>
@@ -4372,6 +4429,7 @@
             wanted th use a real constant.
             </remarks>
             <seealso cref="F:WizardWrx.SpecialCharacters.SPACE_CHAR"/>
+            <seealso cref="F:WizardWrx.SpecialStrings.TWO_SPACES"/>
         </member>
         <member name="F:WizardWrx.SpecialStrings.SPACING_TEMPLATE">
             <summary>
@@ -4421,6 +4479,12 @@
             </summary>
             <seealso cref="F:WizardWrx.SpecialCharacters.TAB_CHAR"/>
         </member>
+        <member name="F:WizardWrx.SpecialStrings.TWO_SPACES">
+            <summary>
+            Render two back-to-back spaces.
+            </summary>
+            <seealso cref="F:WizardWrx.SpecialStrings.SPACE_CHAR"/>
+        </member>
         <member name="F:WizardWrx.SpecialStrings.UNDERSCORE_CHAR">
             <summary>
             This is one of many single characters that are frequently needed as
@@ -4440,6 +4504,12 @@
             <summary>
             Default token terminator string used by the version of public static
             method, MakeToken, which takes one argument.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.StringTricks.MAXIMUM_CHARACTERS_TO_DISPLAY">
+            <summary>
+            Take this as the default value of the second argument to 
+            TruncateValueToOneLine.
             </summary>
         </member>
         <member name="M:WizardWrx.StringTricks.AdjustNumberOfNoun(System.UInt32,System.String,System.String,System.String)">
@@ -4788,6 +4858,40 @@
             argument pstrFieldName.
             </returns>
         </member>
+        <member name="M:WizardWrx.StringTricks.ParseCommentInHTMLComment(System.String)">
+             <summary>
+             Extract parameters, expressed as key-value pairs, from a standard
+             HTML comment.
+             </summary>
+             <param name="pstrInput">
+             String containing a well formed HTML comment, surrounding the
+             key-value pairs. If the string is not a well formed HTML comment,
+             with a single space between the comment delimiters and the body,
+             or the string is null or empty, the returned collection is empty.
+             </param>
+             <returns>
+             A NameValueCollection of parameter names and values, which may be
+             empty, but is guaranteed to be returned, empty or not.
+             </returns>
+             <example>
+             <code>
+             Parse this: &lt;!-- ForPage=default;UseTable=False --&gt;
+            
+             Return this:
+            
+            			=======================
+            			Name		Value
+            			-----------	-----------
+            			ForPage		default
+            			UseTable	False
+            			=======================
+             </code>
+             <para>The returned NameValueCollection contains two members.</para>
+             <para>Since this method guarantees to return an initialized
+             NameValueCollection, the empty collection is allocated by the first
+             statement, and is unconditionally returned by the last statement.</para>
+             </example>
+        </member>
         <member name="M:WizardWrx.StringTricks.QuoteString(System.String)">
             <summary>
             Append a quote character to both ends of a string, unless it is
@@ -5032,39 +5136,32 @@
              object in the pnvcList OR the pdctDefaults collection preserved.
              </returns>
         </member>
-        <member name="M:WizardWrx.StringTricks.ParseCommentInHTMLComment(System.String)">
-             <summary>
-             Extract parameters, expressed as key-value pairs, from a standard
-             HTML comment.
-             </summary>
-             <param name="pstrInput">
-             String containing a well formed HTML comment, surrounding the
-             key-value pairs. If the string is not a well formed HTML comment,
-             with a single space between the comment delimiters and the body,
-             or the string is null or empty, the returned collection is empty.
-             </param>
-             <returns>
-             A NameValueCollection of parameter names and values, which may be
-             empty, but is guaranteed to be returned, empty or not.
-             </returns>
-             <example>
-             <code>
-             Parse this: &lt;!-- ForPage=default;UseTable=False --&gt;
+        <member name="M:WizardWrx.StringTricks.StrFill(System.Char,System.Int32)">
+            <summary>
+            Return a string composed of a specified number of a specified
+            character.
+            </summary>
+            <param name="pchr">
+            Specify the character with which to fill the string, which may be
+            anything except the null character.
+            </param>
+            <param name="pintCount">
+            Specify how many characters should be in the returned string.
+            </param>
+            <returns>
+            If the function succeeds, the return value is a string composed of a
+            specified number of a specified character.
             
-             Return this:
+            If pintCount is less than 1, the return value is a null reference.
             
-            			=======================
-            			Name		Value
-            			-----------	-----------
-            			ForPage		default
-            			UseTable	False
-            			=======================
-             </code>
-             <para>The returned NameValueCollection contains two members.</para>
-             <para>Since this method guarantees to return an initialized
-             NameValueCollection, the empty collection is allocated by the first
-             statement, and is unconditionally returned by the last statement.</para>
-             </example>
+            If <paramref name="pchr"/> is the null character, the return value
+            is the empty string.
+            </returns>
+            <remarks>
+            Reserving both the empty string and the null reference for different
+            input conditions permits complete diagnostic reporting without
+            throwing any exceptions.
+            </remarks>
         </member>
         <member name="M:WizardWrx.StringTricks.Truncate(System.String,System.Int32)">
              <summary>
@@ -5092,6 +5189,30 @@
             
              Regardless, the return value is a new System.String object.
              </returns>
+        </member>
+        <member name="M:WizardWrx.StringTricks.TruncateValueToOneLine(System.Object,System.Int32)">
+            <summary>
+            The name says it pretty well; truncate the string representation of
+            <paramref name="pobjValueToDisplay"/> so that it contains only the
+            first line of text.
+            </summary>
+            <param name="pobjValueToDisplay">
+            Pass in the object for which a string representation is required.
+            </param>
+            <param name="pintMaxLengthOfOneLine">
+            <para>
+            When specified, this optional value is the maximun number of
+            characters to display.
+            </para>
+            <para>
+            This limit applies to all string represenntations, regardless of
+            whether they contain embedded newline characters that already cause
+            them to be truncated.
+            </para>
+            </param>
+            <returns>
+            The return value is a string that occupies no more than one line.
+            </returns>
         </member>
         <member name="T:WizardWrx.Common.Properties.Resources">
             <summary>
@@ -5202,6 +5323,11 @@
         <member name="P:WizardWrx.Common.Properties.Resources.ERRMSG_RUNTIME">
             <summary>
               Looks up a localized string similar to A run-time exception has occurred..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.ERRMSG_STRING_CONTAINS_ONLY_WHITESPACE">
+            <summary>
+              Looks up a localized string similar to The input string is invalid because it contains only whitespace characters..
             </summary>
         </member>
         <member name="P:WizardWrx.Common.Properties.Resources.ERRMSG_SUCCESS">
@@ -5357,6 +5483,11 @@
         <member name="P:WizardWrx.Common.Properties.Resources.STACK_TRACE_ENTRY_PREFIX">
             <summary>
               Looks up a localized string similar to    at .
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Common.Properties.Resources.VALUE_IS_NULL">
+            <summary>
+              Looks up a localized string similar to [null].
             </summary>
         </member>
         <member name="P:WizardWrx.Common.Properties.Resources.VERSION_STRING_PART_BUILD_ABBR">

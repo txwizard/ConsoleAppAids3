@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppAids3", "ConsoleAppAids3\ConsoleAppAids3.csproj", "{5A6766D8-2A8E-4F03-9C82-C42C5537F73E}"
 EndProject
@@ -13,6 +13,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EOJTEST", "EOJTEST\EOJTEST.csproj", "{130A75E5-50FC-4212-8B25-C573FFD45518}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5A6766D8-2A8E-4F03-9C82-C42C5537F73E} = {5A6766D8-2A8E-4F03-9C82-C42C5537F73E}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{32905832-CCDC-4DBB-80F2-EF0EAC03B5E7}"
+	ProjectSection(SolutionItems) = preProject
+		ChangeLog.md = ChangeLog.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
@@ -62,5 +68,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B8F5EB36-BABB-425C-9029-12B0EE480BC6}
 	EndGlobalSection
 EndGlobal

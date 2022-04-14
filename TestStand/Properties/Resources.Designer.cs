@@ -19,7 +19,7 @@ namespace TestStand.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -93,6 +93,15 @@ namespace TestStand.Properties {
         internal static string ERRMSG_RUNTIME {
             get {
                 return ResourceManager.GetString("ERRMSG_RUNTIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a simulated run-time error, intended to test a new capability of the NormalExit subroutine..
+        /// </summary>
+        internal static string ERRMSG_SIMULATED_RUN_TIME_ERROR {
+            get {
+                return ResourceManager.GetString("ERRMSG_SIMULATED_RUN_TIME_ERROR", resourceCulture);
             }
         }
         

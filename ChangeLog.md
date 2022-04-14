@@ -4,6 +4,23 @@ This file is a running history of fixes and improvements from version 7.0
 onwards. Changes are documented for the newest version first. Within each
 version, classes are listed alphabetically.
 
+# Version 8.1.554 Updated 04/13/2022
+
+Instance method `NormalExit` on a `ConsoleAppStateManager` object neglected to
+print the message that corresponds to the status code from the table of static
+error messages. Hence, relying on this method left you with a status code
+(somewhat useful) but no explanatory message, nor any evidence of the nonzero
+status code in the console stream.
+
+Worse yet, investigating this issue exposed a genuine bug in instance method
+`LoadBasicErrorMessages` on the same object that caused it to leave the table in
+the `StateManager` object that was expected to store the messages to be left
+empty, meaning that no code that relied on `LoadBasicErrorMessages` to initialize
+the table of error messages would never be able to display an error message.
+
+The way the routine that displays error messages implemented was implemented led
+to a silent failure.
+
 # Version 8.0.551 Updated 04/08/2022
 
 Effective immediately, this library will no longer be updated as described

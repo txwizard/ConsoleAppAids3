@@ -10,7 +10,7 @@
     	<projectUrl>https://github.com/txwizard/ConsoleAppAids3</projectUrl>
 	    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     	<description>$description$</description>
-	    <releaseNotes>This update of the WizardWrx.ConsoleAppAids3 library is built against the latest versions of its dependent assemblies, and eliminates the redundant ReadMe.txt file.</releaseNotes>
+	    <releaseNotes>Instance method NormalExit on a ConsoleAppStateManager object neglected to print the message that corresponds to the status code from the table of static error messages. Hence, relying on this method left you with a status code (somewhat useful) but no explanatory message, nor any evidence of the nonzero status code in the console stream.</releaseNotes>
     	<copyright>$copyright$</copyright>
     	<tags>Constrained console scrolling, specialized console application management</tags>
 	</metadata>

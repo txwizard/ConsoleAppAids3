@@ -64,6 +64,13 @@
 
     2021/06/06 8.0.535 DAG Build against the most recent WizardWrx .NET API
                            library constellation.
+
+    2022/04/08 8.0.552 DAG Quit performing the periodic dependency graph update.
+                           See the corresponding entry in the change log.
+
+    2022/04/08 8.1.554 DAG No sooner do I quit publishing the dependency graph
+                           refresh than I discover a legitimate defect that
+                           warrants an authentic update of the code base.
     ============================================================================
 */
 
@@ -79,7 +86,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration ( "" )]
 [assembly: AssemblyCompany ( "David A. Gray" )]
 [assembly: AssemblyProduct ( "WizardWrx .NET Utility Libraries" )]
-[assembly: AssemblyCopyright ( "Copyright © 2012-2021, David A. Gray" )]
+[assembly: AssemblyCopyright ( "Copyright © 2012-2022, David A. Gray" )]
 [assembly: AssemblyTrademark ( "This library is distributed under a three-clause BSD license." )]
 [assembly: AssemblyCulture ( "" )]
 
@@ -101,5 +108,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion ( "8.0.552.0" )]
-[assembly: AssemblyFileVersion ( "8.0.552.0" )]
+[assembly: AssemblyVersion ( "8.1.557.0" )]
+[assembly: AssemblyFileVersion ( "8.1.557.0" )]

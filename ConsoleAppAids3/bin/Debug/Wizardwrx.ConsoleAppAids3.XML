@@ -442,6 +442,23 @@
             its own. Theoretically, every other overload could call this one.
             </remarks>
         </member>
+        <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ReportNonZeroStatusCode(System.Int32)">
+            <summary>
+            Unless status code <paramref name="pintStatusCode"/> is
+            ERROR_SUCCESS (zero), display the corresponding static error message
+            along with the status code value.
+            </summary>
+            <param name="pintStatusCode">
+            Unless this integer, which represents the program exit code, ia
+            equal to ERROR_SUCCESS (zero), display the corresponding message
+            from the AppErrorMessages table, along with the status code.
+            </param>
+            <remarks>
+            Rather than have every routine that calls this routine test
+            <paramref name="pintStatusCode"/>, the test is delegated to this
+            routine, which returns wihtout taking action when its value is zero.
+            </remarks>
+        </member>
         <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ComputeMessageCount(System.String[])">
             <summary>
             The message count is always at least 2. Whem <paramref name="pastrAdditionalMessages"/>

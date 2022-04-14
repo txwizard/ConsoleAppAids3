@@ -118,6 +118,22 @@
 
     2021/06/06 8.0.535 DAG Build against the most recent WizardWrx .NET API
                            library constellation.
+
+    2022/04/13 8.1.555 DAG 1) Method NormalExit on a ConsoleAppStateManager 
+                              object neglected to print the message that
+                              corresponds to the status code from the table of
+                              static error messages. Hence, relying on this
+                              method left you with a status code (somewhat
+                              useful) but no explanatory message, nor any
+                              evidence of the nonzero status code in the console
+                              stream.
+
+                           2) Fixing the above-noted issue exposed a bug that
+                              caused the new LoadBasicErrorMessages method that
+                              was intended to supersede the StateManager
+                              LoadErrorMessageTable method to throw away the
+                              table that it built, leaving the message table
+                              perpertually uninitialized.
     ============================================================================
 */
 
@@ -317,17 +333,32 @@ namespace WizardWrx.ConsoleAppAids3
             astrAllMessages [ MagicNumbers.ERROR_SUCCESS ] = Common.Properties.Resources.ERRMSG_SUCCESS;
             astrAllMessages [ MagicNumbers.ERROR_RUNTIME ] = Common.Properties.Resources.ERRMSG_RUNTIME;
 
+            int intNewMessages2Add = rintMessageCount - STANDARD_MESSAGE_COUNT;
+
+            //  ----------------------------------------------------------------
+            //  This FOR loop uses a double index to keep two array indices in
+            //  sync, of which only the second, intK, needs a loop limit test.
+            //  ----------------------------------------------------------------
+
             for ( int intJ = STANDARD_MESSAGE_COUNT,
                       intK = ArrayInfo.ARRAY_FIRST_ELEMENT ;
 
-                      intK < rintMessageCount - STANDARD_MESSAGE_COUNT ;
+                      intK < intNewMessages2Add ;
 
                       intJ++,
                       intK++ )
             {
                 astrAllMessages [ intJ ] = pastrAdditionalMessages [ intK ];
-            }   // for ( int intJ = STANDARD_MESSAGE_COUNT, intK = ArrayInfo.ARRAY_FIRST_ELEMENT ; intK < intMessageCount - STANDARD_MESSAGE_COUNT ; intJ++, intK++ )
+            }   // for ( int intJ = STANDARD_MESSAGE_COUNT, intK = ArrayInfo.ARRAY_FIRST_ELEMENT ; intK < intNewMessages2Add ; intJ++, intK++ )
 
+            //  ----------------------------------------------------------------
+            //  Since the table of error messages that belongs to StateManager
+            //  object BaseStateManager is read-only, its LoadErrorMessageTable
+            //  method must be employed to load the locally constructed message
+            //  list into it.
+            //  ----------------------------------------------------------------
+
+            _me.LoadErrorMessageTable ( astrAllMessages );
             return rintMessageCount;
         }   // public int LoadBasicErrorMessages
         #endregion  // LoadBasicErrorMessages Methods
@@ -389,45 +420,27 @@ namespace WizardWrx.ConsoleAppAids3
         /// </remarks>
         public void ErrorExit ( uint puintStatusCode )
         {
-            if ( _me.AppErrorMessages != null )
-            {
-                if ( puintStatusCode < _me.AppErrorMessages.Length )
-                {
-                    Console.WriteLine (
-                        _me.AppErrorMessages [ puintStatusCode ] );
-                }   // TRUE (expected outcome) block, if ( puintStatusCode < _me.AppErrorMessages.Length )
-                else
-                {
-                    Console.WriteLine (
-                        Properties.Resources.ERRMSG_UNKNOWN_EXIT_CODE ,
-                        puintStatusCode );
-                }   // FALSE (UNexpected outcome) block, if ( puintStatusCode < _me.AppErrorMessages.Length )
+            ReportNonZeroStatusCode ( ( int ) puintStatusCode );
 
-                Console.WriteLine (
-                    Properties.Resources.CONSOLE_APP_EXIT_CODE ,
-                    puintStatusCode ,
-                    Environment.NewLine );
-            }   // if ( _me.AppErrorMessages != null )
-
-			this.DisplayEOJMessage ( );
+            DisplayEOJMessage ( );
 
             if ( System.Diagnostics.Debugger.IsAttached )
                 DisplayAids.WaitForCarbonUnit ( null );
             else if ( puintStatusCode > MagicNumbers.ERROR_SUCCESS )
                 DisplayAids.TimedWait (
-					TIMED_WAIT_DEFAULT_SECONDS ,                							// uint puintWaitSeconds
-					TIMED_WAIT_WAITING_FOR_DEFAULT ,            							// string pstrCountdownWaitingFor
-					TIMED_WAIT_TEXT_COLOR_DEFAULT ,             							// ConsoleColor pclrTextColor
+                    TIMED_WAIT_DEFAULT_SECONDS ,                                            // uint puintWaitSeconds
+                    TIMED_WAIT_WAITING_FOR_DEFAULT ,                                        // string pstrCountdownWaitingFor
+                    TIMED_WAIT_TEXT_COLOR_DEFAULT ,             							// ConsoleColor pclrTextColor
                     TIMED_WAIT_BACKGROUND_COLOR_DEFAULT ,									// ConsoleColor pclrTextBackgroundColor
                     TIMED_WAIT_INTERRUPT_CRITERION );										// InterruptCriterion penmInterruptCriterion
 
             Environment.Exit ( ( int ) puintStatusCode );
         }   // public void ErrorExit
-		#endregion	// ErrorExit Methods
+        #endregion   // ErrorExit Methods
 
 
-		#region BOJ and EOJ Pseudo-Properties
-		/// <summary>
+        #region BOJ and EOJ Pseudo-Properties
+        /// <summary>
         /// When called for the first time, this method returns a BOJ message,
         /// ready for display on the console. Subsequent calls return an empty
         /// string.
@@ -599,17 +612,8 @@ namespace WizardWrx.ConsoleAppAids3
             uint puintStatusCode ,
             string pstrOperatorPrompt )
         {
-            this.DisplayEOJMessage ( );
-
-			if ( System.Diagnostics.Debugger.IsAttached )
-			{
-				if ( puintStatusCode != MagicNumbers.ERROR_SUCCESS )
-					Console.WriteLine (
-						Properties.Resources.CONSOLE_APP_EXIT_CODE ,
-						puintStatusCode ,
-						Environment.NewLine );
-			}	// if ( System.Diagnostics.Debugger.IsAttached )
-
+            ReportNonZeroStatusCode ( ( int ) puintStatusCode );
+            DisplayEOJMessage ( );
             DisplayAids.WaitForCarbonUnit ( pstrOperatorPrompt );
             Environment.Exit ( ( int ) puintStatusCode );
         }   // public void NormalExit (2 of 8)
@@ -842,10 +846,11 @@ namespace WizardWrx.ConsoleAppAids3
             ConsoleColor pclrTextColor ,
             ConsoleColor pclrTextBackgroundColor ,
             DisplayAids.InterruptCriterion penmInterruptCriterion )
-        {   // ToDo: Consider adding overloads that take signed integers.
+        {
             if ( penmNormalExitAction != NormalExitAction.Silent )
             {
-                this.DisplayEOJMessage ( );
+                ReportNonZeroStatusCode ( ( int ) puintStatusCode );
+                DisplayEOJMessage ( );
             }   // if ( penmNormalExitAction != NormalExitAction.Silent )
 
             switch ( penmNormalExitAction )
@@ -900,6 +905,50 @@ namespace WizardWrx.ConsoleAppAids3
         #region Private Symbolic Constants
         const int STANDARD_MESSAGE_COUNT = 2;
         #endregion  // STANDARD_MESSAGE_COUNT
+
+
+        #region Private Instance Methods
+        /// <summary>
+        /// Unless status code <paramref name="pintStatusCode"/> is
+        /// ERROR_SUCCESS (zero), display the corresponding static error message
+        /// along with the status code value.
+        /// </summary>
+        /// <param name="pintStatusCode">
+        /// Unless this integer, which represents the program exit code, ia
+        /// equal to ERROR_SUCCESS (zero), display the corresponding message
+        /// from the AppErrorMessages table, along with the status code.
+        /// </param>
+        /// <remarks>
+        /// Rather than have every routine that calls this routine test
+        /// <paramref name="pintStatusCode"/>, the test is delegated to this
+        /// routine, which returns wihtout taking action when its value is zero.
+        /// </remarks>
+        private void ReportNonZeroStatusCode ( int pintStatusCode )
+        {
+            if ( pintStatusCode != MagicNumbers.ERROR_SUCCESS )
+            {
+                if ( _me.AppErrorMessages != null )
+                {
+                    if ( pintStatusCode < _me.AppErrorMessages.Length && pintStatusCode >= MagicNumbers.ERROR_SUCCESS )
+                    {   // ERROR_SUCCESS should have its own message in the table.
+                        Console.WriteLine (
+                            _me.AppErrorMessages [ pintStatusCode ] );
+                    }   // TRUE (anticipated outcome) block, if ( puintStatusCode < _me.AppErrorMessages.Length && puintStatusCode >= MagicNumbers.ERROR_SUCCESS )
+                    else
+                    {
+                        Console.WriteLine (
+                            Properties.Resources.ERRMSG_UNKNOWN_EXIT_CODE ,
+                            pintStatusCode );
+                    }   // FALSE (UNanticipated outcome) block, if ( puintStatusCode < _me.AppErrorMessages.Length && puintStatusCode >= MagicNumbers.ERROR_SUCCESS )
+
+                    Console.WriteLine (
+                        Properties.Resources.CONSOLE_APP_EXIT_CODE ,
+                        pintStatusCode ,
+                        Environment.NewLine );
+                }   // if ( _me.AppErrorMessages != null )
+            }   // if ( pintStatusCode != MagicNumbers.ERROR_SUCCESS )
+        }   // private void ReportNonZeroStatusCode
+        #endregion  // Private Instance Methods
 
 
         #region Private Static Methods

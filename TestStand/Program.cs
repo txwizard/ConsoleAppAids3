@@ -170,6 +170,8 @@
                               ReportGenerators.ShowKeyAssemblyProperties.
 
 	2021/03/05 8.0     DAG LoadBasicErrorMessages replaces LoadErrorMessageTable.
+
+    2022/04/13 8.1     DAG Add a test that simulates a run-time error.
     ============================================================================
 */
 
@@ -209,7 +211,8 @@ namespace TestStand
 			Terse																// Just show the message.
         }   // ReportFormat
 
-        const int ERR_ERROR_STOP_TEST = 2;
+        const int ERR_ERROR_STOP_TEST = MagicNumbers.ERROR_RUNTIME + MagicNumbers.PLUS_ONE;
+        const int ERROR_SIMULATED_RUN_TIME_ERROR = ERR_ERROR_STOP_TEST + MagicNumbers.PLUS_ONE;
 
         const bool SEND_LINEFEED = true;
         const bool OMIT_LINEFEED = false;
@@ -217,6 +220,7 @@ namespace TestStand
         static string [ ] s_astrErrorMessages =
         {
             Properties.Resources.ERRMSG_ERROR_STOP_TEST ,						// ERR_ERROR_STOP_TEST
+            Properties.Resources.ERRMSG_SIMULATED_RUN_TIME_ERROR ,              // ERROR_SIMULATED_RUN_TIME_ERROR
         };  // static string [ ] s_astrErrorMessages
 
         //        static ApplicationInstance s_theApp;							// Succeeded by ConsoleAppStateManager
@@ -265,6 +269,7 @@ namespace TestStand
         const string SW_OT_TIMED_STOP = @"timedstop";
         const string SW_OT_TIMED_ERRS = @"timederrs";
         const string SW_OT_FCW_REUSE = @"fcwreuse";
+        const string SW_OT_RT_ERROR = @"rterror";           // Simulate a run-time error.
 
         const string ARG_COUNT = @"count";
         const string ARG_INTERVAL = @"interval";
@@ -657,12 +662,17 @@ namespace TestStand
                     cmdArgs );
             }   // if ( strSingleTest == SpecialStrings.EMPTY_STRING || strSingleTest == SW_OT_FCW_REUSE )
 
+            if ( strSingleTest == SpecialStrings.EMPTY_STRING || strSingleTest == SW_OT_RT_ERROR )
+            {
+                SimulateRuntimeError ( );
+            }   // if ( strSingleTest == SpecialStrings.EMPTY_STRING || strSingleTest == SW_OT_RT_ERROR )
+
             //  ----------------------------------------------------------------
             //  Render the final report, clean up, and shut down.
             //  ----------------------------------------------------------------
 
-            #if DEBUG
-                if ( enmOutputFormat == OutputFormat.None )
+#if DEBUG
+            if ( enmOutputFormat == OutputFormat.None )
                 {   // Suppress all output.
                     s_theApp.NormalExit ( ConsoleAppStateManager.NormalExitAction.Silent );
                 }   // TRUE block, if ( enmOutputFormat == OutputFormat.None )
@@ -2497,6 +2507,15 @@ namespace TestStand
 				);																				// System.Diagnostics.Trace.WriteLine
 			#endif	// #if TRACE
 		}	// private static void HandleConsoleIOException
+
+
+        private static void SimulateRuntimeError ( )
+        {
+            Console.WriteLine ( $"{Environment.NewLine}SimulateRuntimeError Begin:{Environment.NewLine}" );
+            s_theApp.BaseStateManager.AppReturnCode = ERROR_SIMULATED_RUN_TIME_ERROR;
+            Console.WriteLine ( $"    s_theApp.BaseStateManager.AppReturnCode = {s_theApp.BaseStateManager.AppReturnCode}" );
+            Console.WriteLine ( $"{Environment.NewLine}SimulateRuntimeError Done!{Environment.NewLine}" );
+        }   // private static void SimulateRuntimeError
 
 
         //  --------------------------------------------------------------------
