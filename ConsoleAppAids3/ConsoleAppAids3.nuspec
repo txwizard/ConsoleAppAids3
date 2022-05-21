@@ -10,8 +10,8 @@
     	<projectUrl>https://github.com/txwizard/ConsoleAppAids3</projectUrl>
 	    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     	<description>$description$</description>
-	    <releaseNotes>Instance method NormalExit on a ConsoleAppStateManager object neglected to print the message that corresponds to the status code from the table of static error messages. Hence, relying on this method left you with a status code (somewhat useful) but no explanatory message, nor any evidence of the nonzero status code in the console stream.</releaseNotes>
-    	<copyright>$copyright$</copyright>
+        <releaseNotes>To compensate for an apparent change in the behavior of the NuGet Package Manager implementation in Visual Studio 2019, all NuGet in the WizardWrx .NET API constellation of libraries are being re-released with dependencies named explicitly in the generated .nuspec file that goes into the package. This is accomplished by adding the IncludeReferencedProjects to the NuGet Pack command line. Otherwise, the program source code is unchanged, nor are the binaries. Henceforth, independend release schedules as described in the immediately previous published version of this library will resume. Henceforth, independend release schedules as described in version 8.0.551 of this library will resume.</releaseNotes>
+        <copyright>$copyright$</copyright>
     	<tags>Constrained console scrolling, specialized console application management</tags>
 	</metadata>
 	<files>

@@ -4,6 +4,17 @@ This file is a running history of fixes and improvements from version 7.0
 onwards. Changes are documented for the newest version first. Within each
 version, classes are listed alphabetically.
 
+# Version 8.1.559 Updated 05/21/2022
+
+To compensate for an apparent change in the behavior of the NuGet Package
+Manager implementation in Visual Studio 2019, all NuGet in the WizardWrx .NET
+API constellation of libraries are being re-released with dependencies named
+explicitly in the generated .nuspec file that goes into the package. This is
+accomplished by adding the IncludeReferencedProjects to the NuGet Pack command
+line. Otherwise, the program source code is unchanged, nor are the binaries.
+Henceforth, independend release schedules as described in version 8.0.551 of
+this library will resume.
+
 # Version 8.1.554 Updated 04/13/2022
 
 Instance method `NormalExit` on a `ConsoleAppStateManager` object neglected to
