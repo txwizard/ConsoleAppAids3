@@ -90,3 +90,5 @@ D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppA
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\obj\Release\WizardWrx.ConsoleAppAids3.dll
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\obj\Release\WizardWrx.ConsoleAppAids3.pdb
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\obj\Release\ConsoleAppAids3.csproj.AssemblyReference.cache
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.BitMath.dll
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.BitMath.xml

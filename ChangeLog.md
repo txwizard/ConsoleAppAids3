@@ -4,6 +4,14 @@ This file is a running history of fixes and improvements from version 7.0
 onwards. Changes are documented for the newest version first. Within each
 version, classes are listed alphabetically.
 
+# Version 8.1.562 Updated 10/15/2022
+
+This re-release corresponds to an update of the associated GitHub repository
+that includes versions of the dependent assemblies published as NuGet packages
+that didn't advertise their dependencies. Please take this as your notice to
+update your package, which should now cause your NuGet Package Manager to follow
+its dependency chain to the end.
+
 # Version 8.1.559 Updated 05/21/2022
 
 To compensate for an apparent change in the behavior of the NuGet Package

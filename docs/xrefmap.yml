@@ -188,12 +188,12 @@ references:
   commentId: M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)
   fullName: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32, System.String, WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)
   nameWithType: ConsoleAppStateManager.NormalExit(UInt32, String, ConsoleAppStateManager.NormalExitAction)
-- uid: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction,System.UInt32,System.String,System.ConsoleColor,System.ConsoleColor,WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion)
-  name: NormalExit(UInt32, String, ConsoleAppStateManager.NormalExitAction, UInt32, String, ConsoleColor, ConsoleColor, DisplayAids.InterruptCriterion)
-  href: api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html#WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_System_UInt32_System_String_System_ConsoleColor_System_ConsoleColor_WizardWrx_ConsoleAppAids3_DisplayAids_InterruptCriterion_
-  commentId: M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction,System.UInt32,System.String,System.ConsoleColor,System.ConsoleColor,WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion)
-  fullName: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32, System.String, WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction, System.UInt32, System.String, System.ConsoleColor, System.ConsoleColor, WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion)
-  nameWithType: ConsoleAppStateManager.NormalExit(UInt32, String, ConsoleAppStateManager.NormalExitAction, UInt32, String, ConsoleColor, ConsoleColor, DisplayAids.InterruptCriterion)
+- uid: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction,System.UInt32,System.String,System.ConsoleColor,System.ConsoleColor,WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion,System.Boolean)
+  name: NormalExit(UInt32, String, ConsoleAppStateManager.NormalExitAction, UInt32, String, ConsoleColor, ConsoleColor, DisplayAids.InterruptCriterion, Boolean)
+  href: api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html#WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_System_String_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_System_UInt32_System_String_System_ConsoleColor_System_ConsoleColor_WizardWrx_ConsoleAppAids3_DisplayAids_InterruptCriterion_System_Boolean_
+  commentId: M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction,System.UInt32,System.String,System.ConsoleColor,System.ConsoleColor,WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion,System.Boolean)
+  fullName: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32, System.String, WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction, System.UInt32, System.String, System.ConsoleColor, System.ConsoleColor, WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion, System.Boolean)
+  nameWithType: ConsoleAppStateManager.NormalExit(UInt32, String, ConsoleAppStateManager.NormalExitAction, UInt32, String, ConsoleColor, ConsoleColor, DisplayAids.InterruptCriterion, Boolean)
 - uid: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)
   name: NormalExit(UInt32, ConsoleAppStateManager.NormalExitAction)
   href: api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html#WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_System_UInt32_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_
@@ -206,6 +206,12 @@ references:
   commentId: M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)
   fullName: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)
   nameWithType: ConsoleAppStateManager.NormalExit(ConsoleAppStateManager.NormalExitAction)
+- uid: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction,System.Boolean)
+  name: NormalExit(ConsoleAppStateManager.NormalExitAction, Boolean)
+  href: api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html#WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExitAction_System_Boolean_
+  commentId: M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction,System.Boolean)
+  fullName: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction, System.Boolean)
+  nameWithType: ConsoleAppStateManager.NormalExit(ConsoleAppStateManager.NormalExitAction, Boolean)
 - uid: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit*
   name: NormalExit
   href: api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html#WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_NormalExit_

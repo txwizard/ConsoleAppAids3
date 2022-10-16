@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction.html",
-          "hash": "lssTxAtuua5xTMRPrlrACA=="
+          "hash": "8bJfRG1E/TgIOA+WMuU4FA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -45,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html",
-          "hash": "9tZWonV8uwk1jeJFn7cxeQ=="
+          "hash": "XzhxXfKPm7+B9uxZaVGHuQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -108,7 +108,7 @@
           "hash": "WB0zrjXNmnHIvkYqcsVeHg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -203,7 +203,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 9,
-          "skipped_file_count": 9
+          "skipped_file_count": 7
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

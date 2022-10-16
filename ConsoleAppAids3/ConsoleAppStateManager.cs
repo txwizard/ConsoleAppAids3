@@ -134,6 +134,13 @@
                               LoadErrorMessageTable method to throw away the
                               table that it built, leaving the message table
                               perpertually uninitialized.
+
+    2022/10/15 8.1.570 DAG Add a method that takes a NormalExitAction and a
+                           Boolean value that, when True, causes the method to
+                           disregard the status code when its value exceeds the
+                           size of the message table because its objective is to
+                           control the action of its calling process, which is
+                           usually a shell script.
     ============================================================================
 */
 
@@ -580,7 +587,7 @@ namespace WizardWrx.ConsoleAppAids3
                 ( uint ) _me.AppReturnCode ,												// Use the exit code stored in the instance.
                 null ,																		// A null pstrOperatorPrompt means use default message.
                 NormalExitAction.ExitImmediately ) ;										// Assume we are batch, and maybe even headless.
-        }   // public void NormalExit (1 of 8)
+        }   // public void NormalExit (1 of 9)
 
 
         /// <summary>
@@ -616,7 +623,7 @@ namespace WizardWrx.ConsoleAppAids3
             DisplayEOJMessage ( );
             DisplayAids.WaitForCarbonUnit ( pstrOperatorPrompt );
             Environment.Exit ( ( int ) puintStatusCode );
-        }   // public void NormalExit (2 of 8)
+        }   // public void NormalExit (2 of 9)
 
 
         /// <summary>
@@ -639,7 +646,7 @@ namespace WizardWrx.ConsoleAppAids3
                 puintStatusCode ,															// Pass along the caller's exit code.
                 null ,																		// A null pstrOperatorPrompt means use default message.
 				NormalExitAction.ExitImmediately );											// Assume we are batch, and maybe even headless.
-        }   // public void NormalExit (3 of 8)
+        }   // public void NormalExit (3 of 9)
 
 
         /// <summary>
@@ -681,7 +688,7 @@ namespace WizardWrx.ConsoleAppAids3
                 TIMED_WAIT_TEXT_COLOR_DEFAULT ,
                 TIMED_WAIT_BACKGROUND_COLOR_DEFAULT ,
                 TIMED_WAIT_INTERRUPT_CRITERION );
-        }   // public void NormalExit (4 of 8)
+        }   // public void NormalExit (4 of 9)
 
 
         /// <summary>
@@ -715,7 +722,7 @@ namespace WizardWrx.ConsoleAppAids3
 			NormalExit ( ( uint ) _me.AppReturnCode ,       								// Use the exit code stored in the instance.
 				pstrOperatorPrompt ,                        								// Pass along the caller's message for WaitForCarbonUnit.
 				penmNormalExitAction );                     								// Pass along the caller's instructions.
-        }   // public void NormalExit (5 of 8)
+        }   // public void NormalExit (5 of 9)
 
 
         /// <summary>
@@ -747,7 +754,7 @@ namespace WizardWrx.ConsoleAppAids3
 				puintStatusCode ,               											// Pass along the caller's exit code.
 				null ,																		// A null pstrOperatorPrompt means use default message.
 				penmNormalExitAction );														// Pass along the caller's instructions.
-        }   // public void NormalExit (6 of 8)
+        }   // public void NormalExit (6 of 9)
 
 
         /// <summary>
@@ -776,7 +783,43 @@ namespace WizardWrx.ConsoleAppAids3
 				( uint ) _me.AppReturnCode ,    											// Use the exit code stored in the instance.
 				null ,                          											// A null pstrOperatorPrompt means use default message.
 				penmNormalExitAction );         											// Pass along the caller's instructions.
-        }   // public void NormalExit (7 of 8)
+        }   // public void NormalExit (7 of 9)
+
+
+        /// <summary>
+        /// Exit the program normally, returning the status code stored in this
+        /// instance, and optionally call WaitForCarbonUnit to suspend execution
+        /// until the operator has a chance to read the output or capture it
+        /// into the clipboard. If WaitForCarbonUnit is called, its default
+        /// message is used.
+        /// </summary>
+        /// <param name="penmNormalExitAction">
+        /// This member of the NormalExitAction enumeration controls whether to
+        /// use WaitForCarbonUnit to suspend execution until an operator has a
+        /// chance to read the output. See the NormalExitAction enumeration for
+        /// details.
+        /// </param>
+        /// <param name="pfIgnoreOutOfBoundsStatusCode">
+        /// If True, when the status code is greater than the highest numbered
+        /// message in the table, ignore the out-of-bounds condition, but pass
+        /// the status code to the operating system so that the calling process
+        /// or shell script can use it.
+        /// </param>
+        public void NormalExit (
+            NormalExitAction penmNormalExitAction ,
+            bool pfIgnoreOutOfBoundsStatusCode )
+        {
+            NormalExit (
+                ( uint ) _me.AppReturnCode ,
+                null ,
+                penmNormalExitAction ,
+                TIMED_WAIT_DEFAULT_SECONDS ,
+                TIMED_WAIT_WAITING_FOR_DEFAULT ,
+                TIMED_WAIT_TEXT_COLOR_DEFAULT ,
+                TIMED_WAIT_BACKGROUND_COLOR_DEFAULT ,
+                TIMED_WAIT_INTERRUPT_CRITERION ,
+                pfIgnoreOutOfBoundsStatusCode );
+        }   // public void NormalExit (8 of 9)
 
 
         /// <summary>
@@ -833,6 +876,12 @@ namespace WizardWrx.ConsoleAppAids3
         /// to indicate whether you want the timed wait to be interruptible, and
         /// under what conditions.
         /// </param>
+        /// <param name="pfIgnoreOutOfBoundsStatusCode">
+        /// If True, when the status code is greater than the highest numbered
+        /// message in the table, ignore the out-of-bounds condition, but pass
+        /// the status code to the operating system so that the calling process
+        /// or shell script can use it.
+        /// </param>
         /// <remarks>
         /// This method differs sufficiently from overload 2 that it stands on
         /// its own. Theoretically, every other overload could call this one.
@@ -845,14 +894,9 @@ namespace WizardWrx.ConsoleAppAids3
             string pstrCountdownWaitingFor ,
             ConsoleColor pclrTextColor ,
             ConsoleColor pclrTextBackgroundColor ,
-            DisplayAids.InterruptCriterion penmInterruptCriterion )
+            DisplayAids.InterruptCriterion penmInterruptCriterion ,
+            bool pfIgnoreOutOfBoundsStatusCode = false)
         {
-            if ( penmNormalExitAction != NormalExitAction.Silent )
-            {
-                ReportNonZeroStatusCode ( ( int ) puintStatusCode );
-                DisplayEOJMessage ( );
-            }   // if ( penmNormalExitAction != NormalExitAction.Silent )
-
             switch ( penmNormalExitAction )
             {
                 case NormalExitAction.ExitImmediately:
@@ -862,11 +906,11 @@ namespace WizardWrx.ConsoleAppAids3
 
                 case NormalExitAction.Timed:
                     Console.WriteLine ( pstrOperatorPrompt );
-                    DisplayAids.TimedWait (             // ToDo: Align comment on the last argument.
-						puintSecondsToWait ,                                				// puintWaitSeconds
-						pstrCountdownWaitingFor ,                           				// pstrCountdownWaitingFor
-						ConsoleColor.Black ,                                				// pclrTextColor
-						ConsoleColor.Black ,                                				// pclrTextBackgroundColor
+                    DisplayAids.TimedWait (
+						puintSecondsToWait ,            // puintWaitSeconds
+						pstrCountdownWaitingFor ,       // pstrCountdownWaitingFor
+						ConsoleColor.Black ,            // pclrTextColor
+						ConsoleColor.Black ,            // pclrTextBackgroundColor
                         penmInterruptCriterion );       // penmInterruptCriterion
                     Environment.Exit ( ( int ) puintStatusCode );
                     break;
@@ -898,7 +942,7 @@ namespace WizardWrx.ConsoleAppAids3
                     Environment.Exit ( ( int ) puintStatusCode );
                     break;
             }   // switch ( penmNormalExitAction )
-        }   // public void NormalExit (8 of 8)
+        }   // public void NormalExit (9 of 9)
         #endregion // NortmalExit Methods
 
 

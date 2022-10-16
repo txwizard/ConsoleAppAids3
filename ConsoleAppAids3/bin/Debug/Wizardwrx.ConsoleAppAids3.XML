@@ -382,7 +382,28 @@
             forcing it to use its default message.
             </remarks>
         </member>
-        <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction,System.UInt32,System.String,System.ConsoleColor,System.ConsoleColor,WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion)">
+        <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction,System.Boolean)">
+            <summary>
+            Exit the program normally, returning the status code stored in this
+            instance, and optionally call WaitForCarbonUnit to suspend execution
+            until the operator has a chance to read the output or capture it
+            into the clipboard. If WaitForCarbonUnit is called, its default
+            message is used.
+            </summary>
+            <param name="penmNormalExitAction">
+            This member of the NormalExitAction enumeration controls whether to
+            use WaitForCarbonUnit to suspend execution until an operator has a
+            chance to read the output. See the NormalExitAction enumeration for
+            details.
+            </param>
+            <param name="pfIgnoreOutOfBoundsStatusCode">
+            If True, when the status code is greater than the highest numbered
+            message in the table, ignore the out-of-bounds condition, but pass
+            the status code to the operating system so that the calling process
+            or shell script can use it.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction,System.UInt32,System.String,System.ConsoleColor,System.ConsoleColor,WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion,System.Boolean)">
             <summary>
             Exit the program normally, optionally returning a nonzero status
             code, and optionally calling WaitForCarbonUnit to suspend execution
@@ -436,6 +457,12 @@
             Specify a member of the DisplayAids.InterruptCriterion enumeration
             to indicate whether you want the timed wait to be interruptible, and
             under what conditions.
+            </param>
+            <param name="pfIgnoreOutOfBoundsStatusCode">
+            If True, when the status code is greater than the highest numbered
+            message in the table, ignore the out-of-bounds condition, but pass
+            the status code to the operating system so that the calling process
+            or shell script can use it.
             </param>
             <remarks>
             This method differs sufficiently from overload 2 that it stands on

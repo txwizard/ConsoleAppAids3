@@ -114,6 +114,18 @@
 
                            2) Add the new required second argument to method call
                               ReportGenerators.ShowKeyAssemblyProperties.
+
+    2022/10/15 8.1.532 DAG Test the new method that takes a NormalExitAction and
+                           a Boolean value that, when True, causes the method to
+                           disregard the status code when its value exceeds the
+                           size of the message table because its objective is to
+                           control the action of its calling process, which is
+                           usually a shell script.
+
+                           As well, implement the capability to execute
+                           individual test scenarios in the Visual Studio
+                           debugger, obviating the need for the shell script
+                           that runs each test sequentially.
     ============================================================================
 */
 
@@ -137,23 +149,26 @@ namespace EOJTEST
 
         struct ExitRules
         {
-            public uint ExitCode;
+            public int ExitCode;
             public ExitCodeDisposition Disposition;
             public ConsoleAppStateManager.NormalExitAction Action;
+            internal bool IsForCallingProcess;
         }   // ExitRules
 
         static string [ ] astrExitAction =
         {
-            "    Program will exit immediately and unconditionally." ,
-            "    Program will exit immediately if exit code is ERROR_SUCCESS." , 
-            "    Program will wait for a carbon unit." ,
-            "    Program will exit immediately, unconditionally, and silently."
+            "    Program will exit immediately and unconditionally." ,                          // 0 = ConsoleAppStateManager.NormalExitAction.ExitImmediately
+            "    Program will exit immediately if exit code is ERROR_SUCCESS." ,                // 1 = ConsoleAppStateManager.NormalExitAction.HaltOnError
+            "    Program will exit immediately, unconditionally, and silently.",                // 2 = ConsoleAppStateManager.NormalExitAction.Silent
+            SpecialStrings.EMPTY_STRING ,                                                       // 3 = UNUSED 
+            "    Program will wait for a carbon unit."                                          // 4 = ConsoleAppStateManager.NormalExitAction.WaitForOperator
         };  // static string [ ] astrExitAction
 
         static string [ ] astrExitCodeDisposition =
         {
-            "    Exit code will be passed through the argument list.",
-            "    Exit code will be retrieved from the ApplicationInstance."
+            SpecialStrings.EMPTY_STRING,                                                        //
+            "    Exit code will be passed through the argument list.",                          // case ExitCodeDisposition.PassAsArg
+            "    Exit code will be retrieved from the ApplicationInstance."                     // case ExitCodeDisposition.StoreInMy
         };  // static string [ ] astrExitCodeDisposition
 
         static ConsoleAppStateManager _me = ConsoleAppStateManager.GetTheSingleInstance ( );
@@ -197,22 +212,31 @@ namespace EOJTEST
                         ShowArgs ( args );
                         ExitRules utpExitRulesMap = EvaluateArguments ( args );
 
-                        switch ( utpExitRulesMap.Disposition )
+                        if ( utpExitRulesMap.IsForCallingProcess )
                         {
-                            case ExitCodeDisposition.PassAsArg:
-                                _me.NormalExit (
-                                    utpExitRulesMap.ExitCode ,
-                                    utpExitRulesMap.Action );
-                                break;
+                            _me.BaseStateManager.AppReturnCode = utpExitRulesMap.ExitCode;
+                            _me.NormalExit ( utpExitRulesMap.Action , utpExitRulesMap.IsForCallingProcess );
+                        }   // TRUE block, if ( utpExitRulesMap.IsForCallingProcess )
+                        else
+                        {
+                            switch ( utpExitRulesMap.Disposition )
+                            {
+                                case ExitCodeDisposition.PassAsArg:
+                                    _me.NormalExit (
+                                        ( uint ) utpExitRulesMap.ExitCode ,
+                                        utpExitRulesMap.Action );
+                                    break;
 
-                            case ExitCodeDisposition.StoreInMy:
-                                _me.BaseStateManager.AppReturnCode = ( int ) utpExitRulesMap.ExitCode;
-                                _me.NormalExit ( utpExitRulesMap.Action );
-                                break;
+                                case ExitCodeDisposition.StoreInMy:
+                                    _me.BaseStateManager.AppReturnCode = ( int ) utpExitRulesMap.ExitCode;
+                                    _me.NormalExit ( utpExitRulesMap.Action );
+                                    break;
 
-                            default:
-                                throw new Exception ( ERRMSG_INTERNAL );
-                        }   // switch ( utpExitRulesMap.Disposition )
+                                default:
+                                    throw new Exception ( ERRMSG_INTERNAL );
+                            }   // switch ( utpExitRulesMap.Disposition )
+                        }   // FALSE block, if ( utpExitRulesMap.IsForCallingProcess )
+
                         break;
                 }   // switch ( args.Length )
             }   // The normal execution path ends here.
@@ -240,6 +264,7 @@ namespace EOJTEST
             const int ARG_EXIT_CODE = ArrayInfo.ARRAY_FIRST_ELEMENT;
             const int ARG_EXIT_ACTION = ARG_EXIT_CODE + MagicNumbers.PLUS_ONE;
 			const int ARG_EXIT_DISPOSITION = ARG_EXIT_ACTION + MagicNumbers.PLUS_ONE;
+            const int ARG_EXIT_CODE_FOR_CALLING_PROCESS = ARG_EXIT_DISPOSITION + MagicNumbers.PLUS_ONE;
 
             const string ENUM_NAME_EXIT_CODE_DISP = @"ExitCodeDisposition";
             const string ENUM_NAME_EXIT_ACTION = @"NormalExitAction";
@@ -254,6 +279,7 @@ namespace EOJTEST
             rutpExitRulesMap.Action = 0;
             rutpExitRulesMap.Disposition = 0;
             rutpExitRulesMap.ExitCode = 0;
+            rutpExitRulesMap.IsForCallingProcess = false;
 
             bool fRequirementsMet = false;
 
@@ -263,50 +289,60 @@ namespace EOJTEST
                   uintCurrArg < uintNArgs ;
                   uintCurrArg++ )
             {
-                uint uintToTest = MagicNumbers.ZERO;
-				uint uintRealValue = MagicNumbers.ZERO;
+                int intToTest = MagicNumbers.ZERO;
+				int intRealValue = MagicNumbers.ZERO;
 
-                if ( uint.TryParse ( pastrArgs [ uintCurrArg ] , out uintToTest ) )
+                if ( int.TryParse ( pastrArgs [ uintCurrArg ] , out intToTest ) )
                 {
                     switch ( uintCurrArg )
                     {
                         case ARG_EXIT_CODE:
-                            rutpExitRulesMap.ExitCode = uintToTest;
+                            rutpExitRulesMap.ExitCode = intToTest;
                             break;
 
                         case ARG_EXIT_ACTION:
-							uintRealValue = ( uint ) ( uintToTest - ArrayInfo.INDEX_FROM_ORDINAL );
+                            Console.WriteLine ( $"{Environment.NewLine}ConsoleAppStateManager.NormalExitAction.ExitImmediately = {( int ) ConsoleAppStateManager.NormalExitAction.ExitImmediately}" );
+                            Console.WriteLine ( $"ConsoleAppStateManager.NormalExitAction.HaltOnError     = {( int ) ConsoleAppStateManager.NormalExitAction.HaltOnError}" );
+                            Console.WriteLine ( $"ConsoleAppStateManager.NormalExitAction.WaitForOperator = {( int ) ConsoleAppStateManager.NormalExitAction.WaitForOperator}" );
+                            Console.WriteLine ( $"ConsoleAppStateManager.NormalExitAction.Silent          = {( int ) ConsoleAppStateManager.NormalExitAction.Silent}{Environment.NewLine}" );
 
-                            switch ( ( ConsoleAppStateManager.NormalExitAction ) uintRealValue )
+                            intRealValue = intToTest + ArrayInfo.INDEX_FROM_ORDINAL;
+                            ConsoleAppStateManager.NormalExitAction enmExitAction = ( ConsoleAppStateManager.NormalExitAction ) intRealValue;
+
+                            switch ( enmExitAction )
                             {
                                 case ConsoleAppStateManager.NormalExitAction.ExitImmediately:
                                 case ConsoleAppStateManager.NormalExitAction.HaltOnError:
                                 case ConsoleAppStateManager.NormalExitAction.WaitForOperator:
                                 case ConsoleAppStateManager.NormalExitAction.Silent:
-                                    Console.WriteLine ( astrExitAction [ uintRealValue ] );
-                                    rutpExitRulesMap.Action = ( ConsoleAppStateManager.NormalExitAction ) uintRealValue;
+                                    Console.WriteLine ( astrExitAction [ intRealValue ] );
+                                    rutpExitRulesMap.Action = ( ConsoleAppStateManager.NormalExitAction ) intRealValue;
                                     break;
 
                                 default:
                                      string strMessage = string.Format (
                                          ERRMSG_VALUE_OUT_OF_RANGE ,
                                          uintCurrArg + ArrayInfo.INDEX_FROM_ORDINAL ,
-                                         uintRealValue ,
+                                         intRealValue ,
                                          ENUM_NAME_EXIT_ACTION );
                                      throw new Exception ( strMessage );
-                            }   // switch ( ( ApplicationInstance.NormalExitAction ) uintToTest - ArrayInfo.INDEX_FROM_ORDINAL )
+                            }   // switch ( enmExitAction )
 
                             break;  // case ARG_EXIT_ACTION of switch ( uintCurrArg )
 
                         case ARG_EXIT_DISPOSITION:
-							uintRealValue = ( uint ) ( uintToTest - ArrayInfo.INDEX_FROM_ORDINAL );
+                            Console.WriteLine ( $"{Environment.NewLine}ExitCodeDisposition.PassAsArg = {( int ) ExitCodeDisposition.PassAsArg}" );
+                            Console.WriteLine ( $"ExitCodeDisposition.StoreInMy = {( int ) ExitCodeDisposition.StoreInMy}{Environment.NewLine}" );
 
-                            switch ( ( ExitCodeDisposition ) uintRealValue )
+                            intRealValue = intToTest + ArrayInfo.INDEX_FROM_ORDINAL;
+                            ExitCodeDisposition enmExitCodeDisposition = ( ExitCodeDisposition ) intRealValue;
+
+                            switch ( enmExitCodeDisposition )
                             {
                                  case ExitCodeDisposition.PassAsArg:
                                  case ExitCodeDisposition.StoreInMy:
-                                     Console.WriteLine ( astrExitCodeDisposition [ uintRealValue ] );
-                                     rutpExitRulesMap.Disposition = ( ExitCodeDisposition ) uintRealValue;
+                                     Console.WriteLine ( astrExitCodeDisposition [ intRealValue ] );
+                                    rutpExitRulesMap.Disposition = enmExitCodeDisposition;
                                      fRequirementsMet = true;
                                      break;
 
@@ -314,12 +350,17 @@ namespace EOJTEST
                                      string strMessage = string.Format (
                                          ERRMSG_VALUE_OUT_OF_RANGE ,
                                          uintCurrArg + ArrayInfo.INDEX_FROM_ORDINAL ,
-                                         uintRealValue ,
+                                         intRealValue ,
                                          ENUM_NAME_EXIT_CODE_DISP );
                                      throw new Exception ( strMessage );
-                            }   // switch ( ( ExitCodeDisposition ) uintToTest - ArrayInfo.INDEX_FROM_ORDINAL )
+                            }   // switch ( enmExitCodeDisposition )
 
                             break;  // case ARG_EXIT_DISPOSITION of switch ( uintCurrArg )
+
+                        case ARG_EXIT_CODE_FOR_CALLING_PROCESS:
+                            rutpExitRulesMap.IsForCallingProcess = true;
+
+                            break;  // case ARG_EXIT_CODE_FOR_CALLING_PROCESS of switch ( uintCurrArg )
 
                         default:
                             Console.WriteLine (
@@ -328,7 +369,7 @@ namespace EOJTEST
                                 pastrArgs [ uintCurrArg ] );
                             break;
                     }   // switch ( uintCurrArg )
-                }   // TRUE block, if ( uint.TryParse ( pastrArgs [ uintCurrArg ] , out uintToTest ) )
+                }   // TRUE block, if ( int.TryParse ( pastrArgs [ uintCurrArg ] , out intToTest ) )
                 else
                 {   // Depending on their position, non-integral arguments are ignored, if extra, or provoke an exception.
                     if ( uintCurrArg > ARG_EXIT_DISPOSITION )
@@ -346,7 +387,7 @@ namespace EOJTEST
                             pastrArgs [ uintCurrArg ] );
                         throw new Exception ( strMessage );
                     }   // FALSE block, if ( uintCurrArg > ARG_EXIT_DISPOSITION )
-                }   // FALSE block, if ( uint.TryParse ( pastrArgs [ uintCurrArg ] , out uintToTest ) )
+                }   // FALSE block, if ( int.TryParse ( pastrArgs [ uintCurrArg ] , out intToTest ) )
             }   // for ( uint uintCurrArg = StandardConstants.ARRAY_FIRST_ELEMENT ; uintCurrArg < uintNArgs ; uintCurrArg++ )
 
             if ( fRequirementsMet )

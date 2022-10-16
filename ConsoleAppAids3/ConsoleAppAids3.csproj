@@ -33,7 +33,7 @@
 //
 //                 3) Add the Deterministic compiler switch, which goes well with SemVer version numbering.
 //
-//                 4) Add -Source nuget.org to NuGet Puse command line.
+//                 4) Add -Source nuget.org to NuGet Push command line.
 //
 //  2020/10/27 DAG Replace the invalid publish task with a working task from my
 //                 MoreMath library.
@@ -41,6 +41,9 @@
 //  2022/05/21 DAG Replace the AfterBuild target and its successors with the
 //                 WizardWrx_NuGet_Packages custom targets package. The related
 //                 UsingTask is also now pulled from the Targets package.
+//
+//  2022/09/18 DAG Replace wwBldNbrMgr.exe with AssemblyInfoUtil.exe, which runs
+//                 in PreBuildEvent, and is unnecessary in PostBuildEvent.
 //  ============================================================================
 -->
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -89,29 +92,29 @@
     <Reference Include="WizardWrx.AnyCSV, Version=7.2.145.0, Culture=neutral, PublicKeyToken=39f6551a21db420a, processorArchitecture=MSIL">
       <HintPath>..\packages\WizardWrx.AnyCSV.7.2.145\lib\net20\WizardWrx.AnyCSV.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.ASCIIInfo, Version=8.0.191.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.ASCIIInfo.8.0.191\lib\net35-client\WizardWrx.ASCIIInfo.dll</HintPath>
+    <Reference Include="WizardWrx.ASCIIInfo, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.ASCIIInfo.9.0.209\lib\net35-client\WizardWrx.ASCIIInfo.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.AssemblyUtils, Version=8.0.248.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.AssemblyUtils.8.0.248\lib\net35-client\WizardWrx.AssemblyUtils.dll</HintPath>
+    <Reference Include="WizardWrx.AssemblyUtils, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.AssemblyUtils.9.0.258\lib\net35-client\WizardWrx.AssemblyUtils.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.BitMath, Version=4.3.125.29248, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\DAG\.nuget\packages\WizardWrx.BitMath.4.3.125.29248\lib\net20\WizardWrx.BitMath.dll</HintPath>
+      <HintPath>..\packages\WizardWrx.BitMath.4.3.125.29248\lib\net20\WizardWrx.BitMath.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.Common, Version=8.0.212.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.Common.8.0.212\lib\net35-client\WizardWrx.Common.dll</HintPath>
+    <Reference Include="WizardWrx.Common, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.Common.9.0.246\lib\net35-client\WizardWrx.Common.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.ConsoleStreams, Version=8.0.308.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.ConsoleStreams.8.0.308\lib\net35-client\WizardWrx.ConsoleStreams.dll</HintPath>
+    <Reference Include="WizardWrx.ConsoleStreams, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.ConsoleStreams.9.0.318\lib\net35-client\WizardWrx.ConsoleStreams.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.Core, Version=8.0.309.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.Core.8.0.309\lib\net35-client\WizardWrx.Core.dll</HintPath>
+    <Reference Include="WizardWrx.Core, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.Core.9.0.319\lib\net35-client\WizardWrx.Core.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.DLLConfigurationManager, Version=8.0.336.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.DLLConfigurationManager.8.0.336\lib\net35-client\WizardWrx.DLLConfigurationManager.dll</HintPath>
+    <Reference Include="WizardWrx.DLLConfigurationManager, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.DLLConfigurationManager.9.0.346\lib\net35-client\WizardWrx.DLLConfigurationManager.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.FormatStringEngine, Version=8.0.278.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.FormatStringEngine.8.0.278\lib\net35-client\WizardWrx.FormatStringEngine.dll</HintPath>
+    <Reference Include="WizardWrx.FormatStringEngine, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.FormatStringEngine.9.0.288\lib\net35-client\WizardWrx.FormatStringEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -141,10 +144,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>wwBldNbrMgr.exe "$(ProjectDir) "</PreBuildEvent>
+    <PreBuildEvent>AssemblyInfoUtil.exe $(ProjectDir)Properties\AssemblyInfo.cs -inc:3 -fv -cy -onlywhenmodified</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>wwBldNbrMgr.exe -r "-p$(ProjectDir) " "-t$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(Custom_MSBuild_Targets)\WizardWrx_NuGet_Packages.TARGETS" Condition="Exists('$(Custom_MSBuild_Targets)\WizardWrx_NuGet_Packages.TARGETS')" />
 </Project>
