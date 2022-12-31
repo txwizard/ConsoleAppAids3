@@ -232,11 +232,56 @@ namespace TestStand.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath Exercises Begin:{0}.
+        /// </summary>
+        internal static string MSG_SET_CWD_TESTS_BEGIN {
+            get {
+                return ResourceManager.GetString("MSG_SET_CWD_TESTS_BEGIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath Exercises Done!{0}.
+        /// </summary>
+        internal static string MSG_SET_CWD_TESTS_DONE {
+            get {
+                return ResourceManager.GetString("MSG_SET_CWD_TESTS_DONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}Press the ENTER key to display the next example..
         /// </summary>
         internal static string MSG_SHOW_NEXT_EXAMPLE {
             get {
                 return ResourceManager.GetString("MSG_SHOW_NEXT_EXAMPLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {1}    Initial CWD = {0}{1}.
+        /// </summary>
+        internal static string MSG_STARTING_CWD {
+            get {
+                return ResourceManager.GetString("MSG_STARTING_CWD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to     Test {0}: Relative path = {1}{3}            Assembly path = {2}.
+        /// </summary>
+        internal static string MSG_TEST_INPUTS {
+            get {
+                return ResourceManager.GetString("MSG_TEST_INPUTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to             New CWD       = {0}{1}.
+        /// </summary>
+        internal static string MSG_TEST_OUTPUTS {
+            get {
+                return ResourceManager.GetString("MSG_TEST_OUTPUTS", resourceCulture);
             }
         }
         

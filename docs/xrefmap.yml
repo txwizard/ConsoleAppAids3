@@ -255,6 +255,19 @@ references:
   commentId: F:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction.WaitForOperator
   fullName: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction.WaitForOperator
   nameWithType: ConsoleAppStateManager.NormalExitAction.WaitForOperator
+- uid: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath(System.String)
+  name: SetCWDRelativeToEntryAssemblyPath(String)
+  href: api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html#WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_SetCWDRelativeToEntryAssemblyPath_System_String_
+  commentId: M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath(System.String)
+  fullName: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath(System.String)
+  nameWithType: ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath(String)
+- uid: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath*
+  name: SetCWDRelativeToEntryAssemblyPath
+  href: api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html#WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_SetCWDRelativeToEntryAssemblyPath_
+  commentId: Overload:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath
+  isSpec: "True"
+  fullName: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath
+  nameWithType: ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath
 - uid: WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.TIMED_WAIT_BACKGROUND_COLOR_DEFAULT
   name: TIMED_WAIT_BACKGROUND_COLOR_DEFAULT
   href: api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html#WizardWrx_ConsoleAppAids3_ConsoleAppStateManager_TIMED_WAIT_BACKGROUND_COLOR_DEFAULT

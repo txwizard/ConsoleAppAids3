@@ -19,7 +19,7 @@ namespace WizardWrx.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -129,6 +129,15 @@ namespace WizardWrx.Properties {
         internal static string ERRMSG_EXCEPTION_BARE_BONES {
             get {
                 return ResourceManager.GetString("ERRMSG_EXCEPTION_BARE_BONES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory {0} cannot be found with respect to entry assembly location directory {1}. The relative directory name that was passed into the routine is {2}..
+        /// </summary>
+        internal static string ERRMSG_RELATIVE_DIRECTORY_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("ERRMSG_RELATIVE_DIRECTORY_NOT_FOUND", resourceCulture);
             }
         }
         

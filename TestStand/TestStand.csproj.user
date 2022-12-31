@@ -4,7 +4,8 @@
     <StartArguments>-ttimedwait</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>-trterror</StartArguments>
-    <StartWorkingDirectory>D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\</StartWorkingDirectory>
+    <StartArguments>-tsetcwd</StartArguments>
+    <StartWorkingDirectory>
+    </StartWorkingDirectory>
   </PropertyGroup>
 </Project>

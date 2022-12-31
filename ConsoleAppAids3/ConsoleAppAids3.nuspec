@@ -10,7 +10,7 @@
     	<projectUrl>https://github.com/txwizard/ConsoleAppAids3</projectUrl>
 	    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     	<description>$description$</description>
-        <releaseNotes>To compensate for an apparent change in the behavior of the NuGet Package Manager implementation in Visual Studio 2019, all NuGet packages in the WizardWrx .NET API constellation of libraries are being re-released with a configuration change that causes dependencies to be read or inferred from the project file. This is accomplished by adding the IncludeReferencedProjects to the NuGet Pack command line. Otherwise, the program source code is unchanged, nor are the binaries. Henceforth, independend release schedules as described in the immediately previous published version of this library will resume as described with respect to version 8.0.551 of this library.</releaseNotes>
+        <releaseNotes>For the first time in at least 3 years, this library gets a new feature that enables it to establish the Current Working Directory (CWD) to a directory specified relative to the directory from which the calling assembly loaded.</releaseNotes>
         <copyright>$copyright$</copyright>
     	<tags>Constrained console scrolling, specialized console application management</tags>
 	</metadata>

@@ -4,6 +4,26 @@ This file is a running history of fixes and improvements from version 7.0
 onwards. Changes are documented for the newest version first. Within each
 version, classes are listed alphabetically.
 
+# AssemblyVersion 9.0.0 Updated 12/30/2022, AssemblyFileVersion 9.0.565
+
+For the first time in four years, this library gets a new feature that enables
+it to establish the Current Working Directory (CWD) to a directory specified
+relative to the directory from which the calling assembly loaded.
+
+For example, if you call `SetCWDRelativeToEntryAssemblyPath` from an entry
+assembly that loaded from `C:\Users\Me\Repositories\ConsoleAppAids3\TestStand\bin\Release`
+and you pass in `..\..\App_Data` the return value wound be
+`C:\Users\Me\Repositories\ConsoleAppAids3\TestStand\App_Data' - ideal for unit
+test assemblies distributed via GitHub, BitBucket, Sourceforge, and character-mode
+assemblies incorporated into Visual Studio solutions that are shared amont people
+whose machine configurations are not standardized.
+
+The new major version number (9.0) raligns the version numbers with the assembly
+version numbering of the WizardWrx .NET API libraries upon which this library
+relies.
+
+This package ships with the latest versions of thos libraries.
+
 # Version 8.1.562 Updated 10/15/2022
 
 This re-release corresponds to an update of the associated GitHub repository

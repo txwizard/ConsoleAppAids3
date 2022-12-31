@@ -21,7 +21,7 @@
 
     Created:            Saturday, 11 January 2014 - Wednesday, 05 February 2014
     
-	License:            Copyright (C) 2014-2018, David A. Gray. 
+	License:            Copyright (C) 2014-2022, David A. Gray. 
 						All rights reserved.
 
                         Redistribution and use in source and binary forms, with
@@ -172,6 +172,9 @@
 	2021/03/05 8.0     DAG LoadBasicErrorMessages replaces LoadErrorMessageTable.
 
     2022/04/13 8.1     DAG Add a test that simulates a run-time error.
+
+    2022/12/31 9.0     DAG Add tests of the SetCWDRelativeToEntryAssemblyPath
+                           method.
     ============================================================================
 */
 
@@ -270,6 +273,7 @@ namespace TestStand
         const string SW_OT_TIMED_ERRS = @"timederrs";
         const string SW_OT_FCW_REUSE = @"fcwreuse";
         const string SW_OT_RT_ERROR = @"rterror";           // Simulate a run-time error.
+        const string SW_OT_SET_CWD = @"setcwd";             // Set CWD relative to the project's \bin directory.
 
         const string ARG_COUNT = @"count";
         const string ARG_INTERVAL = @"interval";
@@ -280,8 +284,18 @@ namespace TestStand
             ARG_INTERVAL
         };  // static string [ ] s_astrNamedArgs
 
+        static string [ ] s_astrSetCWDTestInputs =
+        {
+            @"..\..\..\APP_Data" ,                          // Path is valid.
+            @".\" ,                                         // Path is valid.
+            @"..\..\..\Application_Data" ,                  // Path is invalid because directory doesn't exist.
+            SpecialStrings.EMPTY_STRING ,                   // Path is invalid because the empty string.
+            null                                            // Path is invalid because null.
+        };  // static string [ ] s_astrSetCWDTestInputs
+
         const string TEST_BEGIN_TPL = "{1}Test # {0} begin\n";
         const string TEST_END_TPL = "\nTest # {0} end";
+
         const string FCW_TEST_MSG_TPL_3 = @"Waiting for {0:N0} milliseconds ({1:N0} seconds). This is pause {2:N0} of {3:N0}.";
         const string FCW_TEST_MSG_TPL_4 = @"Waiting for {0:N0} milliseconds ({1:N0} seconds). This is pause {2:N0}.";
 
@@ -457,22 +471,22 @@ namespace TestStand
 					"{1}The {0} test will run.{1}" ,
 					strSingleTest ,
 					Environment.NewLine );
-			}	// FALSE block, if ( string.IsNullOrEmpty ( strSingleTest ) )
+			}   // FALSE block, if ( string.IsNullOrEmpty ( strSingleTest ) )
 
-			#if DEBUG
-				if (System.Diagnostics.Debugger.IsAttached )
-				{
-					Console.Error.WriteLine (
-						"This program is already running under a debugger.{0}" ,
-						Environment.NewLine );
-				}	// TRUE block, if (System.Diagnostics.Debugger.IsAttached )
-				else
-				{
-					Console.Error.WriteLine (
-						"This program is attaching itself to a debugger.{0}" ,
-						Environment.NewLine );
-					System.Diagnostics.Debugger.Launch ( );
-			}	// FALSE block, if (System.Diagnostics.Debugger.IsAttached )
+            #if DEBUG
+            if ( System.Diagnostics.Debugger.IsAttached )
+            {
+                Console.Error.WriteLine (
+                    "This program is already running under a debugger.{0}" ,
+                    Environment.NewLine );
+            }   // TRUE block, if (System.Diagnostics.Debugger.IsAttached )
+            else
+            {
+                Console.Error.WriteLine (
+                    "This program is attaching itself to a debugger.{0}" ,
+                    Environment.NewLine );
+                System.Diagnostics.Debugger.Launch ( );
+            }	// FALSE block, if (System.Diagnostics.Debugger.IsAttached )
 			#endif	// #if DEBUG
 
 			if ( strSingleTest == SW_OT_TIMED_STOP )
@@ -667,6 +681,10 @@ namespace TestStand
                 SimulateRuntimeError ( );
             }   // if ( strSingleTest == SpecialStrings.EMPTY_STRING || strSingleTest == SW_OT_RT_ERROR )
 
+            if ( strSingleTest == SpecialStrings.EMPTY_STRING || strSingleTest == SW_OT_SET_CWD )
+            {
+                Exercise_SetCWDRelativeToEntryAssemblyPath ( s_astrSetCWDTestInputs );
+            }   // if ( strSingleTest == SpecialStrings.EMPTY_STRING || strSingleTest == SW_OT_SET_CWD )
             //  ----------------------------------------------------------------
             //  Render the final report, clean up, and shut down.
             //  ----------------------------------------------------------------
@@ -691,6 +709,50 @@ namespace TestStand
                 }   // FALSE block, if ( enmOutputFormat == OutputFormat.None )
 			#endif	// #if DEBUG
 		}   //  static void Main
+
+        private static void Exercise_SetCWDRelativeToEntryAssemblyPath (
+            string [ ] pastrSetCWDTestInputs )
+        {
+            Console.WriteLine (
+                Properties.Resources.MSG_SET_CWD_TESTS_BEGIN ,
+                Environment.NewLine );
+            string strInitialCWD = Environment.CurrentDirectory;
+            Console.WriteLine (
+                Properties.Resources.MSG_STARTING_CWD ,                         // Format Control String like: {1}    Initial CWD = {0}{1}
+                strInitialCWD ,                                                 // Format Item 0: Initial CWD = {0}
+                Environment.NewLine );                                          // Format Item 1: Line break before and after line
+
+            for ( int intJ = ArrayInfo.ARRAY_FIRST_ELEMENT;
+                      intJ < pastrSetCWDTestInputs.Length;
+                      intJ++ )
+            {
+                try
+                {
+                    Console.WriteLine (
+                        Properties.Resources.MSG_TEST_INPUTS ,                  // Format Control String Like: Test {0}: Relative path = {1}{3}          Assembly path = {2}
+                        ArrayInfo.OrdinalFromIndex ( intJ ) ,                   // Format Item 0: Test {0}:
+                        pastrSetCWDTestInputs [ intJ ] ,                        // Format Item 1: Relative path = {1}
+                        s_theApp.BaseStateManager.AppRootAssemblyFileDirName ,  // Format Item 2: Assembly path = {2}
+                        Environment.NewLine );                                  // Format Item 3: Line break between lines
+                    string strNewCWD = s_theApp.SetCWDRelativeToEntryAssemblyPath (
+                        pastrSetCWDTestInputs [ intJ ] );
+                    Console.WriteLine (
+                        Properties.Resources.MSG_TEST_OUTPUTS ,
+                        strNewCWD ,
+                        Environment.NewLine );
+                }
+                catch ( Exception ex )
+                {
+                    s_theApp.BaseStateManager.AppExceptionLogger.ReportException ( ex );
+                }
+
+                Environment.CurrentDirectory = strInitialCWD;
+            }   // for ( int intJ = ArrayInfo.ARRAY_FIRST_ELEMENT; intJ < pastrSetCWDTestInputs.Length; intJ++ )
+
+            Console.WriteLine (
+                Properties.Resources.MSG_SET_CWD_TESTS_DONE ,
+                Environment.NewLine );
+        }   // private static void Exercise_SetCWDRelativeToEntryAssemblyPath
 
 
         private static void ExerciseColorExceptionReporting ( )

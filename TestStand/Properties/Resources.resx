@@ -179,8 +179,28 @@
   <data name="MSG_PROMPT_FOR_PICTURE" xml:space="preserve">
     <value>Capture this screen, then press the ENTER key.</value>
   </data>
+  <data name="MSG_SET_CWD_TESTS_BEGIN" xml:space="preserve">
+    <value>{0}ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath Exercises Begin:{0}</value>
+    <comment>Exercise_SetCWDRelativeToEntryAssemblyPath displays this message when it gets execution control.</comment>
+  </data>
+  <data name="MSG_SET_CWD_TESTS_DONE" xml:space="preserve">
+    <value>{0}ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath Exercises Done!{0}</value>
+    <comment>Exercise_SetCWDRelativeToEntryAssemblyPath displays this message when it is about to return control.</comment>
+  </data>
   <data name="MSG_SHOW_NEXT_EXAMPLE" xml:space="preserve">
     <value>{0}Press the ENTER key to display the next example.</value>
+  </data>
+  <data name="MSG_STARTING_CWD" xml:space="preserve">
+    <value>{1}    Initial CWD = {0}{1}</value>
+    <comment>Exercise_SetCWDRelativeToEntryAssemblyPath generates a message from this template before testing commences.</comment>
+  </data>
+  <data name="MSG_TEST_INPUTS" xml:space="preserve">
+    <value>    Test {0}: Relative path = {1}{3}            Assembly path = {2}</value>
+    <comment>Exercise_SetCWDRelativeToEntryAssemblyPath generates a message from this template at the start of a test case.</comment>
+  </data>
+  <data name="MSG_TEST_OUTPUTS" xml:space="preserve">
+    <value>            New CWD       = {0}{1}</value>
+    <comment>Exercise_SetCWDRelativeToEntryAssemblyPath generates a message from this template at the end of a test case.</comment>
   </data>
   <data name="MSG_TIMED_ERROR_TEST" xml:space="preserve">
     <value>{0}Exercising the Timed Exit action of the ConsoleAppStateManager.ErrorExit method.{0}</value>

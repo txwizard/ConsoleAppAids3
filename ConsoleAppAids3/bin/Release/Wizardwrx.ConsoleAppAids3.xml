@@ -469,6 +469,62 @@
             its own. Theoretically, every other overload could call this one.
             </remarks>
         </member>
+        <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath(System.String)">
+            <summary>
+            SetCWDRelativeToEntryAssemblyPath establishes the CWD relative to
+            the entry assembly path, returning the resulting absolute (fully
+            qualified) path.
+            </summary>
+            <param name="pstrRelativeDirectoryPath">
+            Path string, expressed relative to the entry assembly location.
+            </param>
+            <returns>
+            <para>
+            If it succeeds, the return path is the absolute path that is the new
+            Current Working Directory.
+            </para>
+            <para>
+            The returned string is guaranteed to be backslash terminated.
+            </para>
+            </returns>
+            <example>
+            If you call <c>SetCWDRelativeToEntryAssemblyPath</c> from an entry
+            assembly that loaded from <c>C:\Users\Me\Repositories\ConsoleAppAids3\TestStand\bin\Release</c>
+            and you pass in <c>..\..\App_Data</c>, the return value wound be
+            <c>C:\Users\Me\Repositories\ConsoleAppAids3\TestStand\App_Data</c>,
+            ideal for unit test assemblies distributed via GitHub, BitBucket,
+            Sourceforge, and character-mode assemblies incorporated into Visual
+            Studio solutions that are shared amont people whose machine
+            configurations are not standardized.
+            </example>
+            <exception cref="T:System.ArgumentNullException">
+            <para>
+            An ArgumentNullException Exception arises when <paramref name="pstrRelativeDirectoryPath"/>
+            is either a null reference or the empty string.
+            </para>
+            <para>
+            You must pass a string, even if it is <c>.\</c> to designate the
+            assembly location directory.
+            </para>
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            <para>
+            An InvalidOperationException Exception arises when the directory
+            path specified by <paramref name="pstrRelativeDirectoryPath"/>
+            cannot be found with respect to the directory from which the entry
+            assembly loaded.
+            </para>
+            <para>
+            Though <c>Environment.CurrentDirectory</c> raises an
+            <c>DirectoryNofFoundException</c> Exception if the path resolves to
+            an invalid directory, its message omits critical information that
+            would help resolve the cause. Though it might display the resolved
+            directory name, it would omit the path that was passed into the
+            method and the name of the directory from which the entry assembly
+            loaded.
+            </para>
+            </exception>
+        </member>
         <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ReportNonZeroStatusCode(System.Int32)">
             <summary>
             Unless status code <paramref name="pintStatusCode"/> is
@@ -1323,6 +1379,11 @@
         <member name="P:WizardWrx.Properties.Resources.ERRMSG_EXCEPTION_BARE_BONES">
             <summary>
               Looks up a localized string similar to {0}:An {1} exception occurred in routine {2}.{8}                         Message            = {3}{8}                         Console.CursorLeft = {4}{8}                         Console.CursorTop  = {5}{8}                         _intInitialCol     = {6}{8}                         _intInitialRow     = {7}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.ERRMSG_RELATIVE_DIRECTORY_NOT_FOUND">
+            <summary>
+              Looks up a localized string similar to Directory {0} cannot be found with respect to entry assembly location directory {1}. The relative directory name that was passed into the routine is {2}..
             </summary>
         </member>
         <member name="P:WizardWrx.Properties.Resources.ERRMSG_UNKNOWN_EXIT_CODE">

@@ -30,7 +30,7 @@
 
 	Author:             David A. Gray
 
-	License:            Copyright (C) 2014-2020, David A. Gray. 
+	License:            Copyright (C) 2014-2022, David A. Gray. 
 						All rights reserved.
 
                         Redistribution and use in source and binary forms, with
@@ -141,6 +141,10 @@
                            size of the message table because its objective is to
                            control the action of its calling process, which is
                            usually a shell script.
+
+    2022/12/31 9.0.0   DAG SetCWDRelativeToEntryAssemblyPath establishes the CWD
+                           relative to the entry assembly path, returning the
+                           resulting absolute (fully qualified) path.
     ============================================================================
 */
 
@@ -446,7 +450,7 @@ namespace WizardWrx.ConsoleAppAids3
         #endregion   // ErrorExit Methods
 
 
-        #region BOJ and EOJ Pseudo-Properties
+        #region BOJ and EOJ Methods
         /// <summary>
         /// When called for the first time, this method returns a BOJ message,
         /// ready for display on the console. Subsequent calls return an empty
@@ -944,6 +948,94 @@ namespace WizardWrx.ConsoleAppAids3
             }   // switch ( penmNormalExitAction )
         }   // public void NormalExit (9 of 9)
         #endregion // NortmalExit Methods
+
+
+        #region SetCWDRelativeToEntryAssemblyPath
+        /// <summary>
+        /// SetCWDRelativeToEntryAssemblyPath establishes the CWD relative to
+        /// the entry assembly path, returning the resulting absolute (fully
+        /// qualified) path.
+        /// </summary>
+        /// <param name="pstrRelativeDirectoryPath">
+        /// Path string, expressed relative to the entry assembly location.
+        /// </param>
+        /// <returns>
+        /// <para>
+        /// If it succeeds, the return path is the absolute path that is the new
+        /// Current Working Directory.
+        /// </para>
+        /// <para>
+        /// The returned string is guaranteed to be backslash terminated.
+        /// </para>
+        /// </returns>
+        /// <example>
+        /// If you call <c>SetCWDRelativeToEntryAssemblyPath</c> from an entry
+        /// assembly that loaded from <c>C:\Users\Me\Repositories\ConsoleAppAids3\TestStand\bin\Release</c>
+        /// and you pass in <c>..\..\App_Data</c>, the return value wound be
+        /// <c>C:\Users\Me\Repositories\ConsoleAppAids3\TestStand\App_Data</c>,
+        /// ideal for unit test assemblies distributed via GitHub, BitBucket,
+        /// Sourceforge, and character-mode assemblies incorporated into Visual
+        /// Studio solutions that are shared amont people whose machine
+        /// configurations are not standardized.
+        /// </example>
+        /// <exception cref="ArgumentNullException">
+        /// <para>
+        /// An ArgumentNullException Exception arises when <paramref name="pstrRelativeDirectoryPath"/>
+        /// is either a null reference or the empty string.
+        /// </para>
+        /// <para>
+        /// You must pass a string, even if it is <c>.\</c> to designate the
+        /// assembly location directory.
+        /// </para>
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// <para>
+        /// An InvalidOperationException Exception arises when the directory
+        /// path specified by <paramref name="pstrRelativeDirectoryPath"/>
+        /// cannot be found with respect to the directory from which the entry
+        /// assembly loaded.
+        /// </para>
+        /// <para>
+        /// Though <c>Environment.CurrentDirectory</c> raises an
+        /// <c>DirectoryNofFoundException</c> Exception if the path resolves to
+        /// an invalid directory, its message omits critical information that
+        /// would help resolve the cause. Though it might display the resolved
+        /// directory name, it would omit the path that was passed into the
+        /// method and the name of the directory from which the entry assembly
+        /// loaded.
+        /// </para>
+        /// </exception>
+        public string SetCWDRelativeToEntryAssemblyPath ( string pstrRelativeDirectoryPath )
+        {
+            if ( !string.IsNullOrEmpty ( pstrRelativeDirectoryPath ) )
+            {
+                string strAssemblyLocationDirectoryName = _me.AppRootAssemblyFileDirName;
+                Environment.CurrentDirectory = strAssemblyLocationDirectoryName;
+                System.IO.DirectoryInfo directoryInfo = new System.IO.DirectoryInfo ( pstrRelativeDirectoryPath );
+
+                if ( directoryInfo.Exists )
+                {
+                    Environment.CurrentDirectory = directoryInfo.FullName;
+                    return WizardWrx.FileNameTricks.EnsureHasTerminalBackslash ( directoryInfo.FullName );
+                }   // TRUE (anticipated outcome) block, if ( directoryInfo.Exists )
+                else
+                {
+                    throw new InvalidOperationException (
+                        string.Format (
+                            Properties.Resources.ERRMSG_RELATIVE_DIRECTORY_NOT_FOUND ,              // Format Control String like: Directory {0} cannot be found with respect to entry assembly location directory {1}. The relative directory name that was passed into the routine is {2}.
+                            directoryInfo.FullName ,                                                // Format Item 0: Directory {0} cannot be found
+                            strAssemblyLocationDirectoryName ,                                      // Format Item 1: with respect to entry assembly location directory {1}.
+                            pstrRelativeDirectoryPath ) );                                          // Format Item 2: The relative directory name that was passed into the routine is {2}.
+                }   // FALSE (unanticipated outcome) block, if ( directoryInfo.Exists )
+            }   // TRUE (anticpated outcome) block, if ( !string.IsNullOrEmpty ( pstrRelativeDirectoryPath ) )
+            else
+            {
+                throw new ArgumentNullException (
+                    nameof ( pstrRelativeDirectoryPath ) ,
+                    WizardWrx.Common.Properties.Resources.ERRMSG_ARG_IS_NULL_OR_EMPTY );
+            }   // FALSE (unanticpated outcome) block, if ( !string.IsNullOrEmpty ( pstrRelativeDirectoryPath ) )
+        }   // public string SetCWDRelativeToEntryAssemblyPath
+        #endregion  // SetCWDRelativeToEntryAssemblyPath
 
 
         #region Private Symbolic Constants

@@ -146,6 +146,10 @@
     <value>{0}:An {1} exception occurred in routine {2}.{8}                         Message            = {3}{8}                         Console.CursorLeft = {4}{8}                         Console.CursorTop  = {5}{8}                         _intInitialCol     = {6}{8}                         _intInitialRow     = {7}</value>
     <comment>The FixedConsoleWriter constructs a detailed report about its internal state when an I/O error occurs when it attempts to move the cursor when the standard output stream is redirected to a file.</comment>
   </data>
+  <data name="ERRMSG_RELATIVE_DIRECTORY_NOT_FOUND" xml:space="preserve">
+    <value>Directory {0} cannot be found with respect to entry assembly location directory {1}. The relative directory name that was passed into the routine is {2}.</value>
+    <comment>ConsoleAppStateManager.SetCWDRelativeToEntryAssemblyPath constructs the message for an InvalidOperationException Exception from this template.</comment>
+  </data>
   <data name="ERRMSG_UNKNOWN_EXIT_CODE" xml:space="preserve">
     <value>Internal error: Unknown status code, {0}</value>
     <comment>This message is displayed when the specified exit code exceeds the highest value for which the message table contains an entry.</comment>
