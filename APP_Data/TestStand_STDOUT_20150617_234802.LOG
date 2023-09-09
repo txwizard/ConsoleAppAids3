@@ -1,0 +1,263 @@
+TestStand, version 5.5.390.40577
+Begin @ 2015-06-17 23:42:32.652 (2015-06-18 04:42:32.652 UTC)
+
+
+All tests will execute.
+
+
+Static MessageInColor.RGBWriteLine() Tests Begin
+
+    Overload  1: True
+    Overload  2: E
+    Overload  3: FGH
+    Overload  4: 1.25
+    Overload  5: 3.333333
+    Overload  6: 3.3333
+    Overload  7: -255
+    Overload  8: -125000
+    Overload  9: Stuff 1
+    Overload 10: This is it.
+    Overload 11: 512
+    Overload 12: 250000
+    Overload 13: object arg0: object arg0 = Stuff 1
+    Overload 14: params object [ ] arg: params object [ ] arg = Stuff 1
+    Overload 15: GH
+    Overload 16: object arg0, object arg1: object arg0 = Stuff 1, object arg1 = Stuff 2
+    Overload 17: object arg0 = Stuff 1, object arg1 = Stuff 2, object arg2 = Stuff 3
+    Overload 18: object arg0 = Stuff 1, object arg1 = Stuff 2, object arg2 = Stuff 3, object arg3 = Stuff 4
+Static MessageInColor.RGBWriteLine() Tests End
+
+Static MessageInColor.RGBWrite() Tests Begin
+
+    Overload  1: True
+    Overload  2: E
+    Overload  3: FGH
+    Overload  4: 1.25
+    Overload  5: 3.333333
+    Overload  6: 3.3333
+    Overload  7: -255
+    Overload  8: -125000
+    Overload  9: Stuff 1
+    Overload 10: This is it.
+    Overload 11: 512
+    Overload 12: 250000
+    Overload 13: object arg0: object arg0 = Stuff 1
+    Overload 14: params object [ ] arg: params object [ ] arg = Stuff 1
+    Overload 15: GH
+    Overload 16: object arg0, object arg1: object arg0 = Stuff 1, object arg1 = Stuff 2
+    Overload 17: object arg0 = Stuff 1, object arg1 = Stuff 2, object arg2 = Stuff 3
+    Overload 18: object arg0 = Stuff 1, object arg1 = Stuff 2, object arg2 = Stuff 3, object arg3 = Stuff 4
+Static MessageInColor.RGBWrite() Tests End
+
+Instance MessageInColor.WriteLine() Tests Begin
+
+    Overload  1: True
+    Overload  2: E
+    Overload  3: FGH
+    Overload  4: 1.25
+    Overload  5: 3.333333
+    Overload  6: 3.3333
+    Overload  7: -255
+    Overload  8: -125000
+    Overload  9: Stuff 1
+    Overload 10: This is it.
+    Overload 11: 512
+    Overload 12: 250000
+    Overload 13: object arg0: object arg0 = Stuff 1
+    Overload 14: params object [ ] arg: params object [ ] arg = Stuff 1
+    Overload 15: GH
+    Overload 16: object arg0, object arg1: object arg0 = Stuff 1, object arg1 = Stuff 2
+    Overload 17: object arg0 = Stuff 1, object arg1 = Stuff 2, object arg2 = Stuff 3
+    Overload 18: object arg0 = Stuff 1, object arg1 = Stuff 2, object arg2 = Stuff 3, object arg3 = Stuff 4
+Instance MessageInColor.WriteLine() Tests End
+
+Instance MessageInColor.Write() Tests Begin
+
+    Overload  1: True
+    Overload  2: E
+    Overload  3: FGH
+    Overload  4: 1.25
+    Overload  5: 3.333333
+    Overload  6: 3.3333
+    Overload  7: -255
+    Overload  8: -125000
+    Overload  9: Stuff 1
+    Overload 10: This is it.
+    Overload 11: 512
+    Overload 12: 250000
+    Overload 13: object arg0: object arg0 = Stuff 1
+    Overload 14: params object [ ] arg: params object [ ] arg = Stuff 1
+    Overload 15: GH
+    Overload 16: object arg0, object arg1: object arg0 = Stuff 1, object arg1 = Stuff 2
+    Overload 17: object arg0 = Stuff 1, object arg1 = Stuff 2, object arg2 = Stuff 3
+    Overload 18: object arg0 = Stuff 1, object arg1 = Stuff 2, object arg2 = Stuff 3, object arg3 = Stuff 4
+Instance MessageInColor.Write() Tests End
+
+Error reporting test 1 of 5 Begin
+
+
+Error reporting test 1 of 5 End
+
+
+Error reporting test 2 of 5 Begin
+
+
+Error reporting test 2 of 5 End
+
+
+Error reporting test 3 of 5 Begin
+
+
+Error reporting test 3 of 5 End
+
+
+Error reporting test 4 of 5 Begin
+
+
+Error reporting test 4 of 5 End
+
+
+Error reporting test 5 of 5 Begin
+
+
+Error reporting test 5 of 5 End
+
+
+Error reporting test 1 of 5 Begin
+
+Object reference not set to an instance of an object.
+
+Error reporting test 1 of 5 End
+
+
+Error reporting test 2 of 5 Begin
+
+This error message appears in White text on Red background.
+
+Error reporting test 2 of 5 End
+
+
+Error reporting test 3 of 5 Begin
+
+This error message appears in Yellow text on Red background.
+
+Error reporting test 3 of 5 End
+
+
+Error reporting test 4 of 5 Begin
+
+This error message appears in White text on DarkRed background.
+
+Error reporting test 4 of 5 End
+
+
+Error reporting test 5 of 5 Begin
+
+This error message appears in Yellow text on DarkRed background.
+
+Error reporting test 5 of 5 End
+
+
+Test # 24: This test displays a countdown of 30 seconds.
+
+Test ended.
+
+AppExceptionLogger properties:
+
+    AppEventSourceID         = WizardWrx
+    AppStackTraceDisposition = Omit ALERT: This property is deprecated.
+    AppSubsystem             = CUI ALERT: This property is deprecated.
+    MessageBackgroundColor   = DarkRed
+    MessageForegroundColor   = Yellow
+    EventLoggingState        = Enabled ALERT: This property is deprecated.
+Test TimeedWaitTest 24:
+Test Case  1 Properties: TWTC_puintWaitSeconds        = 5
+                         TWTC_pstrCountdownWaitingFor = A TimeedWaitTest
+                         TWTC_pclrTextColor           = Green
+                         TWTC_pclrTextBackgroundColor = Black
+                         TWTC_penmInterruptCriterion  = None
+
+Test Case  1 completed.
+
+Test Case  2 Properties: TWTC_puintWaitSeconds        = 10
+                         TWTC_pstrCountdownWaitingFor = This and That
+                         TWTC_pclrTextColor           = Green
+                         TWTC_pclrTextBackgroundColor = Black
+                         TWTC_penmInterruptCriterion  = None
+
+Test Case  2 completed.
+
+Test Case  3 Properties: TWTC_puintWaitSeconds        = 15
+                         TWTC_pstrCountdownWaitingFor = 
+                         TWTC_pclrTextColor           = Green
+                         TWTC_pclrTextBackgroundColor = Black
+                         TWTC_penmInterruptCriterion  = None
+
+Test Case  3 completed.
+
+Test Case  4 Properties: TWTC_puintWaitSeconds        = 20
+                         TWTC_pstrCountdownWaitingFor = Exiting
+                         TWTC_pclrTextColor           = Green
+                         TWTC_pclrTextBackgroundColor = Black
+                         TWTC_penmInterruptCriterion  = None
+
+Test Case  4 completed.
+
+Test Case  5 Properties: TWTC_puintWaitSeconds        = 25
+                         TWTC_pstrCountdownWaitingFor = Exiting
+                         TWTC_pclrTextColor           = White
+                         TWTC_pclrTextBackgroundColor = Black
+                         TWTC_penmInterruptCriterion  = None
+
+Test Case  5 completed.
+
+Test Case  6 Properties: TWTC_puintWaitSeconds        = 30
+                         TWTC_pstrCountdownWaitingFor = Exiting
+                         TWTC_pclrTextColor           = White
+                         TWTC_pclrTextBackgroundColor = Blue
+                         TWTC_penmInterruptCriterion  = None
+
+Test Case  6 completed.
+
+Test Case  7 Properties: TWTC_puintWaitSeconds        = 0
+                         TWTC_pstrCountdownWaitingFor = Exiting
+                         TWTC_pclrTextColor           = Blue
+                         TWTC_pclrTextBackgroundColor = Blue
+                         TWTC_penmInterruptCriterion  = AnyKey
+
+Test Case  7 completed.
+
+Test Case  8 Properties: TWTC_puintWaitSeconds        = 10
+                         TWTC_pstrCountdownWaitingFor = Exiting
+                         TWTC_pclrTextColor           = Blue
+                         TWTC_pclrTextBackgroundColor = Blue
+                         TWTC_penmInterruptCriterion  = CarriageReturn
+
+Test Case  8 completed.
+
+Test Case  9 Properties: TWTC_puintWaitSeconds        = 0
+                         TWTC_pstrCountdownWaitingFor = Exiting
+                         TWTC_pclrTextColor           = Blue
+                         TWTC_pclrTextBackgroundColor = Blue
+                         TWTC_penmInterruptCriterion  = None
+
+Test Case  9 completed.
+
+Test Case 10 Properties: TWTC_puintWaitSeconds        = 10
+                         TWTC_pstrCountdownWaitingFor = Exiting
+                         TWTC_pclrTextColor           = White
+                         TWTC_pclrTextBackgroundColor = White
+                         TWTC_penmInterruptCriterion  = None
+
+Test Case 10 completed.
+
+TimedWaitTestCase Properties: TWTC_puintWaitSeconds        = 30
+                              TWTC_pstrCountdownWaitingFor = A TimeedWaitTest
+                              TWTC_pclrTextColor           = Green
+                              TWTC_pclrTextBackgroundColor = Black
+                              TWTC_penmInterruptCriterion  = None
+Test TimeedWaitTest 24 is over.
+
+TestStand End
+2015-06-17 23:48:01.126 (2015-06-18 04:48:01.126 UTC)
+Elapsed time: 0:00:05:28.474

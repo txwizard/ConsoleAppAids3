@@ -10,7 +10,7 @@
     	<projectUrl>https://github.com/txwizard/ConsoleAppAids3</projectUrl>
 	    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     	<description>$description$</description>
-        <releaseNotes>For the first time in at least 3 years, this library gets a new feature that enables it to establish the Current Working Directory (CWD) to a directory specified relative to the directory from which the calling assembly loaded.</releaseNotes>
+        <releaseNotes>To maintain compatibility with the WizardWrx .NET API upon which this assembly relies, its target framework is upgraded to 4.8. Unless your project targets a lower version of the framework, this change is transparent. If you cannot retarget a project that imports this assembly, your only loss will be access to improvements incorporated into future versions, of which there are currently none planned.</releaseNotes>
         <copyright>$copyright$</copyright>
     	<tags>Constrained console scrolling, specialized console application management</tags>
 	</metadata>

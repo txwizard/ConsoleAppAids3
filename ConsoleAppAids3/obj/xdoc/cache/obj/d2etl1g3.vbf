@@ -1,0 +1,10 @@
+id: ConsoleAppAids3
+language: CSharp
+name:
+  Default: ConsoleAppAids3
+qualifiedName:
+  Default: ConsoleAppAids3
+type: Assembly
+modifiers: {}
+items: []
+references: {}

@@ -4,6 +4,16 @@ This file is a running history of fixes and improvements from version 7.0
 onwards. Changes are documented for the newest version first. Within each
 version, classes are listed alphabetically.
 
+# AssemblyVersion 9.0.0 Updated 09/09/2023, AssemblyFileVersion 9.0.567
+
+To maintain compatibility with the WizardWrx .NET API upon which this assembly
+relies, its target framework is upgraded to 4.8. Unless your project targets a
+lower version of the framework, this change is transparent.
+
+If you cannot retarget a project that imports this assembly, your only loss will
+be access to improvements incorporated into future versions, of which there are
+currently none planned.
+
 # AssemblyVersion 9.0.0 Updated 12/30/2022, AssemblyFileVersion 9.0.565
 
 For the first time in four years, this library gets a new feature that enables

@@ -103,3 +103,5 @@ D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Release\EOJTEST.csproj.AssemblyReference.cache
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Release\WizardWrx.BitMath.pdb
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Release\WizardWrx.AnyCSV.pdb
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Release\EOJTEST.exe.config
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Release\EOJTEST.csproj.SuggestedBindingRedirects.cache

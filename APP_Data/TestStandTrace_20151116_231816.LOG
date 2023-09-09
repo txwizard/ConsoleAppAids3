@@ -1,0 +1,6 @@
+2015/11/16 23:18:15: An System.NullReferenceException exception was caught in routine GetDefaultEventSourceID:
+               Message          = Object reference not set to an instance of an object.
+Exception Method = System.String GetDefaultEventSourceID()
+Exception Source = WizardWrx.DLLServices2
+There are no further exceptions to report.
+

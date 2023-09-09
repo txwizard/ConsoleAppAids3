@@ -68,3 +68,4 @@ D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\o
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.exe
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.pdb
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.csproj.AssemblyReference.cache
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.csproj.SuggestedBindingRedirects.cache

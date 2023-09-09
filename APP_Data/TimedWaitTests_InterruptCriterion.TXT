@@ -1,0 +1,3 @@
+puintWaitSeconds	pstrCountdownWaitingFor	pclrTextColor	pclrTextBackgroundColor	penmInterruptCriterion
+60	Exiting	Blue	Blue	AnyKey
+60	Exiting	Blue	Blue	CarriageReturn

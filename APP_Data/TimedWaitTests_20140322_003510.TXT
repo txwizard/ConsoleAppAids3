@@ -1,0 +1,11 @@
+puintWaitSeconds	pstrCountdownWaitingFor	pclrTextColor	pclrTextBackgroundColor	penmInterruptCriterion
+5	A TimeedWaitTest	Green	Black	None
+10	This and That	Green	Black	None
+15		Green	Black	None
+20	Exiting	Green	Black	None
+25	Exiting	White	Black	None
+30	Exiting	White	Blue	None
+0	Exiting	Blue	Blue	AnyKey
+10	Exiting	Blue	Blue	CarriageReturn
+0	Exiting	Blue	Blue	None
+10	Exiting	White	White	None

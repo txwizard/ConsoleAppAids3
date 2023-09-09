@@ -52,8 +52,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EOJTEST</RootNamespace>
     <AssemblyName>EOJTEST</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <!-- 2020-10-23 02:52:34 - DAG - Add the Deterministic compiler switch, which goes well with SemVer version numbering. -->
     <Deterministic>true</Deterministic>
@@ -67,6 +68,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -76,6 +78,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>WW_Icon1.ico</ApplicationIcon>
@@ -88,6 +91,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
@@ -97,31 +101,32 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="WizardWrx.ASCIIInfo, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.ASCIIInfo.9.0.210\lib\net35-client\WizardWrx.ASCIIInfo.dll</HintPath>
+      <HintPath>..\packages\WizardWrx.ASCIIInfo.9.0.218\lib\net48\WizardWrx.ASCIIInfo.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.AssemblyUtils, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.AssemblyUtils.9.0.266\lib\net35-client\WizardWrx.AssemblyUtils.dll</HintPath>
+      <HintPath>..\packages\WizardWrx.AssemblyUtils.9.0.273\lib\net48\WizardWrx.AssemblyUtils.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.Common, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.Common.9.0.255\lib\net35-client\WizardWrx.Common.dll</HintPath>
+      <HintPath>..\packages\WizardWrx.Common.9.0.266\lib\net48\WizardWrx.Common.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.ConsoleStreams, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.ConsoleStreams.9.0.318\lib\net35-client\WizardWrx.ConsoleStreams.dll</HintPath>
+      <HintPath>..\packages\WizardWrx.ConsoleStreams.9.0.324\lib\net48\WizardWrx.ConsoleStreams.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.Core, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.Core.9.0.327\lib\net35-client\WizardWrx.Core.dll</HintPath>
+      <HintPath>..\packages\WizardWrx.Core.9.0.337\lib\net48\WizardWrx.Core.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.DLLConfigurationManager, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.DLLConfigurationManager.9.0.346\lib\net35-client\WizardWrx.DLLConfigurationManager.dll</HintPath>
+      <HintPath>..\packages\WizardWrx.DLLConfigurationManager.9.0.353\lib\net48\WizardWrx.DLLConfigurationManager.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.FormatStringEngine, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.FormatStringEngine.9.0.288\lib\net35-client\WizardWrx.FormatStringEngine.dll</HintPath>
+      <HintPath>..\packages\WizardWrx.FormatStringEngine.9.0.300\lib\net48\WizardWrx.FormatStringEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +137,7 @@
     <Content Include="WW_Icon1.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

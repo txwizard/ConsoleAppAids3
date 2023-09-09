@@ -71,6 +71,9 @@
     2022/04/08 8.1.554 DAG No sooner do I quit publishing the dependency graph
                            refresh than I discover a legitimate defect that
                            warrants an authentic update of the code base.
+
+    2023/09/09 9.0.567 DAG Update the copyright year, coinciding with the target
+                           framework upgrade.
     ============================================================================
 */
 
@@ -86,7 +89,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration ( "" )]
 [assembly: AssemblyCompany ( "David A. Gray" )]
 [assembly: AssemblyProduct ( "WizardWrx .NET Utility Libraries" )]
-[assembly: AssemblyCopyright ( "Copyright © 2012-2022, David A. Gray" )]
+[assembly: AssemblyCopyright ( "Copyright © 2012-2023, David A. Gray" )]
 [assembly: AssemblyTrademark ( "This library is distributed under a three-clause BSD license." )]
 [assembly: AssemblyCulture ( "" )]
 
@@ -109,5 +112,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion ( "9.0.0.0" )]
-[assembly: AssemblyFileVersion ( "9.0.566.0" )]
-[assembly: AssemblyInformationalVersion ( "9.0.566" )]
+[assembly: AssemblyFileVersion ( "9.0.567.0" )]
+[assembly: AssemblyInformationalVersion ( "9.0.567" )]

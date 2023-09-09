@@ -1,0 +1,29 @@
+TestStand, version 6.1.438.21799
+Begin @ 2016-06-09 02:19:02.408 (2016-06-09 07:19:02.408 UTC)
+
+Selected properties of the library under test:
+
+    AssemblyFileBaseName = WizardWrx.ConsoleAppAids2
+    VersionString        = 6.0.454.21797
+    Culture              = Invariant Language (Invariant Country)
+    PublicKeyToken       = 
+    Runtime Version      = v2.0.50727
+    AssemblyGuidString   = 04dca54e-6aff-4ec8-ad04-06c75036a989
+    ProductName          = WizardWrx .NET Utility Libraries
+    LegalCopyright       = Copyright c 2012-2015 WizardWrx, Copyright c 2016 David A. Gray
+    LegalTrademarks      = WizardWrx was a trade mark of Simple Soft Services, Inc.
+    CompanyName          = David A. Gray
+    Description          = WizardWrx.ConsoleAppAids2
+    Comments             = Helper routines for console mode programs
+
+    AssembyDirName       = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids2\TestStand\bin\Debug
+    AssemblyFileName     = WizardWrx.ConsoleAppAids2.dll
+
+    File Creation Date   = 2015-06-04 23:11:03 (2015-06-05 04:11:03 UTC)
+    File Modified Date   = 2016-05-20 13:06:34 (2016-05-20 18:06:34 UTC)
+
+End of selected properties
+
+
+All tests will execute.
+

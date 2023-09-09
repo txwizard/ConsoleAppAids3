@@ -1,0 +1,8 @@
+TestStand, version 5.5.317.1054
+Begin @ 2015-06-08 02:16:43.380 (2015-06-08 07:16:43.380 UTC)
+
+Test # 1 begin
+
+    Test a FixedConsoleWriter with default foreground color and
+    default background color.
+

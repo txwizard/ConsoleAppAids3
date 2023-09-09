@@ -1,0 +1,17 @@
+2015/11/21 20:07:24: An System.NullReferenceException exception was caught in routine GetDefaultEventSourceID:
+               Message          = Object reference not set to an instance of an object.
+Exception Method = System.String GetDefaultEventSourceID()
+Exception Source = WizardWrx.DLLServices2
+There are no further exceptions to report.
+
+2015/11/22 00:51:52: An IOException exception occurred in routine Void WinIOError(Int32, System.String)
+                         Message            = The handle is invalid.
+
+                         Console.CursorLeft = 7
+                         Console.CursorTop  = 37
+2015/11/22 01:05:18: An System.NullReferenceException exception was caught in routine GetDefaultEventSourceID:
+               Message          = Object reference not set to an instance of an object.
+Exception Method = System.String GetDefaultEventSourceID()
+Exception Source = WizardWrx.DLLServices2
+There are no further exceptions to report.
+

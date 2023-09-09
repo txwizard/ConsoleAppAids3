@@ -61,6 +61,9 @@
 
     2021/06/06 8.0.535 DAG Build against the most recent WizardWrx .NET API
                            library constellation.
+
+    2023/09/09 9.0.535 DAG Update the copyright year, coinciding with the target
+                           framework upgrade.
     ============================================================================
 */
 
@@ -76,7 +79,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration ( "" )]
 [assembly: AssemblyCompany ( "David A. Gray" )]
 [assembly: AssemblyProduct ( "WizardWrx .NET Utility Libraries" )]
-[assembly: AssemblyCopyright ( "Copyright © 2012-2022, David A. Gray" )]
+[assembly: AssemblyCopyright ( "Copyright © 2012-2023, David A. Gray" )]
 [assembly: AssemblyTrademark ( "This library is distributed under a three-clause BSD license." )]
 [assembly: AssemblyCulture ( "" )]
 
@@ -99,5 +102,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion ( "9.0.0.0" )]
-[assembly: AssemblyFileVersion ( "9.0.534.0" )]
-[assembly: AssemblyInformationalVersion ( "9.0.534" )]
+[assembly: AssemblyFileVersion ( "9.0.535.0" )]
+[assembly: AssemblyInformationalVersion ( "9.0.535" )]
