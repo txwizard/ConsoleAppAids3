@@ -15,7 +15,7 @@
 
     Author:				David A. Gray
 
-	License:            Copyright (C) 2012-2017, David A. Gray. 
+	License:            Copyright (C) 2012-2023, David A. Gray. 
 						All rights reserved.
 
                         Redistribution and use in source and binary forms, with
@@ -109,13 +109,16 @@
 	2017/12/06 7.0     DAG Replace the WizardWrx.DllServices2.dll monolith with
 	                       the constellation of DLLs that replaced it, which
 	                       also requires upgrading the target framework version.
+
+	2023/12/16 9.0.569 DAG Unwind screen scroll suppression in WaitForCarbonUnit
+                           that was implemented in version 6.3, as it has proven
+                           too troublesome in shell scripts.
     ============================================================================
 */
 
 
 using System;
 
-using WizardWrx;
 using WizardWrx.ConsoleStreams;
 using WizardWrx.DLLConfigurationManager;
 
@@ -549,18 +552,18 @@ namespace WizardWrx.ConsoleAppAids3
         {
             const bool ECHO_OFF = true;
 
-			//	----------------------------------------------------------------
-			//	Draining the keyboard buffer prevents a stray ENTER key that
-			//	happens to be in the buffer from being misinterpreted as an
-			//	acknowledgment from a carbon unit.
-			//	----------------------------------------------------------------
+            //	----------------------------------------------------------------
+            //	Draining the keyboard buffer prevents a stray ENTER key that
+            //	happens to be in the buffer from being misinterpreted as an
+            //	acknowledgment from a carbon unit.
+            //	----------------------------------------------------------------
 
-			DrainKeyboardBuffer ( );
+            DrainKeyboardBuffer ( );
 
             if ( string.IsNullOrEmpty ( pstrPrompt ) )
                 Console.Error.Write ( Properties.Resources.MSG_CARBON_UNIT_DEFAULT );
             else
-				Console.Error.Write ( pstrPrompt );
+                Console.Error.Write ( pstrPrompt );
 
             Console.Beep ( );   // A default beep is sufficient.
             ConsoleKeyInfo cki;
@@ -570,13 +573,13 @@ namespace WizardWrx.ConsoleAppAids3
                 cki = Console.ReadKey ( ECHO_OFF );
             } while ( cki.Key != ConsoleKey.Enter );
 
-			//	----------------------------------------------------------------
-			//	When standard output is redirected, there is nothing to follow
-			//	that will return the logical carriage. Make it so.
-			//	----------------------------------------------------------------
+            //	----------------------------------------------------------------
+            //	When standard output is redirected OR the program executes in a
+            //	shell script, there is nothing to follow that will return the
+            //	logical carriage. Make it so.
+            //	----------------------------------------------------------------
 
-			if ( ConsoleAppStateManager.GetTheSingleInstance ( ).BaseStateManager.StandardHandleState ( StandardHandleInfo.StandardConsoleHandle.StandardOutput ) == StandardHandleInfo.StandardHandleState.Redirected )
-				Console.Error.WriteLine ( );
+            Console.Error.WriteLine ( );
         }   // public static void WaitForCarbonUnit (2 of 2)
 
 

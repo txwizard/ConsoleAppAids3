@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "api/TestStand.Properties.Settings.html",
-          "hash": "TvbyJlCdjKm14KjE1X7w1A=="
+          "hash": "/XlKtV0a05YX2pseG0sVwA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -21,10 +21,10 @@
       "output": {
         ".html": {
           "relative_path": "api/TestStand.Properties.html",
-          "hash": "WVsj/yVhD+pHN0bmVKDgXw=="
+          "hash": "wx3njFVxRuBtjdTM/JLUWg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction.html",
-          "hash": "7F47mYrg6Lp73yzcrLAFtA=="
+          "hash": "CVcRihWrxQY+bIvVWVrYmA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -45,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.html",
-          "hash": "Kenhy90L9AGLboOOc4lRSw=="
+          "hash": "nAe+HtzrUrPrs2Ioect+Og=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -57,10 +57,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.DisplayAids.InterruptCriterion.html",
-          "hash": "XRa55qKHnjHaxIv/i/+0nw=="
+          "hash": "HLKrYLKCv03pkDytcpeLWg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -69,10 +69,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.DisplayAids.html",
-          "hash": "QTl4WvGhoh4Jx8S+VvNrFQ=="
+          "hash": "/JJNdD1BfML7dG8a5/QrzA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -81,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.FixedConsoleWriter.CRBehavior.html",
-          "hash": "zn/lv8YrOp6jGs2EExROxg=="
+          "hash": "NxAIPKJbOFcx50cAyuApoA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -93,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.FixedConsoleWriter.html",
-          "hash": "bkE+ESPRxtz6m7jEneL8/g=="
+          "hash": "upN7GamqHeiSnUGJ9p5n7g=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -105,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WizardWrx.ConsoleAppAids3.html",
-          "hash": "WB0zrjXNmnHIvkYqcsVeHg=="
+          "hash": "k+1BGn8e7IUn4K6lsOcR8Q=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -117,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "q+u6W0Vv1k3Kp9yNpOyPPA=="
+          "hash": "kgySb4VIFGwNYXTn2EAIig=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -141,10 +141,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "QUCckos6l0BglViuE1nesg=="
+          "hash": "BMMKbkHXlN+XZUtKNjgKww=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -165,10 +165,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "F792gOFqRKUAnPCv9me/tQ=="
+          "hash": "7f3UEFC4yCs5rKrNBYOKbQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -187,23 +187,25 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because docfx version changed from 2.56.6.0 to 2.56.3.0.",
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0
+        "skipped_file_count": 0,
+        "full_build_reason_code": "DocfxVersionChanged"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 3,
-          "skipped_file_count": 3
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 9,
-          "skipped_file_count": 9
+          "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

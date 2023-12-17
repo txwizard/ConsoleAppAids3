@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Settings
    ">
-    <meta name="generator" content="docfx 2.56.6.0">
+    <meta name="generator" content="docfx 2.56.3.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -78,109 +78,13 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">System.Configuration.SettingsBase</span></div>
-    <div class="level2"><span class="xref">System.Configuration.ApplicationSettingsBase</span></div>
-    <div class="level3"><span class="xref">Settings</span></div>
-  </div>
-  <div classs="implements">
-    <h5>Implements</h5>
-    <div><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.GetPreviousVersion(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.OnPropertyChanged(System.Object, System.ComponentModel.PropertyChangedEventArgs)</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.OnSettingChanging(System.Object, System.Configuration.SettingChangingEventArgs)</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.OnSettingsLoaded(System.Object, System.Configuration.SettingsLoadedEventArgs)</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.OnSettingsSaving(System.Object, System.ComponentModel.CancelEventArgs)</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.Reload()</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.Reset()</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.Save()</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.Upgrade()</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.Context</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.Properties</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.PropertyValues</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.Providers</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.SettingsKey</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.Item[System.String]</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.PropertyChanged</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.SettingChanging</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.SettingsLoaded</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.ApplicationSettingsBase.SettingsSaving</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.SettingsBase.Initialize(System.Configuration.SettingsContext, System.Configuration.SettingsPropertyCollection, System.Configuration.SettingsProviderCollection)</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.SettingsBase.Synchronized(System.Configuration.SettingsBase)</span>
-    </div>
-    <div>
-      <span class="xref">System.Configuration.SettingsBase.IsSynchronized</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
+    <div class="level1"><span class="xref">Settings</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="TestStand.Properties.html">TestStand.Properties</a></h6>
   <h6><strong>Assembly</strong>: TestStand.dll</h6>
   <h5 id="TestStand_Properties_Settings_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class Settings : ApplicationSettingsBase, INotifyPropertyChanged</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class Settings : System.Configuration.ApplicationSettingsBase</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -227,9 +131,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ApplicationScopedSetting]
-[DefaultSettingValue(&quot;NOTES\\\\Test_Data\\\\TimedWaitTests.TXT&quot;)]
-public string TimedWaitTestCasesFQFN { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string TimedWaitTestCasesFQFN { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -246,10 +148,6 @@ public string TimedWaitTestCasesFQFN { get; }</code></pre>
       </tr>
     </tbody>
   </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
-  </div>
 </article>
           </div>
           
@@ -266,8 +164,7 @@ public string TimedWaitTestCasesFQFN { get; }</code></pre>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
-                <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
               </nav>
             </div>
           </div>

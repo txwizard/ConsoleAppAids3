@@ -1,0 +1,221 @@
+id: TestStand
+language: CSharp
+name:
+  Default: TestStand
+qualifiedName:
+  Default: TestStand
+type: Assembly
+modifiers: {}
+items:
+- id: TestStand.Properties
+  commentId: N:TestStand.Properties
+  language: CSharp
+  name:
+    CSharp: TestStand.Properties
+    VB: TestStand.Properties
+  nameWithType:
+    CSharp: TestStand.Properties
+    VB: TestStand.Properties
+  qualifiedName:
+    CSharp: TestStand.Properties
+    VB: TestStand.Properties
+  type: Namespace
+  assemblies:
+  - TestStand
+  modifiers: {}
+  items:
+  - id: TestStand.Properties.Settings
+    commentId: T:TestStand.Properties.Settings
+    language: CSharp
+    name:
+      CSharp: Settings
+      VB: Settings
+    nameWithType:
+      CSharp: Settings
+      VB: Settings
+    qualifiedName:
+      CSharp: TestStand.Properties.Settings
+      VB: TestStand.Properties.Settings
+    type: Class
+    assemblies:
+    - TestStand
+    namespace: TestStand.Properties
+    source:
+      remote:
+        path: TestStand/Properties/Settings.Designer.cs
+        branch: master
+        repo: https://github.com/txwizard/ConsoleAppAids3.git
+      id: Settings
+      path: ../TestStand/Properties/Settings.Designer.cs
+      startLine: 13
+    syntax:
+      content:
+        CSharp: 'public sealed class Settings : System.Configuration.ApplicationSettingsBase'
+        VB: >-
+          Public NotInheritable Class Settings
+
+              Inherits System.Configuration.ApplicationSettingsBase
+    inheritance:
+    - System.Object
+    modifiers:
+      CSharp:
+      - public
+      - sealed
+      - class
+      VB:
+      - Public
+      - NotInheritable
+      - Class
+    items:
+    - id: TestStand.Properties.Settings.Default
+      commentId: P:TestStand.Properties.Settings.Default
+      language: CSharp
+      name:
+        CSharp: Default
+        VB: Default
+      nameWithType:
+        CSharp: Settings.Default
+        VB: Settings.Default
+      qualifiedName:
+        CSharp: TestStand.Properties.Settings.Default
+        VB: TestStand.Properties.Settings.Default
+      type: Property
+      assemblies:
+      - TestStand
+      namespace: TestStand.Properties
+      source:
+        remote:
+          path: TestStand/Properties/Settings.Designer.cs
+          branch: master
+          repo: https://github.com/txwizard/ConsoleAppAids3.git
+        id: Default
+        path: ../TestStand/Properties/Settings.Designer.cs
+        startLine: 19
+      syntax:
+        content:
+          CSharp: public static Settings Default { get; }
+          VB: Public Shared ReadOnly Property Default As Settings
+        parameters: []
+        return:
+          type: TestStand.Properties.Settings
+      overload: TestStand.Properties.Settings.Default*
+      modifiers:
+        CSharp:
+        - public
+        - static
+        - get
+        VB:
+        - Public
+        - Shared
+        - ReadOnly
+    - id: TestStand.Properties.Settings.TimedWaitTestCasesFQFN
+      commentId: P:TestStand.Properties.Settings.TimedWaitTestCasesFQFN
+      language: CSharp
+      name:
+        CSharp: TimedWaitTestCasesFQFN
+        VB: TimedWaitTestCasesFQFN
+      nameWithType:
+        CSharp: Settings.TimedWaitTestCasesFQFN
+        VB: Settings.TimedWaitTestCasesFQFN
+      qualifiedName:
+        CSharp: TestStand.Properties.Settings.TimedWaitTestCasesFQFN
+        VB: TestStand.Properties.Settings.TimedWaitTestCasesFQFN
+      type: Property
+      assemblies:
+      - TestStand
+      namespace: TestStand.Properties
+      source:
+        remote:
+          path: TestStand/Properties/Settings.Designer.cs
+          branch: master
+          repo: https://github.com/txwizard/ConsoleAppAids3.git
+        id: TimedWaitTestCasesFQFN
+        path: ../TestStand/Properties/Settings.Designer.cs
+        startLine: 25
+      syntax:
+        content:
+          CSharp: public string TimedWaitTestCasesFQFN { get; }
+          VB: Public ReadOnly Property TimedWaitTestCasesFQFN As String
+        parameters: []
+        return:
+          type: System.String
+      overload: TestStand.Properties.Settings.TimedWaitTestCasesFQFN*
+      modifiers:
+        CSharp:
+        - public
+        - get
+        VB:
+        - Public
+        - ReadOnly
+references:
+  TestStand.Properties:
+    name:
+      CSharp:
+      - name: TestStand.Properties
+        nameWithType: TestStand.Properties
+        qualifiedName: TestStand.Properties
+      VB:
+      - name: TestStand.Properties
+        nameWithType: TestStand.Properties
+        qualifiedName: TestStand.Properties
+    isDefinition: true
+    commentId: N:TestStand.Properties
+  TestStand.Properties.Settings:
+    name:
+      CSharp:
+      - id: TestStand.Properties.Settings
+        name: Settings
+        nameWithType: Settings
+        qualifiedName: TestStand.Properties.Settings
+      VB:
+      - id: TestStand.Properties.Settings
+        name: Settings
+        nameWithType: Settings
+        qualifiedName: TestStand.Properties.Settings
+    isDefinition: true
+    parent: TestStand.Properties
+    commentId: T:TestStand.Properties.Settings
+  TestStand.Properties.Settings.Default*:
+    name:
+      CSharp:
+      - id: TestStand.Properties.Settings.Default*
+        name: Default
+        nameWithType: Settings.Default
+        qualifiedName: TestStand.Properties.Settings.Default
+      VB:
+      - id: TestStand.Properties.Settings.Default*
+        name: Default
+        nameWithType: Settings.Default
+        qualifiedName: TestStand.Properties.Settings.Default
+    isDefinition: true
+    commentId: Overload:TestStand.Properties.Settings.Default
+  System.String:
+    name:
+      CSharp:
+      - id: System.String
+        name: String
+        nameWithType: String
+        qualifiedName: System.String
+        isExternal: true
+      VB:
+      - id: System.String
+        name: String
+        nameWithType: String
+        qualifiedName: System.String
+        isExternal: true
+    isDefinition: true
+    commentId: '!:System.String'
+  TestStand.Properties.Settings.TimedWaitTestCasesFQFN*:
+    name:
+      CSharp:
+      - id: TestStand.Properties.Settings.TimedWaitTestCasesFQFN*
+        name: TimedWaitTestCasesFQFN
+        nameWithType: Settings.TimedWaitTestCasesFQFN
+        qualifiedName: TestStand.Properties.Settings.TimedWaitTestCasesFQFN
+      VB:
+      - id: TestStand.Properties.Settings.TimedWaitTestCasesFQFN*
+        name: TimedWaitTestCasesFQFN
+        nameWithType: Settings.TimedWaitTestCasesFQFN
+        qualifiedName: TestStand.Properties.Settings.TimedWaitTestCasesFQFN
+    isDefinition: true
+    commentId: Overload:TestStand.Properties.Settings.TimedWaitTestCasesFQFN
