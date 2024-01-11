@@ -10,7 +10,7 @@
     	<projectUrl>https://github.com/txwizard/ConsoleAppAids3</projectUrl>
 	    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     	<description>$description$</description>
-        <releaseNotes>Unwind screen scroll suppression in `WaitForCarbonUnit` that was implemented in version 6.3, as it has proven troublesome in shell scripts.</releaseNotes>
+        <releaseNotes>Display the message associated with a nonzero exit code.</releaseNotes>
         <copyright>$copyright$</copyright>
     	<tags>Constrained console scrolling, specialized console application management</tags>
 	</metadata>

@@ -30,7 +30,7 @@
 
 	Author:             David A. Gray
 
-	License:            Copyright (C) 2014-2022, David A. Gray. 
+	License:            Copyright (C) 2014-2024, David A. Gray. 
 						All rights reserved.
 
                         Redistribution and use in source and binary forms, with
@@ -145,6 +145,9 @@
     2022/12/31 9.0.0   DAG SetCWDRelativeToEntryAssemblyPath establishes the CWD
                            relative to the entry assembly path, returning the
                            resulting absolute (fully qualified) path.
+
+    2024/01/11 9.0.571 DAG Display the message associated with a nonzero exit
+                           code.
     ============================================================================
 */
 
@@ -909,6 +912,7 @@ namespace WizardWrx.ConsoleAppAids3
                     break;
 
                 case NormalExitAction.Timed:
+                    ReportNonZeroStatusCode ( ( int ) puintStatusCode );
                     Console.WriteLine ( pstrOperatorPrompt );
                     DisplayAids.TimedWait (
 						puintSecondsToWait ,            // puintWaitSeconds
@@ -920,6 +924,8 @@ namespace WizardWrx.ConsoleAppAids3
                     break;
 
                 case NormalExitAction.HaltOnError:
+                    ReportNonZeroStatusCode ( ( int ) puintStatusCode );
+
                     if ( puintStatusCode == MagicNumbers.ERROR_SUCCESS )
                     {   // No news is good news. Keep going.
                         Environment.Exit ( MagicNumbers.ERROR_SUCCESS );
@@ -932,11 +938,13 @@ namespace WizardWrx.ConsoleAppAids3
                     break;
 
                 case NormalExitAction.WaitForOperator:
+                    ReportNonZeroStatusCode ( ( int ) puintStatusCode );
                     DisplayAids.WaitForCarbonUnit ( pstrOperatorPrompt );
                     Environment.Exit ( ( int ) puintStatusCode );
                     break;
 
                 default:
+                    ReportNonZeroStatusCode ( ( int ) puintStatusCode );
                     Console.WriteLine (
 						Properties.Resources.NORMAL_EXIT_INTERNAL_ERROR ,           		// Message template
 						penmNormalExitAction ,                                      		// Token 0
