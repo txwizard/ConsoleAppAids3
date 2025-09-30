@@ -410,36 +410,91 @@ namespace WizardWrx.ConsoleAppAids3
         {
             Console.WriteLine ( GetEOJMessage ( ) );
         }   // public void DisplayEOJMessage method
-        #endregion // BOJ and EOJ Message Displays                                 
+		#endregion // BOJ and EOJ Message Displays                                 
 
 
-        #region ErrorExit Methods
-        /// <summary>
-        /// Display an error message, read from a table of static strings, and
-        /// exit, returning the exit code. See Remarks.
-        /// </summary>
-        /// <param name="puintStatusCode">
-        /// This unsigned integer specifies the subscript of the message, and it
-        /// becomes the program's exit code. See Remarks.
-        /// </param>
-        /// <param name="penmNormalExitAction">
-        /// When specified, this optioal NormalExitAction enumeration member is
-        /// used to override the default, Timed.
-        /// </param>
-        /// <remarks>
-        /// You must supply the messages as an array of strings, by calling
-        /// instance method LoadErrorMessageTable.
-        ///
-        /// After the message is displayed, static method WaitForCarbonUnit
-        /// is called with a null string reference, causing it to display its
-        /// default prompt, and wait until an operator presses the RETURN key.
-        ///
-        /// When WaitForCarbonUnit returns, the DisplayEOJMessage method on the
-        /// singleton instance is called to display the end of job message,
-        /// along with the ending time and elapsed time, and control is returned
-        /// to the OS, sending along the exit code.
-        /// </remarks>
-        public void ErrorExit ( uint puintStatusCode , NormalExitAction penmNormalExitAction = NormalExitAction.Timed )
+		#region ErrorExit Methods
+		/// <summary>
+		/// Display an error message, read from a table of static strings, and
+		/// exit, returning the exit code. See Remarks.
+		/// </summary>
+		/// <param name="puintStatusCode">
+		/// This unsigned integer specifies the subscript of the message, and it
+		/// becomes the program's exit code. See Remarks.
+		/// </param>
+		/// <remarks>
+		/// <para>
+		/// You must supply the messages as an array of strings, by calling
+		/// instance method LoadErrorMessageTable.
+		/// </para>
+		/// <para>
+		/// After the message is displayed, if the assembly has a debugger
+		/// attached to its application domain, static method WaitForCarbonUnit
+		/// is called with a null string reference, causing it to display its
+		/// default prompt, and wait until an operator presses the RETURN key.
+		/// </para>
+		/// <para>
+		/// When WaitForCarbonUnit returns, the DisplayEOJMessage method on the
+		/// singleton instance is called to display the end of job message,
+		/// along with the ending time and elapsed time, and control is returned
+		/// to the OS, sending along the exit code.
+		/// </para>
+        /// <para>
+        /// In the absence of a debugger, when the exit code is nonzero, the
+        /// standard 30 second timed wait is executed. Otherwise, absent a
+        /// debugger, the program exits immediately.
+        /// </para>
+		/// </remarks>
+		public void ErrorExit ( uint puintStatusCode )
+		{
+			ReportNonZeroStatusCode ( ( int ) puintStatusCode );
+
+			DisplayEOJMessage ( );
+
+			if ( System.Diagnostics.Debugger.IsAttached )
+			{
+				DisplayAids.WaitForCarbonUnit ( null );
+			}   // TRUE (The process is attached to a debugger.) block, if ( System.Diagnostics.Debugger.IsAttached )
+			else if ( puintStatusCode > MagicNumbers.ERROR_SUCCESS )
+			{
+				DisplayAids.TimedWait (
+					TIMED_WAIT_DEFAULT_SECONDS ,                                // uint puintWaitSeconds
+					TIMED_WAIT_WAITING_FOR_DEFAULT ,                            // string pstrCountdownWaitingFor
+					TIMED_WAIT_TEXT_COLOR_DEFAULT ,                             // ConsoleColor pclrTextColor
+					TIMED_WAIT_BACKGROUND_COLOR_DEFAULT ,                       // ConsoleColor pclrTextBackgroundColor
+					TIMED_WAIT_INTERRUPT_CRITERION );                           // InterruptCriterion penmInterruptCriterion
+			}   // TRUE (The process has a positive return code, and it is detached from all debuggers.) block, else if ( puintStatusCode > MagicNumbers.ERROR_SUCCESS )
+
+			Environment.Exit ( ( int ) puintStatusCode );
+		}   // public void ErrorExit
+
+
+		/// <summary>
+		/// Display an error message, read from a table of static strings, and
+		/// exit, returning the exit code. See Remarks.
+		/// </summary>
+		/// <param name="puintStatusCode">
+		/// This unsigned integer specifies the subscript of the message, and it
+		/// becomes the program's exit code. See Remarks.
+		/// </param>
+		/// <param name="penmNormalExitAction">
+		/// When specified, this optioal NormalExitAction enumeration member is
+		/// used to override the default, Timed.
+		/// </param>
+		/// <remarks>
+		/// You must supply the messages as an array of strings, by calling
+		/// instance method LoadErrorMessageTable.
+		///
+		/// After the message is displayed, static method WaitForCarbonUnit
+		/// is called with a null string reference, causing it to display its
+		/// default prompt, and wait until an operator presses the RETURN key.
+		///
+		/// When WaitForCarbonUnit returns, the DisplayEOJMessage method on the
+		/// singleton instance is called to display the end of job message,
+		/// along with the ending time and elapsed time, and control is returned
+		/// to the OS, sending along the exit code.
+		/// </remarks>
+		public void ErrorExit ( uint puintStatusCode , NormalExitAction penmNormalExitAction = NormalExitAction.Timed )
         {
             ReportNonZeroStatusCode ( ( int ) puintStatusCode );
 

@@ -171,6 +171,39 @@
             object lock.
             </remarks>
         </member>
+        <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ErrorExit(System.UInt32)">
+            <summary>
+            Display an error message, read from a table of static strings, and
+            exit, returning the exit code. See Remarks.
+            </summary>
+            <param name="puintStatusCode">
+            This unsigned integer specifies the subscript of the message, and it
+            becomes the program's exit code. See Remarks.
+            </param>
+            <remarks>
+            <para>
+            You must supply the messages as an array of strings, by calling
+            instance method LoadErrorMessageTable.
+            </para>
+            <para>
+            After the message is displayed, if the assembly has a debugger
+            attached to its application domain, static method WaitForCarbonUnit
+            is called with a null string reference, causing it to display its
+            default prompt, and wait until an operator presses the RETURN key.
+            </para>
+            <para>
+            When WaitForCarbonUnit returns, the DisplayEOJMessage method on the
+            singleton instance is called to display the end of job message,
+            along with the ending time and elapsed time, and control is returned
+            to the OS, sending along the exit code.
+            </para>
+            <para>
+            In the absence of a debugger, when the exit code is nonzero, the
+            standard 30 second timed wait is executed. Otherwise, absent a
+            debugger, the program exits immediately.
+            </para>
+            </remarks>
+        </member>
         <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ErrorExit(System.UInt32,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)">
              <summary>
              Display an error message, read from a table of static strings, and

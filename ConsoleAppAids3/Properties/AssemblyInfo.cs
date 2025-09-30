@@ -112,5 +112,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion ( "9.0.0.0" )]
-[assembly: AssemblyFileVersion ( "9.0.1084.0" )]
-[assembly: AssemblyInformationalVersion ( "9.0.1084" )]
+[assembly: AssemblyFileVersion ( "9.0.1086.0" )]
+[assembly: AssemblyInformationalVersion ( "9.0.1086" )]
