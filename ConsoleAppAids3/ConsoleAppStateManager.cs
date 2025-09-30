@@ -148,6 +148,9 @@
 
     2024/01/11 9.0.571 DAG Display the message associated with a nonzero exit
                            code.
+
+    2025/08/13 9.0.573 DAG Add an optional NormalExitAction parameter to the
+                           ErrorExit method.
     ============================================================================
 */
 
@@ -407,17 +410,21 @@ namespace WizardWrx.ConsoleAppAids3
         {
             Console.WriteLine ( GetEOJMessage ( ) );
         }   // public void DisplayEOJMessage method
-		#endregion	// BOJ and EOJ Message Displays
+        #endregion // BOJ and EOJ Message Displays                                 
 
 
-		#region ErrorExit Methods
-		/// <summary>
+        #region ErrorExit Methods
+        /// <summary>
         /// Display an error message, read from a table of static strings, and
         /// exit, returning the exit code. See Remarks.
         /// </summary>
         /// <param name="puintStatusCode">
         /// This unsigned integer specifies the subscript of the message, and it
         /// becomes the program's exit code. See Remarks.
+        /// </param>
+        /// <param name="penmNormalExitAction">
+        /// When specified, this optioal NormalExitAction enumeration member is
+        /// used to override the default, Timed.
         /// </param>
         /// <remarks>
         /// You must supply the messages as an array of strings, by calling
@@ -432,23 +439,39 @@ namespace WizardWrx.ConsoleAppAids3
         /// along with the ending time and elapsed time, and control is returned
         /// to the OS, sending along the exit code.
         /// </remarks>
-        public void ErrorExit ( uint puintStatusCode )
+        public void ErrorExit ( uint puintStatusCode , NormalExitAction penmNormalExitAction = NormalExitAction.Timed )
         {
             ReportNonZeroStatusCode ( ( int ) puintStatusCode );
 
             DisplayEOJMessage ( );
 
             if ( System.Diagnostics.Debugger.IsAttached )
+            {
                 DisplayAids.WaitForCarbonUnit ( null );
-            else if ( puintStatusCode > MagicNumbers.ERROR_SUCCESS )
-                DisplayAids.TimedWait (
-                    TIMED_WAIT_DEFAULT_SECONDS ,                                            // uint puintWaitSeconds
-                    TIMED_WAIT_WAITING_FOR_DEFAULT ,                                        // string pstrCountdownWaitingFor
-                    TIMED_WAIT_TEXT_COLOR_DEFAULT ,             							// ConsoleColor pclrTextColor
-                    TIMED_WAIT_BACKGROUND_COLOR_DEFAULT ,									// ConsoleColor pclrTextBackgroundColor
-                    TIMED_WAIT_INTERRUPT_CRITERION );										// InterruptCriterion penmInterruptCriterion
+			}   // TRUE (The process is attached to a debugger.) block, if ( System.Diagnostics.Debugger.IsAttached )
+			else if ( puintStatusCode > MagicNumbers.ERROR_SUCCESS )
+            {
+                switch ( penmNormalExitAction )
+                {
+                    case NormalExitAction.Timed:
+                        DisplayAids.TimedWait (
+                            TIMED_WAIT_DEFAULT_SECONDS ,                        // uint puintWaitSeconds
+                            TIMED_WAIT_WAITING_FOR_DEFAULT ,                    // string pstrCountdownWaitingFor
+                            TIMED_WAIT_TEXT_COLOR_DEFAULT ,                     // ConsoleColor pclrTextColor
+                            TIMED_WAIT_BACKGROUND_COLOR_DEFAULT ,               // ConsoleColor pclrTextBackgroundColor
+                            TIMED_WAIT_INTERRUPT_CRITERION );                   // InterruptCriterion penmInterruptCriterion
+                        break;
+                    case NormalExitAction.ExitImmediately:
+					case NormalExitAction.Silent:
+						break;
+                    case NormalExitAction.HaltOnError:
+					case NormalExitAction.WaitForOperator:
+						DisplayAids.WaitForCarbonUnit ( $"{Properties.Resources.MSG_NONZERO_EXIT_CODE}{Environment.NewLine}{Environment.NewLine}{Properties.Resources.MSG_CARBON_UNIT_DEFAULT}" );
+						break;
+				}   // switch ( penmNormalExitAction )
+			}   // TRUE (The process has a positive return code, and it is detached from all debuggers.) block, else if ( puintStatusCode > MagicNumbers.ERROR_SUCCESS )
 
-            Environment.Exit ( ( int ) puintStatusCode );
+			Environment.Exit ( ( int ) puintStatusCode );
         }   // public void ErrorExit
         #endregion   // ErrorExit Methods
 

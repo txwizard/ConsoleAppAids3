@@ -4,6 +4,14 @@ This file is a running history of fixes and improvements from version 7.0
 onwards. Changes are documented for the newest version first. Within each
 version, classes are listed alphabetically.
 
+# AssemblyVersion 9.0.0, Updated 08/13/2025, AssemblyFileVersion 9.0.57
+
+The `ErrorExit` method gets an optional `NormalExitAction` parameter that
+defaults to implementing the legacy behavior of entering a timed wait of up to
+thirty seconds when the application exit code is greater than zero. All other
+enumeration members are supported in the manner in which they are implemented
+by the `NormalExit` method.
+
 # AssemblyVersion 9.0.0 Updated 01/11/2024, AssemblyFileVersion 9.0.571
 
 Display the message associated with a nonzero exit code.

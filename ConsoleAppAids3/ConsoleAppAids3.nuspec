@@ -7,10 +7,12 @@
 	    <authors>$author$</authors>
     	<owners>$author$</owners>
 	    <license type="expression">BSD-3-Clause</license>
-    	<projectUrl>https://github.com/txwizard/ConsoleAppAids3</projectUrl>
+		<projectUrl>https://txwizard.github.io/ConsoleAppAids3/</projectUrl>
+		<repository type="git" url="https://github.com/txwizard/ConsoleAppAids3" />
 	    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     	<description>$description$</description>
-        <releaseNotes>Display the message associated with a nonzero exit code.</releaseNotes>
+		<readme>readme.md</readme>
+        <releaseNotes>See changelog.md for details.</releaseNotes>		
         <copyright>$copyright$</copyright>
     	<tags>Constrained console scrolling, specialized console application management</tags>
 	</metadata>

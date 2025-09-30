@@ -171,7 +171,7 @@
             object lock.
             </remarks>
         </member>
-        <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ErrorExit(System.UInt32)">
+        <member name="M:WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.ErrorExit(System.UInt32,WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExitAction)">
              <summary>
              Display an error message, read from a table of static strings, and
              exit, returning the exit code. See Remarks.
@@ -179,6 +179,10 @@
              <param name="puintStatusCode">
              This unsigned integer specifies the subscript of the message, and it
              becomes the program's exit code. See Remarks.
+             </param>
+             <param name="penmNormalExitAction">
+             When specified, this optioal NormalExitAction enumeration member is
+             used to override the default, Timed.
              </param>
              <remarks>
              You must supply the messages as an array of strings, by calling
@@ -1409,6 +1413,11 @@
         <member name="P:WizardWrx.Properties.Resources.MSG_INTERRUPTCRITERION_NONE">
             <summary>
               Looks up a localized string similar to The countdown cannot be stopped..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.MSG_NONZERO_EXIT_CODE">
+            <summary>
+              Looks up a localized string similar to The program was instructed to halt due to the exit code being greater than zero..
             </summary>
         </member>
         <member name="P:WizardWrx.Properties.Resources.NORMAL_EXIT_INTERNAL_ERROR">

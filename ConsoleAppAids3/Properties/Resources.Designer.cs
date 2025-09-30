@@ -19,7 +19,7 @@ namespace WizardWrx.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -183,6 +183,15 @@ namespace WizardWrx.Properties {
         internal static string MSG_INTERRUPTCRITERION_NONE {
             get {
                 return ResourceManager.GetString("MSG_INTERRUPTCRITERION_NONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The program was instructed to halt due to the exit code being greater than zero..
+        /// </summary>
+        internal static string MSG_NONZERO_EXIT_CODE {
+            get {
+                return ResourceManager.GetString("MSG_NONZERO_EXIT_CODE", resourceCulture);
             }
         }
         

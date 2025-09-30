@@ -67,5 +67,6 @@ D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\b
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\bin\Debug\WizardWrx.DLLConfigurationManager.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\bin\Debug\WizardWrx.FormatStringEngine.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\bin\Debug\WizardWrx.MoreMath.xml
-D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Debug\TestStand.csproj.CopyComplete
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Debug\TestStand.csproj.AssemblyReference.cache
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Debug\TestStand.exe.config
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Debug\TestStand.csproj.Up2Date

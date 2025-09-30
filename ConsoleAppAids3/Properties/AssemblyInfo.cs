@@ -89,7 +89,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration ( "" )]
 [assembly: AssemblyCompany ( "David A. Gray" )]
 [assembly: AssemblyProduct ( "WizardWrx .NET Utility Libraries" )]
-[assembly: AssemblyCopyright ( "Copyright © 2012-2024, David A. Gray" )]
+[assembly: AssemblyCopyright ( "Copyright © 2012-2025, David A. Gray" )]
 [assembly: AssemblyTrademark ( "This library is distributed under a three-clause BSD license." )]
 [assembly: AssemblyCulture ( "" )]
 
@@ -112,5 +112,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion ( "9.0.0.0" )]
-[assembly: AssemblyFileVersion ( "9.0.573.0" )]
-[assembly: AssemblyInformationalVersion ( "9.0.573" )]
+[assembly: AssemblyFileVersion ( "9.0.1084.0" )]
+[assembly: AssemblyInformationalVersion ( "9.0.1084" )]

@@ -64,7 +64,8 @@ D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\b
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.Properties.Resources.resources
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.csproj.GenerateResource.cache
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.csproj.CoreCompileInputs.cache
-D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.csproj.CopyComplete
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.exe
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.pdb
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.csproj.AssemblyReference.cache
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.exe.config
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\TestStand\obj\Release\TestStand.csproj.Up2Date

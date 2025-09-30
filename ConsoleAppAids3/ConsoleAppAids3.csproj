@@ -92,26 +92,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="WizardWrx.AnyCSV, Version=7.2.145.0, Culture=neutral, PublicKeyToken=39f6551a21db420a, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.AnyCSV.7.2.145\lib\net20\WizardWrx.AnyCSV.dll</HintPath>
+    <Reference Include="WizardWrx.AnyCSV, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WizardWrx.AnyCSV.9.0.157\lib\net48\WizardWrx.AnyCSV.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.ASCIIInfo, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WizardWrx.ASCIIInfo.9.0.218\lib\net48\WizardWrx.ASCIIInfo.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.AssemblyUtils, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.AssemblyUtils.9.0.273\lib\net48\WizardWrx.AssemblyUtils.dll</HintPath>
+      <HintPath>..\packages\WizardWrx.AssemblyUtils.9.0.277\lib\net48\WizardWrx.AssemblyUtils.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.BitMath, Version=4.3.125.29248, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WizardWrx.BitMath.4.3.125.29248\lib\net20\WizardWrx.BitMath.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.Common, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.Common.9.0.266\lib\net48\WizardWrx.Common.dll</HintPath>
+      <HintPath>..\packages\WizardWrx.Common.9.0.268\lib\net48\WizardWrx.Common.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.ConsoleStreams, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WizardWrx.ConsoleStreams.9.0.324\lib\net48\WizardWrx.ConsoleStreams.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.Core, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WizardWrx.Core.9.0.337\lib\net48\WizardWrx.Core.dll</HintPath>
+      <HintPath>..\packages\WizardWrx.Core.9.0.361\lib\net48\WizardWrx.Core.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.DLLConfigurationManager, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WizardWrx.DLLConfigurationManager.9.0.353\lib\net48\WizardWrx.DLLConfigurationManager.dll</HintPath>

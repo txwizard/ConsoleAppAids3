@@ -90,6 +90,7 @@ D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.FormatStringEngine.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.ASCIIInfo.xml
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\WizardWrx.AnyCSV.xml
-D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.csproj.CopyComplete
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.csproj.AssemblyReference.cache
 D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\bin\Debug\EOJTEST.exe.config
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.exe.config
+D:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\EOJTEST\obj\Debug\EOJTEST.csproj.Up2Date

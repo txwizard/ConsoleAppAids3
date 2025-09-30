@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CONSOLE_APP_BOJ" xml:space="preserve">
     <value>{0}{1}Begin @ {2} ({3} UTC){1}</value>
@@ -169,6 +169,10 @@
   <data name="MSG_INTERRUPTCRITERION_NONE" xml:space="preserve">
     <value>The countdown cannot be stopped.</value>
     <comment>The TimedWait methods of the DisplayAids class display this message to inform the user how to abport the wait.</comment>
+  </data>
+  <data name="MSG_NONZERO_EXIT_CODE" xml:space="preserve">
+    <value>The program was instructed to halt due to the exit code being greater than zero.</value>
+    <comment>WaitForCarbonUnit uses this when ErrorExit is instructed to halt, awaiting a carbon unit.</comment>
   </data>
   <data name="NORMAL_EXIT_INTERNAL_ERROR" xml:space="preserve">
     <value>{2}INTERNAL ERROR in routine WizardWrx.ConsoleAppAids3.ConsoleAppStateManager.NormalExit:{2}    Value given as argument penmNormalExitAction  = {0}{2}    Override substituted for above argument value = {1}{2}</value>
